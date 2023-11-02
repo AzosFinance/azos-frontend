@@ -1,5 +1,5 @@
 import AppLayout from "@/components/4_layouts/AppLayout";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, useColorMode } from "@chakra-ui/react";
 import "@rainbow-me/rainbowkit/styles.css";
 import {
   darkTheme,
@@ -47,7 +47,13 @@ export default function App({ Component, pageProps }) {
   } else {
     return (
       <WagmiConfig config={wagmiConfig}>
-        <RainbowKitProvider chains={chains}>
+        <RainbowKitProvider
+          chains={chains}
+          theme={darkTheme({
+            accentColor: "#03ffe0",
+            accentColorForeground: "black",
+          })}
+        >
           <ApolloProvider client={client}>
             <ChakraProvider theme={theme}>
               <AppLayout>

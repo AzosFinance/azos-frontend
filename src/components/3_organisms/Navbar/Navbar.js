@@ -1,12 +1,14 @@
+import SwitchColorMode from "@/components/1_atoms/SwitchColorMode/SwitchColorMode";
 import UserAvatarMenu from "@/components/1_atoms/UserAvatarMenu/UserAvatarMenu";
+import { ConnectWallet } from "@/components/2_molecules/ConnectWallet/ConnectWallet";
 import { Heading, Stack } from "@chakra-ui/react";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
 
 const Navbar = () => {
   const router = useRouter();
-  const { address, isConnected } = useAccount();
+  const { isConnected } = useAccount();
+
   return (
     <Stack
       pt="1rem"
@@ -18,9 +20,10 @@ const Navbar = () => {
       <Heading cursor="pointer" onClick={() => router.push("/")}>
         Azos
       </Heading>
-      <Stack direction="row" alignItems="center" spacing="1rem">
+      <Stack direction="row" alignItems="center" spacing="1.5rem">
         {isConnected && <UserAvatarMenu />}
-        <ConnectButton />
+        <ConnectWallet />
+        <SwitchColorMode />
       </Stack>
     </Stack>
   );

@@ -1,8 +1,9 @@
 import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
 import { formatNumber } from "@/utils/funcs";
-import { Button, Stack, Text } from "@chakra-ui/react";
+import { Button, Stack, Text, useColorMode } from "@chakra-ui/react";
 
 const PlatformGlobalStatisticsVault = ({ vault }) => {
+  const { colorMode } = useColorMode();
   return (
     <Stack
       direction="row"
@@ -11,21 +12,15 @@ const PlatformGlobalStatisticsVault = ({ vault }) => {
       rounded="md"
       spacing="2rem"
       alignItems="center"
-      bg="gray.300"
+      bg={colorMode === "light" ? "gray.300" : "gray.900"}
       shadow="lg"
     >
       <Stack>
         <Text textAlign="center" fontSize="2xl" fontWeight="semibold">
           {vault.vaultName}
         </Text>
-        <Button
-          border="1px"
-          borderColor="gray.900"
-          bg="#C6DBD6"
-          size="sm"
-          _hover={{ bg: "#c0eadd" }}
-        >
-          Explore Vaults
+        <Button size="sm" variant="outline" colorScheme="teal">
+          Explore Vault
         </Button>
       </Stack>
       <Stack direction="row" w="100%">

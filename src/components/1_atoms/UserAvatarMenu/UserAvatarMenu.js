@@ -22,7 +22,7 @@ const UserAvatarMenu = () => {
 
   return (
     <Menu>
-      <MenuButton as={Avatar} size="sm" cursor="pointer" />
+      <MenuButton as={Avatar} bg="gray.600" size="sm" cursor="pointer" />
       <MenuList>
         <MenuItem
           onClick={() => {
