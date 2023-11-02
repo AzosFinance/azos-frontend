@@ -27,7 +27,7 @@ export const dummyVaults = [
   },
   {
     vaultName: "Stable",
-    vaultSymbol: "EURt",
+    vaultSymbol: "USDC",
     vaultsRoute: "/vaults/stable",
     activeVaults: "5,643",
     totalVaults: "2,532",

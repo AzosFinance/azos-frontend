@@ -1,4 +1,5 @@
-import { Avatar, Heading, Stack } from "@chakra-ui/react";
+import UserAvatarMenu from "@/components/1_atoms/UserAvatarMenu/UserAvatarMenu";
+import { Heading, Stack } from "@chakra-ui/react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
@@ -18,15 +19,7 @@ const Navbar = () => {
         Azos
       </Heading>
       <Stack direction="row" alignItems="center" spacing="1rem">
-        {isConnected && (
-          <Avatar
-            size="sm"
-            cursor="pointer"
-            onClick={() =>
-              router.push("/user/create-vault/" + address.toLowerCase())
-            }
-          />
-        )}
+        {isConnected && <UserAvatarMenu />}
         <ConnectButton />
       </Stack>
     </Stack>
