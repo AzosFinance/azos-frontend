@@ -1,0 +1,29 @@
+{
+  "name": "azos-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.6",
+    "@chakra-ui/next-js": "^2.1.5",
+    "@chakra-ui/react": "^2.8.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@rainbow-me/rainbowkit": "^1.0.7",
+    "eslint": "8.46.0",
+    "eslint-config-next": "13.4.12",
+    "ethers": "^5.7.2",
+    "framer-motion": "^10.15.0",
+    "graphql": "^16.8.1",
+    "next": "13.4.12",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "viem": "^1.5.2",
+    "wagmi": "^1.3.9"
+  }
+}
