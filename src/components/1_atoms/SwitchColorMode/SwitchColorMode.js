@@ -5,9 +5,9 @@ const SwitchColorMode = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return colorMode === "light" ? (
-    <MoonIcon onClick={toggleColorMode} />
+    <MoonIcon onClick={toggleColorMode} cursor="pointer" />
   ) : (
-    <SunIcon onClick={toggleColorMode} />
+    <SunIcon onClick={toggleColorMode} cursor="pointer" />
   );
 };
 

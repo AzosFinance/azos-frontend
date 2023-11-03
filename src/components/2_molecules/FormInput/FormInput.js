@@ -6,6 +6,7 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
+  InputRightAddon,
 } from "@chakra-ui/react";
 
 const FormInput = ({
@@ -28,7 +29,6 @@ const FormInput = ({
         {label}
       </FormLabel>
       <InputGroup>
-        {inputAddon && <InputLeftAddon>{inputAddon}</InputLeftAddon>}
         <Input
           placeholder={placeholder}
           defaultValue={defaultValue}
@@ -36,6 +36,7 @@ const FormInput = ({
           disabled={disabled}
           {...register(name)}
         />
+        {inputAddon && <InputRightAddon>{inputAddon}</InputRightAddon>}
       </InputGroup>
 
       {error && <FormErrorMessage>{errorMessage}</FormErrorMessage>}

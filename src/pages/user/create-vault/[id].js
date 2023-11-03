@@ -3,8 +3,11 @@ import FormSelect from "@/components/2_molecules/FormSelect/FormSelect";
 import { dummyVaults } from "@/utils/consts";
 import {
   Button,
+  Divider,
   Flex,
   Heading,
+  Link,
+  Select,
   SimpleGrid,
   Stack,
   Text,
@@ -18,79 +21,35 @@ const CreateVault = () => {
       <Stack spacing="1.5rem">
         <Heading textAlign="center">Create A New Vault</Heading>
       </Stack>
-      <Stack direction="row" mt="2rem" spacing="1.5rem">
-        <Stack spacing="1.5rem">
-          <Stack
-            px="3rem"
-            py="1rem"
-            rounded="md"
-            border="1px"
-            spacing="1.5rem"
-            alignItems="center"
-            w="25rem"
-          >
-            <Flex border="1px" rounded="md" px="1rem" py="0.3rem">
-              <Text textAlign="center">Add Input Collateral</Text>
-            </Flex>
-            <FormSelect
-              label="Select Collateral"
-              name="inputCollateral"
-              register={register}
-              options={dummyVaults.map((e) => {
-                return { label: e.vaultSymbol, value: e.vaultSymbol };
-              })}
-            />
-            <Stack alignItems="flex-start" w="100%">
-              <Text fontSize="sm">ETH Price: $1,742.32</Text>
-            </Stack>
-          </Stack>
-          <Stack
-            px="3rem"
-            py="1rem"
-            rounded="md"
-            border="1px"
-            spacing="1.5rem"
-            alignItems="center"
-            w="25rem"
-          >
-            <Flex border="1px" rounded="md" px="1rem" py="0.3rem">
-              <Text textAlign="center">Output Token</Text>
-            </Flex>
-            <FormSelect
-              label="Select Output Token"
-              name="outputToken"
-              register={register}
-              options={dummyVaults.map((e) => {
-                return { label: e.vaultSymbol, value: e.vaultSymbol };
-              })}
-            />
-            <Stack alignItems="flex-start" w="100%">
-              <Text fontSize="sm">ETH Price: $1,742.32</Text>
-            </Stack>
-          </Stack>
-        </Stack>
+      <Stack direction="row" justifyContent="center" mt="2rem" spacing="1.5rem">
         <Stack
           px="3rem"
-          py="1rem"
+          py="2rem"
           rounded="md"
           border="1px"
           spacing="1.5rem"
-          alignItems="center"
-          w="25rem"
+          w="30rem"
         >
-          <Flex border="1px" rounded="md" px="1rem" py="0.3rem">
-            <Text textAlign="center">Exchange</Text>
-          </Flex>
+          <Text fontSize="lg" fontWeight="semibold" textAlign="center">
+            Exchange
+          </Text>
           <Stack spacing="4rem">
             <Stack spacing="1rem">
-              <FormInput
-                label="Select Amount to Exchange"
-                name="amountToExchange"
-                register={register}
-                inputAddon="ETH"
-              />
-              <Stack alignItems="flex-start" w="100%">
-                <Text fontSize="sm">Remaining Wallet Balance: 12.432 ETH</Text>
+              <Stack direction="row" alignItems="flex-end">
+                <FormInput
+                  label="Select Amount to Exchange"
+                  name="amountToExchange"
+                  register={register}
+                />
+                <Select w="8rem">
+                  {dummyVaults.map((e, idx) => (
+                    <option key={idx}>{e.vaultSymbol}</option>
+                  ))}
+                </Select>
+              </Stack>
+              <Stack justifyContent="space-between" w="100%" direction="row">
+                <Text fontSize="sm">Balance: 12.432 ETH</Text>
+                <Text fontSize="sm">ETH Price: $1,742.32</Text>
               </Stack>
             </Stack>
             <Stack spacing="1rem">
@@ -98,46 +57,48 @@ const CreateVault = () => {
                 label="Exchange For"
                 name="exchangeFor"
                 register={register}
-                inputAddon="ETH"
+                inputAddon="SOZA"
               />
-              <Stack alignItems="flex-start" w="100%">
-                <Text fontSize="sm">Exchange Max</Text>
+              <Stack justifyContent="space-between" w="100%" direction="row">
+                <Link fontSize="sm">Exchange Max</Link>
+                <Text fontSize="sm">SOZA Price: $1.02</Text>
               </Stack>
             </Stack>
           </Stack>
         </Stack>
         <Stack
           px="3rem"
-          py="1rem"
+          py="2rem"
           rounded="md"
           border="1px"
           spacing="1.5rem"
           alignItems="center"
-          w="25rem"
+          w="22rem"
         >
-          <Flex border="1px" rounded="md" px="1rem" py="0.3rem">
-            <Text textAlign="center">Collateral Ready for Vault</Text>
-          </Flex>
-          <Stack w="100%" spacing="2rem" p="1rem" border="1px" rounded="md">
-            <SimpleGrid columns={2}>
+          <Text fontSize="lg" fontWeight="semibold" textAlign="center">
+            Collateral Ready for Vault
+          </Text>
+          <Stack w="100%" spacing="2rem" fontSize="sm">
+            <SimpleGrid columns={2} spacing="1rem">
+              <Text>Vault Type</Text>
+              <Text>ETH</Text>
+            </SimpleGrid>
+            <SimpleGrid columns={2} spacing="1rem">
               <Text>Total Collateral</Text>
               <Text>.77 ETH</Text>
             </SimpleGrid>
-            <SimpleGrid columns={2}>
-              <Text>m-ETH debt</Text>
-              <Text></Text>
-            </SimpleGrid>
-            <SimpleGrid columns={2}>
-              <Text>Collateral Type</Text>
-              <Text>ETH</Text>
+            <SimpleGrid columns={2} spacing="1rem">
+              <Text>SOZA Debt</Text>
+              <Text>3000 SOZA</Text>
             </SimpleGrid>
           </Stack>
-          <Stack w="100%" spacing="2rem" p="1rem" border="1px" rounded="md">
-            <SimpleGrid columns={2}>
+          <Divider />
+          <Stack w="100%" spacing="2rem" fontSize="sm">
+            <SimpleGrid columns={2} spacing="1rem">
               <Text>Liquidation Penalty</Text>
-              <Text>18-20%</Text>
+              <Text>8%</Text>
             </SimpleGrid>
-            <SimpleGrid columns={2}>
+            <SimpleGrid columns={2} spacing="1rem">
               <Text>Vault Fee</Text>
               <Text>0.5%</Text>
             </SimpleGrid>
