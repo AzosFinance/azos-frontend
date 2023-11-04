@@ -2,19 +2,7 @@ import VaultsTable from "@/components/2_molecules/VaultsTable/VaultsTable";
 import VaultsTableRow from "@/components/2_molecules/VaultsTable/VaultsTableRow";
 import PlatformGlobalStatisticsVault from "@/components/2_molecules/CardAssetClass/CardAssetClass";
 import { dummyVaults } from "@/utils/consts";
-import {
-  Stack,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-  Heading,
-  Text,
-  Button,
-} from "@chakra-ui/react";
+import { Stack, Heading, Text } from "@chakra-ui/react";
 import { useAccount } from "wagmi";
 
 const UserProfile = () => {
