@@ -1,6 +1,6 @@
 import { dummyVaults } from "@/utils/consts";
 import { Heading, Stack } from "@chakra-ui/react";
-import PlatformGlobalStatisticsVault from "./components/PlatformGlobalStatisticsVault";
+import PlatformGlobalStatisticsVault from "../../../../2_molecules/CardAssetClass/CardAssetClass";
 
 const PlatformGlobalStatistics = () => {
   return (

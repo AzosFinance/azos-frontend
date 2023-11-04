@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { dummyVaults } from "@/utils/consts";
-import PlatformGlobalStatisticsVault from "@/components/5_pages/HomePage/components/PlatformGlobalStatistics/components/PlatformGlobalStatisticsVault";
+import PlatformGlobalStatisticsVault from "@/components/2_molecules/CardAssetClass/CardAssetClass";
 import { Heading, Stack } from "@chakra-ui/react";
 import VaultsTable from "@/components/2_molecules/VaultsTable/VaultsTable";
 import VaultsTableRow from "@/components/2_molecules/VaultsTable/VaultsTableRow";

@@ -3,7 +3,7 @@ import { formatNumber } from "@/utils/funcs";
 import { Button, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-const PlatformGlobalStatisticsVault = ({ vault, children }) => {
+const CardAssetClass = ({ vault, children }) => {
   const { colorMode } = useColorMode();
   const router = useRouter();
   return (
@@ -28,7 +28,7 @@ const PlatformGlobalStatisticsVault = ({ vault, children }) => {
             colorScheme="teal"
             onClick={() => router.push("/asset-class/" + vault.vaultSymbol)}
           >
-            Explore Vault
+            Explore Vaults
           </Button>
         </Stack>
         <Stack direction="row" w="100%">
@@ -86,4 +86,4 @@ const PlatformGlobalStatisticsVault = ({ vault, children }) => {
   );
 };
 
-export default PlatformGlobalStatisticsVault;
+export default CardAssetClass;
