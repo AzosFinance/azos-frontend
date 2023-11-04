@@ -22,7 +22,7 @@ const UserProfile = () => {
 
   return (
     <Stack w="100%" mt="1rem" spacing="2rem">
-      <Stack spacing="1rem">
+      <Stack spacing="1rem" mb="1rem">
         <Heading color="teal.200">User Profile</Heading>
         <Text>{address}</Text>
       </Stack>
