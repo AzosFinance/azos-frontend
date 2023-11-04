@@ -1,9 +1,11 @@
 import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
 import { formatNumber } from "@/utils/funcs";
 import { Button, Stack, Text, useColorMode } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 const PlatformGlobalStatisticsVault = ({ vault, children }) => {
   const { colorMode } = useColorMode();
+  const router = useRouter();
   return (
     <Stack>
       <Stack
@@ -20,8 +22,13 @@ const PlatformGlobalStatisticsVault = ({ vault, children }) => {
           <Text textAlign="center" fontSize="2xl" fontWeight="semibold">
             {vault.vaultName}
           </Text>
-          <Button size="sm" variant="outline" colorScheme="teal">
-            Explore Vaults
+          <Button
+            size="sm"
+            variant="outline"
+            colorScheme="teal"
+            onClick={() => router.push("/asset-class/" + vault.vaultSymbol)}
+          >
+            Explore Vault
           </Button>
         </Stack>
         <Stack direction="row" w="100%">
