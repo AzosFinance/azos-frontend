@@ -7,7 +7,7 @@ import {
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { fantomTestnet } from "wagmi/chains";
+import { sepolia } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { theme } from "@/theme/theme";
 import { ApolloProvider } from "@apollo/client";
@@ -15,10 +15,7 @@ import client from "@/graphQL/apolloClient";
 import { useEffect, useState } from "react";
 const projectId = process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID;
 
-const { chains, publicClient } = configureChains(
-  [fantomTestnet],
-  [publicProvider()]
-);
+const { chains, publicClient } = configureChains([sepolia], [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
   appName: "Azos",

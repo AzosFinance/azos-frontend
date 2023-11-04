@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 const CreateVault = () => {
   const { register } = useForm();
   return (
-    <Stack w="100%" h="100vh">
+    <Stack w="100%">
       <Stack spacing="1.5rem">
         <Heading textAlign="center">Create A New Vault</Heading>
       </Stack>
