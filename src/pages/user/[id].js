@@ -1,7 +1,7 @@
 import SafeTable from "@/components/2_molecules/SafeTable/SafeTable";
 import SafeTableRow from "@/components/2_molecules/SafeTable/SafeTableRow";
 import CardAssetClass from "@/components/2_molecules/CardAssetClass/CardAssetClass";
-import { Stack, Heading, Text, Button, Flex } from "@chakra-ui/react";
+import { Stack, Heading, Text, Center } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import { GET_USER_PROXY } from "@/graphQL/queries";
@@ -26,7 +26,7 @@ const UserProfile = () => {
           {router?.query?.id}
         </Text>
       </Stack>
-      {data?.userProxy ? (
+      {data?.userProxy?.safes?.length > 0 ? (
         data?.userProxy?.safes?.map((assetClass, id) => {
           return (
             <CardAssetClass key={id} safe={assetClass?.safe?.assetClass}>
@@ -45,11 +45,9 @@ const UserProfile = () => {
           );
         })
       ) : (
-        <Flex>
-          <Button colorScheme="teal" variant="outline">
-            Initialize Proxy
-          </Button>
-        </Flex>
+        <Center h="50vh">
+          <Text color="gray.500">No Assets Detected</Text>
+        </Center>
       )}
     </Stack>
   );

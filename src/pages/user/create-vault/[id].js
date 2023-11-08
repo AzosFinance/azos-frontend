@@ -1,6 +1,10 @@
+import LoadingPage from "@/components/1_atoms/LoadingPage/LoadingPage";
 import FormInput from "@/components/2_molecules/FormInput/FormInput";
-import FormSelect from "@/components/2_molecules/FormSelect/FormSelect";
+import { GET_USER_HAVE_PROXY } from "@/graphQL/queries";
+import useContractInteraction from "@/hooks/web3Hooks/useContractInteraction";
 import { dummyVaults } from "@/utils/consts";
+import { handleCreateUserProxy } from "@/web3/contractInteractions/haiProxyFactoryContract";
+import { useQuery } from "@apollo/client";
 import {
   Button,
   Divider,
@@ -12,15 +16,56 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useAccount } from "wagmi";
 
 const CreateVault = () => {
+  const [isRefetching, setIsRefetching] = useState(false);
+  const { address } = useAccount();
   const { register } = useForm();
-  return (
+
+  const { data, loading, refetch } = useQuery(GET_USER_HAVE_PROXY, {
+    variables: {
+      id: address?.toLowerCase(),
+    },
+  });
+
+  const { onContractCall, isConnected, isRightNetwork, isSubmitting } =
+    useContractInteraction(handleCreateUserProxy(), "User Proxy Created");
+
+  return loading || isRefetching ? (
+    <LoadingPage />
+  ) : (
     <Stack w="100%">
       <Stack spacing="1.5rem">
         <Heading textAlign="center">Create A New Vault</Heading>
       </Stack>
+      {!data?.userProxy && (
+        <Stack mt="1rem">
+          <Text textAlign="center">
+            You need to create a user proxy before creating a safe
+          </Text>
+          <Flex justifyContent="center">
+            <Button
+              colorScheme="teal"
+              variant="outline"
+              isDisabled={!isConnected || !isRightNetwork}
+              isLoading={isSubmitting}
+              onClick={async () => {
+                const res = await onContractCall();
+                if (res) {
+                  setIsRefetching(true);
+                  await refetch();
+                  setIsRefetching(false);
+                }
+              }}
+            >
+              Create User Proxy
+            </Button>
+          </Flex>
+        </Stack>
+      )}
       <Stack direction="row" justifyContent="center" mt="2rem" spacing="1.5rem">
         <Stack
           px="3rem"
@@ -106,7 +151,12 @@ const CreateVault = () => {
         </Stack>
       </Stack>
       <Flex w="100%" justifyContent="center" mt="1rem">
-        <Button colorScheme="teal">Build Vault</Button>
+        <Button
+          isDisabled={!data?.userProxy || !isConnected || !isRightNetwork}
+          colorScheme="teal"
+        >
+          Build Vault
+        </Button>
       </Flex>
     </Stack>
   );
