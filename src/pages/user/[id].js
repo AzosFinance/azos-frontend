@@ -14,7 +14,7 @@ const UserProfile = () => {
         <Heading color="teal.200">User Profile</Heading>
         <Text>{address}</Text>
       </Stack>
-      {dummyVaults.map((vault, id) => {
+      {/* {dummyVaults.map((vault, id) => {
         return (
           <PlatformGlobalStatisticsVault key={id} vault={vault}>
             <VaultsTable>
@@ -22,7 +22,7 @@ const UserProfile = () => {
             </VaultsTable>
           </PlatformGlobalStatisticsVault>
         );
-      })}
+      })} */}
     </Stack>
   );
 };

@@ -10,7 +10,7 @@ export const dummyVaults = [
     tokenCollateralLocked: 2543856,
     debtTokensHeld: 1119394.1,
     debtTokensHeldUsd: 1542753,
-    vaultSurcharge: "0.75%",
+    vaultSurcharge: "2%",
   },
   {
     vaultName: "Green",
@@ -23,7 +23,7 @@ export const dummyVaults = [
     tokenCollateralLocked: 5236912,
     debtTokensHeld: 32634235.34,
     debtTokensHeldUsd: 2654234,
-    vaultSurcharge: "0.75%",
+    vaultSurcharge: "2%",
   },
   {
     vaultName: "Stable",
@@ -36,7 +36,7 @@ export const dummyVaults = [
     tokenCollateralLocked: 381254,
     debtTokensHeld: 20342856.65,
     debtTokensHeldUsd: 5346124,
-    vaultSurcharge: "0.75%",
+    vaultSurcharge: "2%",
   },
 ];
 

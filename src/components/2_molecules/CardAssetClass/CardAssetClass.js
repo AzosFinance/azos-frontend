@@ -1,11 +1,13 @@
 import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
-import { formatNumber } from "@/utils/funcs";
+import { convertToEthValueType } from "@/utils/consts";
+import { convertToEth, formatNumber } from "@/utils/funcs";
 import { Button, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 const CardAssetClass = ({ vault, children }) => {
   const { colorMode } = useColorMode();
   const router = useRouter();
+
   return (
     <Stack>
       <Stack
@@ -20,13 +22,13 @@ const CardAssetClass = ({ vault, children }) => {
       >
         <Stack>
           <Text textAlign="center" fontSize="2xl" fontWeight="semibold">
-            {vault.vaultName}
+            {vault?.collateralTypeName}
           </Text>
           <Button
             size="sm"
             variant="outline"
             colorScheme="teal"
-            onClick={() => router.push("/asset-class/" + vault.vaultSymbol)}
+            onClick={() => router.push("/asset-class/" + vault?.collateralType)}
           >
             Explore Vaults
           </Button>
@@ -36,17 +38,17 @@ const CardAssetClass = ({ vault, children }) => {
             valueSize="lg"
             helperSize="xs"
             label="Active Vaults"
-            value={vault.activeVaults}
-            helper={"Total Vault " + vault.totalVaults}
+            value={vault?.activeVaults}
+            helper={"Total Vault " + vault?.activeVaults}
           />
           <StatInfo
             valueSize="lg"
             helperSize="xs"
             label="Current Price"
-            value={"$ " + formatNumber(vault.currentPrice)}
-            helper={vault.collateralMovementPercentage}
+            value={"$ " + formatNumber(vault?.currentPrice)}
+            helper={vault?.collateralMovementPercentage}
             withArrow
-            priceIncreateType={vault.collateralMovementPercentage.substring(
+            priceIncreateType={vault?.collateralMovementPercentage?.substring(
               0,
               1
             )}
@@ -54,29 +56,49 @@ const CardAssetClass = ({ vault, children }) => {
           <StatInfo
             valueSize="lg"
             helperSize="xs"
-            label={vault.vaultSymbol + " Collateral Locked"}
+            label={vault?.collateralTypeName + " Collateral Locked"}
             value={
-              formatNumber(vault.tokenCollateralLocked) +
+              formatNumber(
+                convertToEth(
+                  convertToEthValueType.notReward,
+                  vault?.collateralLocked
+                )
+              ) +
               " " +
-              vault.vaultSymbol
+              vault?.collateralTypeName
             }
             helper={
               "USD " +
-              formatNumber(vault.currentPrice * vault.tokenCollateralLocked)
+              formatNumber(vault?.currentPrice * vault?.tokenCollateralLocked)
             }
           />
           <StatInfo
             valueSize="lg"
             helperSize="xs"
-            label="Debt Tokens Held in Vaults"
-            value={formatNumber(vault.debtTokensHeld) + " " + vault.vaultSymbol}
-            helper={"USD $" + formatNumber(vault.debtTokensHeldUsd)}
+            label="Vault Debt"
+            value={
+              formatNumber(
+                convertToEth(
+                  convertToEthValueType.notReward,
+                  vault?.debtTokensHeld
+                )
+              ) + " ZAI"
+            }
+            helper={
+              "USD $" +
+              formatNumber(
+                convertToEth(
+                  convertToEthValueType.notReward,
+                  vault?.debtTokensHeld
+                )
+              )
+            }
           />
           <StatInfo
             valueSize="lg"
             helperSize="xs"
             label="Stability Fee"
-            value={vault.vaultSurcharge}
+            value="2%"
             helper="*subject to vary in accordance with governance token oversight."
           />
         </Stack>
