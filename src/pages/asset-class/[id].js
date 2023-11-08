@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
-import PlatformGlobalStatisticsVault from "@/components/2_molecules/CardAssetClass/CardAssetClass";
+import CardAssetClass from "@/components/2_molecules/CardAssetClass/CardAssetClass";
 import { Heading, Stack } from "@chakra-ui/react";
-import VaultsTable from "@/components/2_molecules/VaultsTable/VaultsTable";
-import VaultsTableRow from "@/components/2_molecules/VaultsTable/VaultsTableRow";
+import SafeTable from "@/components/2_molecules/SafeTable/SafeTable";
+import SafeTableRow from "@/components/2_molecules/SafeTable/SafeTableRow";
 import { GET_ASSET_CLASS } from "@/graphQL/queries";
 import { useQuery } from "@apollo/client";
 import LoadingPage from "@/components/1_atoms/LoadingPage/LoadingPage";
@@ -18,11 +18,17 @@ const AssetClass = () => {
   ) : (
     <Stack w="100%" spacing="2rem" mt="1rem">
       <Heading>{data?.assetClass?.collateralTypeName} Vault</Heading>
-      <PlatformGlobalStatisticsVault vault={data?.assetClass}>
-        {/* <VaultsTable>
-          <VaultsTableRow />
-        </VaultsTable> */}
-      </PlatformGlobalStatisticsVault>
+      <CardAssetClass vault={data?.assetClass}>
+        <SafeTable>
+          {data?.assetClass?.safes?.map((safe, idx) => (
+            <SafeTableRow
+              key={idx}
+              safe={safe}
+              collateralTypeName={data?.assetClass?.collateralTypeName}
+            />
+          ))}
+        </SafeTable>
+      </CardAssetClass>
     </Stack>
   );
 };

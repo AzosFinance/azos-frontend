@@ -4,7 +4,7 @@ import { convertToEth, formatNumber } from "@/utils/funcs";
 import { Button, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-const CardAssetClass = ({ vault, children }) => {
+const CardAssetClass = ({ safe, children }) => {
   const { colorMode } = useColorMode();
   const router = useRouter();
 
@@ -22,13 +22,13 @@ const CardAssetClass = ({ vault, children }) => {
       >
         <Stack>
           <Text textAlign="center" fontSize="2xl" fontWeight="semibold">
-            {vault?.collateralTypeName}
+            {safe?.collateralTypeName}
           </Text>
           <Button
             size="sm"
             variant="outline"
             colorScheme="teal"
-            onClick={() => router.push("/asset-class/" + vault?.collateralType)}
+            onClick={() => router.push("/asset-class/" + safe?.collateralType)}
           >
             Explore Vaults
           </Button>
@@ -38,17 +38,17 @@ const CardAssetClass = ({ vault, children }) => {
             valueSize="lg"
             helperSize="xs"
             label="Active Vaults"
-            value={vault?.activeVaults}
-            helper={"Total Vault " + vault?.activeVaults}
+            value={safe?.activeVaults}
+            helper={"Total Vault " + safe?.activeVaults}
           />
           <StatInfo
             valueSize="lg"
             helperSize="xs"
             label="Current Price"
-            value={"$ " + formatNumber(vault?.currentPrice)}
-            helper={vault?.collateralMovementPercentage}
+            value={"$ " + formatNumber(safe?.currentPrice)}
+            helper={safe?.collateralMovementPercentage}
             withArrow
-            priceIncreateType={vault?.collateralMovementPercentage?.substring(
+            priceIncreateType={safe?.collateralMovementPercentage?.substring(
               0,
               1
             )}
@@ -56,20 +56,20 @@ const CardAssetClass = ({ vault, children }) => {
           <StatInfo
             valueSize="lg"
             helperSize="xs"
-            label={vault?.collateralTypeName + " Collateral Locked"}
+            label={safe?.collateralTypeName + " Collateral Locked"}
             value={
               formatNumber(
                 convertToEth(
                   convertToEthValueType.notReward,
-                  vault?.collateralLocked
+                  safe?.collateralLocked
                 )
               ) +
               " " +
-              vault?.collateralTypeName
+              safe?.collateralTypeName
             }
             helper={
               "USD " +
-              formatNumber(vault?.currentPrice * vault?.tokenCollateralLocked)
+              formatNumber(safe?.currentPrice * safe?.tokenCollateralLocked)
             }
           />
           <StatInfo
@@ -80,7 +80,7 @@ const CardAssetClass = ({ vault, children }) => {
               formatNumber(
                 convertToEth(
                   convertToEthValueType.notReward,
-                  vault?.debtTokensHeld
+                  safe?.debtTokensHeld
                 )
               ) + " ZAI"
             }
@@ -89,7 +89,7 @@ const CardAssetClass = ({ vault, children }) => {
               formatNumber(
                 convertToEth(
                   convertToEthValueType.notReward,
-                  vault?.debtTokensHeld
+                  safe?.debtTokensHeld
                 )
               )
             }

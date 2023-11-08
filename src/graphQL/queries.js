@@ -24,6 +24,50 @@ export const GET_ASSET_CLASS = gql`
       collateralLocked
       debtTokensHeld
       activeVaults
+      safes {
+        safe {
+          id
+          safeId
+          amountCollateral
+          amountCoin
+          collateralType
+          user
+        }
+      }
+    }
+  }
+`;
+
+export const GET_USER_PROXY = gql`
+  query UserProxy($id: ID!) {
+    userProxy(id: $id) {
+      id
+      safes {
+        safe {
+          assetClass {
+            id
+            collateralType
+            collateralTypeName
+            collateral
+            collateralLocked
+            debtTokensHeld
+            activeVaults
+            safes(where: { safe_: { user: $id } }) {
+              safe {
+                id
+                safeId
+                amountCollateral
+                amountCoin
+                collateralType
+                user
+                assetClass {
+                  collateralTypeName
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;
