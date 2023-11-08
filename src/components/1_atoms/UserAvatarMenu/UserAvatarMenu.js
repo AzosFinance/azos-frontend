@@ -37,13 +37,13 @@ const UserAvatarMenu = () => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            router.push("/user/create-vault/" + address.toLowerCase());
+            router.push("/user/create-safe/" + address.toLowerCase());
             onClose();
           }}
         >
           <Stack alignItems="center" spacing="1rem" direction="row">
             <Icon as={CiVault} />
-            <Text>Create A New Vault</Text>
+            <Text>Create A New Safe</Text>
           </Stack>
         </MenuItem>
       </MenuList>

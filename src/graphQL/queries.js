@@ -72,10 +72,18 @@ export const GET_USER_PROXY = gql`
   }
 `;
 
-export const GET_USER_HAVE_PROXY = gql`
+export const GET_USER_CREATE_SAFE = gql`
   query UserProxy($id: ID!) {
     userProxy(id: $id) {
       id
+      proxy
+    }
+    assetClasses {
+      id
+      collateral
+      collateralTypeName
+      collateralLocked
+      debtTokensHeld
     }
   }
 `;
