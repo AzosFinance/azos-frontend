@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 
 const SafeTableRow = ({ safe, collateralTypeName }) => {
   const router = useRouter();
-  console.log(collateralTypeName, "collateralTypeName");
+
   return (
     <>
       <Tr>
