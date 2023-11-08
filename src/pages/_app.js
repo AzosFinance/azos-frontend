@@ -1,5 +1,5 @@
 import AppLayout from "@/components/4_layouts/AppLayout";
-import { ChakraProvider, useColorMode } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import "@rainbow-me/rainbowkit/styles.css";
 import {
   darkTheme,
@@ -13,9 +13,14 @@ import { theme } from "@/theme/theme";
 import { ApolloProvider } from "@apollo/client";
 import client from "@/graphQL/apolloClient";
 import { useEffect, useState } from "react";
+import { infuraProvider } from "wagmi/providers/infura";
 const projectId = process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID;
+const infuraKey = process.env.NEXT_PUBLIC_INFURA_KEY;
 
-const { chains, publicClient } = configureChains([sepolia], [publicProvider()]);
+const { chains, publicClient } = configureChains(
+  [sepolia],
+  [infuraProvider({ apiKey: infuraKey }), publicProvider()]
+);
 
 const { connectors } = getDefaultWallets({
   appName: "Azos",
