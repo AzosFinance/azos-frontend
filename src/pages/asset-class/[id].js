@@ -18,7 +18,7 @@ const AssetClass = () => {
   ) : (
     <Stack w="100%" spacing="2rem" mt="1rem">
       <Heading>{data?.assetClass?.collateralTypeName} Vault</Heading>
-      <CardAssetClass vault={data?.assetClass}>
+      <CardAssetClass safe={data?.assetClass}>
         <SafeTable>
           {data?.assetClass?.safes?.map((safe, idx) => (
             <SafeTableRow
