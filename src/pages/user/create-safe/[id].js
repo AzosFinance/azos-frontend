@@ -204,11 +204,11 @@ const CreateVault = () => {
           </Text>
           <Stack w="100%" spacing="2rem" fontSize="sm">
             <SimpleGrid columns={2} spacing="1rem">
-              <Text>Safe Type</Text>
+              <Text>Asset Class</Text>
               <Text>{assetClass.collateralTypeName}</Text>
             </SimpleGrid>
             <SimpleGrid columns={2} spacing="1rem">
-              <Text>Total Collateral</Text>
+              <Text>Safe Collateral</Text>
               <Text>
                 {formatNumber(
                   convertToEth(
@@ -221,7 +221,7 @@ const CreateVault = () => {
               </Text>
             </SimpleGrid>
             <SimpleGrid columns={2} spacing="1rem">
-              <Text>SOZA Debt</Text>
+              <Text>Safe Debt</Text>
               <Text>
                 {formatNumber(
                   convertToEth(
