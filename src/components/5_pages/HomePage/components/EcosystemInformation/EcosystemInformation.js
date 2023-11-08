@@ -1,8 +1,10 @@
 import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
 import { Heading, Stack } from "@chakra-ui/react";
 import EcosystemInfoCard from "./components/EcosystemInfoCard/EcosystemInfoCard";
+import { convertToEth, formatNumber } from "@/utils/funcs";
+import { convertToEthValueType } from "@/utils/consts";
 
-const EcosystemInformation = () => {
+const EcosystemInformation = ({ data }) => {
   return (
     <Stack w="100%" alignItems="center">
       <Stack spacing="1.5rem">
@@ -15,11 +17,24 @@ const EcosystemInformation = () => {
           p="2rem"
           shadow="lg"
         >
-          <Stack direction="row">
+          <Stack direction="row" spacing="1rem">
             <Stack spacing="1rem">
               <EcosystemInfoCard>
-                <StatInfo label="Total Safes" value="2,437" helper="Created" />
-                <StatInfo label="TVL" value="13,087.22" helper="Collateral" />
+                <StatInfo
+                  label="Total Safes"
+                  value={formatNumber(data?.ecosystemInfo?.totalSafes)}
+                  helper="Created"
+                />
+                <StatInfo
+                  label="TVL"
+                  value={formatNumber(
+                    convertToEth(
+                      convertToEthValueType.notReward,
+                      data?.ecosystemInfo?.totalCollateralLocked
+                    )
+                  )}
+                  helper="Collateral"
+                />
               </EcosystemInfoCard>
               <EcosystemInfoCard>
                 <StatInfo label="Klima DAO" value="$ 1,815.21 USD" />
@@ -29,12 +44,17 @@ const EcosystemInformation = () => {
               <EcosystemInfoCard>
                 <StatInfo
                   label="Active Safes"
-                  value="130"
+                  value={formatNumber(data?.ecosystemInfo?.totalSafes)}
                   helper="With Balance"
                 />
                 <StatInfo
-                  label="Collateral Ratio"
-                  value="338.66%"
+                  label="Collateral"
+                  value={formatNumber(
+                    convertToEth(
+                      convertToEthValueType.notReward,
+                      data?.ecosystemInfo?.totalDebt
+                    )
+                  )}
                   helper="Overall"
                 />
               </EcosystemInfoCard>

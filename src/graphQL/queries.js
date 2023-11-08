@@ -2,6 +2,13 @@ import { gql } from "@apollo/client";
 
 export const GET_ASSET_CLASSES = gql`
   query AssetClasses {
+    ecosystemInfo(id: "ecosystemInfo") {
+      id
+      totalCollateralLocked
+      totalDebt
+      totalSafes
+      totalAssetClasses
+    }
     assetClasses {
       id
       collateralType

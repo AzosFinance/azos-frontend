@@ -7,11 +7,12 @@ import { useQuery } from "@apollo/client";
 
 const HomePage = () => {
   const { data, loading } = useQuery(GET_ASSET_CLASSES);
+
   return loading ? (
     <LoadingPage />
   ) : (
     <Stack w="100%" spacing="3rem">
-      <EcosystemInformation />
+      <EcosystemInformation data={data} />
       <PlatformGlobalStatistics assetClasses={data?.assetClasses} />
     </Stack>
   );
