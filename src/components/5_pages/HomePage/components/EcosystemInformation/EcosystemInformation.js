@@ -32,7 +32,7 @@ const EcosystemInformation = ({ data, ethPrice }) => {
     <Stack spacing="2rem" direction={["column", "column", "row"]} w="100%">
       <Stack w={["100%", "100%", "50%"]} spacing="1rem">
         <Text
-          textAlign={["center", "center", "row"]}
+          textAlign={["center", "center", "left"]}
           fontWeight="semibold"
           fontSize="xl"
         >
@@ -66,7 +66,7 @@ const EcosystemInformation = ({ data, ethPrice }) => {
       </Stack>
       <Stack w={["100%", "100%", "50%"]} spacing="1rem">
         <Text
-          textAlign={["center", "center", "row"]}
+          textAlign={["center", "center", "left"]}
           fontWeight="semibold"
           fontSize="xl"
         >

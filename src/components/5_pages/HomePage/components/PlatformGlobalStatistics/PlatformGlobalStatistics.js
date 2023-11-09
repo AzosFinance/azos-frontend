@@ -5,7 +5,7 @@ const PlatformGlobalStatistics = ({ assetClasses, ethPrice }) => {
   return (
     <Stack w="100%" spacing="2rem">
       <Text
-        textAlign={["center", "center", "row"]}
+        textAlign={["center", "center", "left"]}
         fontSize="xl"
         fontWeight="semibold"
       >

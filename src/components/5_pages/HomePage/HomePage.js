@@ -1,5 +1,5 @@
 import EcosystemInformation from "@/components/5_pages/HomePage/components/EcosystemInformation/EcosystemInformation";
-import { Stack } from "@chakra-ui/react";
+import { Divider, Stack } from "@chakra-ui/react";
 import PlatformGlobalStatistics from "./components/PlatformGlobalStatistics/PlatformGlobalStatistics";
 import { GET_ASSET_CLASSES } from "@/graphQL/queries";
 import LoadingPage from "@/components/1_atoms/LoadingPage/LoadingPage";
@@ -15,8 +15,9 @@ const HomePage = () => {
   return loadingAssetClasses || loadingEthPrice ? (
     <LoadingPage />
   ) : (
-    <Stack w="100%" spacing="3rem">
+    <Stack w="100%" spacing="3rem" mt="1rem">
       <EcosystemInformation data={dataAssetClasses} ethPrice={ethPrice} />
+      <Divider />
       <PlatformGlobalStatistics
         assetClasses={dataAssetClasses?.assetClasses}
         ethPrice={ethPrice}
