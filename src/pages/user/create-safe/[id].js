@@ -6,6 +6,10 @@ import useContractInteraction from "@/hooks/web3Hooks/useContractInteraction";
 import useGetErc20BalanceAllowance from "@/hooks/web3Hooks/useGetErc20BalanceAllowance";
 import { convertToEthValueType } from "@/utils/consts";
 import { convertToEth, formatNumber } from "@/utils/funcs";
+import {
+  handleCreateSafe,
+  hanldeEncodeExecuteData,
+} from "@/web3/contractInteractions/haiProxyContract";
 import { handleCreateUserProxy } from "@/web3/contractInteractions/haiProxyFactoryContract";
 import { useQuery } from "@apollo/client";
 import {
@@ -27,13 +31,17 @@ const CreateVault = () => {
   const [isRefetching, setIsRefetching] = useState(false);
   const [collateralAsset, setCollateralAsset] = useState("");
   const { address } = useAccount();
-  const { register, watch } = useForm();
+  const { register, watch, reset } = useForm();
 
   const { data, loading, refetch } = useQuery(GET_USER_CREATE_SAFE, {
     variables: {
       id: address?.toLowerCase(),
     },
   });
+
+  useEffect(() => {
+    reset({ amountToExchange: 0, exchangeFor: 0 });
+  }, []);
 
   // USER APPROVAL, ALLOWANCE AND BALANCE
   const {
@@ -63,6 +71,7 @@ const CreateVault = () => {
         collateralTypeName: _assetClass?.collateralTypeName,
         collateralLocked: _assetClass?.collateralLocked,
         debtTokensHeld: _assetClass?.debtTokensHeld,
+        collateralType: _assetClass?.collateralType,
       };
     } else {
       return {
@@ -73,9 +82,43 @@ const CreateVault = () => {
     }
   }, [collateralAsset, data]);
 
+  // ENDODE CONTRACT CALL PARAMETERS FOR CREATE SAFE
+  const callDataExecutePayload = useMemo(() => {
+    if (collateralAsset && assetClass) {
+      return hanldeEncodeExecuteData(
+        collateralAsset,
+        assetClass.collateralType,
+        watch("amountToExchange"),
+        watch("exchangeFor")
+      );
+    }
+  }, [
+    collateralAsset,
+    assetClass,
+    watch("amountToExchange"),
+    watch("exchangeFor"),
+  ]);
+
+  useEffect(() => {
+    console.log(callDataExecutePayload);
+  }, [callDataExecutePayload]);
+
   // CREATE USER PROXY
-  const { onContractCall, isConnected, isRightNetwork, isSubmitting } =
-    useContractInteraction(handleCreateUserProxy(), "User Proxy Created");
+  const {
+    onContractCall: onContractCallCreateProxy,
+    isConnected,
+    isRightNetwork,
+    isSubmitting: isSubmittingCreateProxy,
+  } = useContractInteraction(handleCreateUserProxy(), "User Proxy Created");
+
+  // CREATE SAFE
+  const {
+    onContractCall: onContractCallCreateSafe,
+    isSubmitting: isSubmittingCreateSafe,
+  } = useContractInteraction(
+    handleCreateSafe(data?.userProxy?.proxy),
+    "Deposit Completed"
+  );
 
   return loading || isRefetching ? (
     <LoadingPage />
@@ -94,9 +137,9 @@ const CreateVault = () => {
               colorScheme="teal"
               variant="outline"
               isDisabled={!isConnected || !isRightNetwork}
-              isLoading={isSubmitting}
+              isLoading={isSubmittingCreateProxy}
               onClick={async () => {
-                const res = await onContractCall();
+                const res = await onContractCallCreateProxy();
                 if (res) {
                   setIsRefetching(true);
                   await refetch();
@@ -128,6 +171,7 @@ const CreateVault = () => {
                   label="Select Amount to Exchange"
                   name="amountToExchange"
                   register={register}
+                  type="number"
                 />
                 <Select
                   w="8rem"
@@ -182,6 +226,7 @@ const CreateVault = () => {
                 name="exchangeFor"
                 register={register}
                 inputAddon="SOZA"
+                type="number"
               />
               <Stack justifyContent="space-between" w="100%" direction="row">
                 <Link fontSize="sm">Exchange Max</Link>

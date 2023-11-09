@@ -91,6 +91,7 @@ export const GET_USER_CREATE_SAFE = gql`
       collateralTypeName
       collateralLocked
       debtTokensHeld
+      collateralType
     }
   }
 `;
