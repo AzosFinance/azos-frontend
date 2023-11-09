@@ -41,15 +41,15 @@ const useCreateSafeHooks = (collateralAsset, amountToExchange, data) => {
     if (collateralAsset && assetClass && amountToExchange > 0) {
       let _deltaWad;
       if (collateralAsset === BCT_ADDRESS) {
-        _deltaWad = convertToWei(amountToExchange);
+        _deltaWad = convertToWei(amountToExchange?.toString());
       } else {
-        _deltaWad = convertToWei(amountToExchange).div("2");
+        _deltaWad = convertToWei(amountToExchange?.toString()).div("2");
       }
       return {
         endodedDataFunction: hanldeEncodeExecuteData(
           collateralAsset,
           assetClass.collateralType,
-          convertToWei(amountToExchange),
+          convertToWei(amountToExchange?.toString()),
           _deltaWad
         ),
         deltaWad: formatNumber(

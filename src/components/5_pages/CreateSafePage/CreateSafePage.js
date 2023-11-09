@@ -14,7 +14,7 @@ const CreateSafePage = () => {
   const [isRefetching, setIsRefetching] = useState(false);
   const [collateralAsset, setCollateralAsset] = useState("");
   const { address, isConnected } = useAccount();
-  const { register, watch } = useForm();
+  const { register, watch, control, setValue } = useForm();
 
   const { data, loading, refetch } = useQuery(GET_USER_CREATE_SAFE, {
     variables: {
@@ -67,6 +67,8 @@ const CreateSafePage = () => {
             ethPrice={ethPrice}
             collateralAsset={collateralAsset}
             deltaWad={callDataAndDeltaWad?.deltaWad}
+            control={control}
+            setValue={setValue}
           />
         </Flex>
         <CreateSafeStepsCard

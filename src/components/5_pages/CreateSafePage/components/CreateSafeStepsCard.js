@@ -89,7 +89,10 @@ const CreateSafeStepsCard = ({
                         colorScheme="orange"
                         size="xs"
                         onClick={() => {
-                          handleApproval(proxy, convertToWei(amountToExchange));
+                          handleApproval(
+                            proxy,
+                            convertToWei(amountToExchange?.toString())
+                          );
                         }}
                         isLoading={submittingApproval || loading}
                         isDisabled={disableApprovalButton}

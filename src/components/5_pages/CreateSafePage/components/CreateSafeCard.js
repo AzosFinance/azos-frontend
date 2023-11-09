@@ -1,4 +1,4 @@
-import FormInput from "@/components/2_molecules/FormInput/FormInput";
+import FromInputNumeric from "@/components/2_molecules/FromInputNumeric/FromInputNumeric";
 import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
 import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
 import { collateralPrices } from "@/utils/consts";
@@ -14,6 +14,8 @@ const CreateSafeCard = ({
   ethPrice,
   collateralAsset,
   deltaWad,
+  control,
+  setValue,
 }) => {
   const { colorMode } = useColorMode();
   const { getUsdAssetPrice } = useUsdAssetPriceConverter();
@@ -67,11 +69,13 @@ const CreateSafeCard = ({
         <Stack spacing="2rem">
           <Stack spacing="1rem">
             <Stack direction="row" alignItems="flex-end">
-              <FormInput
-                label="Collateral Amount"
+              <FromInputNumeric
                 name="amountToExchange"
-                register={register}
-                type="number"
+                label="Collateral Amount"
+                onValueChange={(target) => {
+                  setValue("amountToExchange", target.floatValue);
+                }}
+                control={control}
               />
               <Select
                 w="8rem"
