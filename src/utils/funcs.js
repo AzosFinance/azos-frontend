@@ -36,7 +36,7 @@ export const formatNumber = (value) => {
 
 export const formatWalletAddress = (address) => {
   if (address) {
-    return address.slice(0, 6) + "..." + address.substr(address.length - 4);
+    return address.slice(0, 6) + "..." + address.substr(address.length - 6);
   } else {
     return "";
   }

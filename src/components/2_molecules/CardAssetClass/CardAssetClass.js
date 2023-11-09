@@ -1,12 +1,15 @@
 import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
-import { convertToEthValueType } from "@/utils/consts";
+import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
+import { collateralPrices, convertToEthValueType } from "@/utils/consts";
 import { convertToEth, formatNumber } from "@/utils/funcs";
 import { Button, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-const CardAssetClass = ({ safe, children }) => {
+const CardAssetClass = ({ safe, children, ethPrice }) => {
   const { colorMode } = useColorMode();
   const router = useRouter();
+
+  const { getUsdAssetPrice } = useUsdAssetPriceConverter();
 
   return (
     <Stack>
@@ -39,19 +42,18 @@ const CardAssetClass = ({ safe, children }) => {
             helperSize="xs"
             label="Active Vaults"
             value={safe?.activeSafes}
-            helper={"Total Vault " + safe?.activeSafes}
           />
           <StatInfo
             valueSize="lg"
             helperSize="xs"
-            label="Current Price"
-            value={"$ " + formatNumber(safe?.currentPrice)}
-            helper={safe?.collateralMovementPercentage}
-            withArrow
-            priceIncreateType={safe?.collateralMovementPercentage?.substring(
-              0,
-              1
-            )}
+            label={`Current ${safe?.collateralTypeName} Price`}
+            value={
+              "$ " +
+              getUsdAssetPrice(
+                ethPrice,
+                Number(collateralPrices[safe?.collateral])
+              )?.toFixed("2")
+            }
           />
           <StatInfo
             valueSize="lg"
@@ -68,8 +70,17 @@ const CardAssetClass = ({ safe, children }) => {
               safe?.collateralTypeName
             }
             helper={
-              "USD " +
-              formatNumber(safe?.currentPrice * safe?.tokenCollateralLocked)
+              "$ " +
+              formatNumber(
+                getUsdAssetPrice(
+                  ethPrice,
+                  Number(collateralPrices[safe?.collateral]) *
+                    convertToEth(
+                      convertToEthValueType.notReward,
+                      safe?.collateralLocked
+                    )
+                )
+              )
             }
           />
           <StatInfo
@@ -85,7 +96,7 @@ const CardAssetClass = ({ safe, children }) => {
               ) + " ZAI"
             }
             helper={
-              "USD $" +
+              "$ " +
               formatNumber(
                 convertToEth(
                   convertToEthValueType.notReward,
@@ -99,7 +110,6 @@ const CardAssetClass = ({ safe, children }) => {
             helperSize="xs"
             label="Stability Fee"
             value="2%"
-            helper="*subject to vary in accordance with governance token oversight."
           />
         </Stack>
       </Stack>

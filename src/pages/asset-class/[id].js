@@ -6,6 +6,7 @@ import SafeTableRow from "@/components/2_molecules/SafeTable/SafeTableRow";
 import { GET_ASSET_CLASS } from "@/graphQL/queries";
 import { useQuery } from "@apollo/client";
 import LoadingPage from "@/components/1_atoms/LoadingPage/LoadingPage";
+import useGetEthPrice from "@/hooks/web3Hooks/useGetEthPrice";
 
 const AssetClass = () => {
   const router = useRouter();
@@ -13,17 +14,20 @@ const AssetClass = () => {
     variables: { id: router.query.id },
   });
 
-  return loading ? (
+  const { ethPrice, loadingEthPrice } = useGetEthPrice();
+
+  return loading || loadingEthPrice ? (
     <LoadingPage />
   ) : (
     <Stack w="100%" spacing="2rem" mt="1rem">
       <Heading>{data?.assetClass?.collateralTypeName} Vault</Heading>
-      <CardAssetClass safe={data?.assetClass}>
+      <CardAssetClass safe={data?.assetClass} ethPrice={ethPrice}>
         <SafeTable>
           {data?.assetClass?.safes?.map((safe, idx) => (
             <SafeTableRow
               key={idx}
               safe={safe}
+              ethPrice={ethPrice}
               collateralTypeName={data?.assetClass?.collateralTypeName}
             />
           ))}

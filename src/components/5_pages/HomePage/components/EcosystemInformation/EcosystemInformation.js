@@ -1,84 +1,70 @@
 import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
-import { Heading, Stack } from "@chakra-ui/react";
-import EcosystemInfoCard from "./components/EcosystemInfoCard/EcosystemInfoCard";
+import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
+import { collateralPrices, convertToEthValueType } from "@/utils/consts";
 import { convertToEth, formatNumber } from "@/utils/funcs";
-import { convertToEthValueType } from "@/utils/consts";
+import { Stack, Text } from "@chakra-ui/react";
+import { useMemo } from "react";
 
-const EcosystemInformation = ({ data }) => {
+const EcosystemInformation = ({ data, ethPrice }) => {
+  const { getUsdAssetPrice } = useUsdAssetPriceConverter();
+
+  const totalTvl = useMemo(() => {
+    if (data?.assetClasses?.length > 0 && ethPrice) {
+      let _totalTvl = 0;
+      for (let i = 0; i < data?.assetClasses?.length; i++) {
+        _totalTvl += getUsdAssetPrice(
+          ethPrice,
+          Number(collateralPrices[data?.assetClasses[i]?.collateral]) *
+            convertToEth(
+              convertToEthValueType.notReward,
+              data?.assetClasses[i]?.collateralLocked
+            )
+        );
+      }
+      return formatNumber(_totalTvl?.toFixed("0"));
+    } else {
+      return "--";
+    }
+  }, [data]);
+
   return (
-    <Stack w="100%" alignItems="center">
-      <Stack spacing="1.5rem">
-        <Heading textAlign="center">Ecosystem Information</Heading>
-        <Stack
-          alignItems="center"
-          spacing="1rem"
-          border="1px"
-          rounded="md"
-          p="2rem"
-          shadow="lg"
-        >
-          <Stack direction="row" spacing="1rem">
-            <Stack spacing="1rem">
-              <EcosystemInfoCard>
-                <StatInfo
-                  label="Total Safes"
-                  value={formatNumber(data?.ecosystemInfo?.totalSafes)}
-                  helper="Created"
-                />
-                <StatInfo
-                  label="TVL"
-                  value={formatNumber(
-                    convertToEth(
-                      convertToEthValueType.notReward,
-                      data?.ecosystemInfo?.totalCollateralLocked
-                    )
-                  )}
-                  helper="Collateral"
-                />
-              </EcosystemInfoCard>
-              <EcosystemInfoCard>
-                <StatInfo label="Klima DAO" value="$ 1,815.21 USD" />
-              </EcosystemInfoCard>
-            </Stack>
-            <Stack spacing="1rem">
-              <EcosystemInfoCard>
-                <StatInfo
-                  label="Active Safes"
-                  value={formatNumber(data?.ecosystemInfo?.totalSafes)}
-                  helper="With Balance"
-                />
-                <StatInfo
-                  label="Collateral"
-                  value={formatNumber(
-                    convertToEth(
-                      convertToEthValueType.notReward,
-                      data?.ecosystemInfo?.totalDebt
-                    )
-                  )}
-                  helper="Overall"
-                />
-              </EcosystemInfoCard>
-              <EcosystemInfoCard>
-                <StatInfo label="Annual Redemption Rate" value="10.505 %" />
-              </EcosystemInfoCard>
-            </Stack>
-            <Stack spacing="1rem">
-              <EcosystemInfoCard>
-                <StatInfo
-                  label="Market Price"
-                  value="$ 2.789 USD"
-                  helper="SOZA"
-                />
-                <StatInfo
-                  label="Redemption Price"
-                  value="2,515,081"
-                  helper="SOZA"
-                />
-              </EcosystemInfoCard>
-              <EcosystemInfoCard>
-                <StatInfo label="Outstanding SOZA" value="1,300,000" />
-              </EcosystemInfoCard>
-            </Stack>
+    <Stack spacing="2rem" direction="row" w="100%">
+      <Stack w="50%" spacing="1rem">
+        <Text fontWeight="semibold" fontSize="xl">
+          Ecosystem Information
+        </Text>
+        <Stack p="1rem" rounded="md" border="1px" spacing="1rem" shadow="lg">
+          <Stack direction="row">
+            <StatInfo valueSize="md" label="TVL" value={"$ " + totalTvl} />
+            <StatInfo
+              valueSize="md"
+              label="Debt Outstanding"
+              value={
+                "$ " +
+                formatNumber(
+                  convertToEth(
+                    convertToEthValueType.notReward,
+                    data?.ecosystemInfo?.totalDebt
+                  )
+                )
+              }
+            />
+          </Stack>
+        </Stack>
+      </Stack>
+      <Stack w="50%" spacing="1rem">
+        <Text fontWeight="semibold" fontSize="xl">
+          Stability Module
+        </Text>
+        <Stack p="1rem" rounded="md" border="1px" spacing="1rem" shadow="lg">
+          <Stack direction="row">
+            <StatInfo
+              valueSize="md"
+              label="Authorized Collateral "
+              value="--"
+            />
+            <StatInfo valueSize="md" label="Balance" value="--" />
+            <StatInfo valueSize="md" label="Debt" value="--" />
           </Stack>
         </Stack>
       </Stack>

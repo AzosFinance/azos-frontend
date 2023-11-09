@@ -16,7 +16,7 @@ const StatInfo = ({
   withArrow,
 }) => {
   return (
-    <Stat>
+    <Stat textAlign="center">
       <StatLabel>{label}</StatLabel>
       <StatNumber fontSize={valueSize}>{value}</StatNumber>
       <StatHelpText fontSize={helperSize}>

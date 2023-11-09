@@ -4,16 +4,23 @@ import PlatformGlobalStatistics from "./components/PlatformGlobalStatistics/Plat
 import { GET_ASSET_CLASSES } from "@/graphQL/queries";
 import LoadingPage from "@/components/1_atoms/LoadingPage/LoadingPage";
 import { useQuery } from "@apollo/client";
+import useGetEthPrice from "@/hooks/web3Hooks/useGetEthPrice";
 
 const HomePage = () => {
-  const { data, loading } = useQuery(GET_ASSET_CLASSES);
+  const { data: dataAssetClasses, loading: loadingAssetClasses } =
+    useQuery(GET_ASSET_CLASSES);
 
-  return loading ? (
+  const { ethPrice, loadingEthPrice } = useGetEthPrice();
+
+  return loadingAssetClasses || loadingEthPrice ? (
     <LoadingPage />
   ) : (
     <Stack w="100%" spacing="3rem">
-      <EcosystemInformation data={data} />
-      <PlatformGlobalStatistics assetClasses={data?.assetClasses} />
+      <EcosystemInformation data={dataAssetClasses} ethPrice={ethPrice} />
+      <PlatformGlobalStatistics
+        assetClasses={dataAssetClasses?.assetClasses}
+        ethPrice={ethPrice}
+      />
     </Stack>
   );
 };

@@ -51,3 +51,9 @@ export const covertCreateTimeStampType = {
   short: "short",
   full: "full",
 };
+
+export const collateralPrices = {
+  "0x1d1faae1e739d772566f8fb17a824c10a4868aa0": 0.0432, // BCT
+  "0xe6f85fbeda18eb49072e3b4bb1aaaefcc8255397": 0.0054, // FGB
+  "0x0879be43d76d2cb4aded433a177a6a78bfe8e85c": 0.0189, // REI
+};

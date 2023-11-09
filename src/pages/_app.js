@@ -14,6 +14,7 @@ import { ApolloProvider } from "@apollo/client";
 import client from "@/graphQL/apolloClient";
 import { useEffect, useState } from "react";
 import { infuraProvider } from "wagmi/providers/infura";
+import { RecoilRoot } from "recoil";
 const projectId = process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID;
 const infuraKey = process.env.NEXT_PUBLIC_INFURA_KEY;
 
@@ -58,9 +59,11 @@ export default function App({ Component, pageProps }) {
         >
           <ApolloProvider client={client}>
             <ChakraProvider theme={theme}>
-              <AppLayout>
-                <Component {...pageProps} />
-              </AppLayout>
+              <RecoilRoot>
+                <AppLayout>
+                  <Component {...pageProps} />
+                </AppLayout>
+              </RecoilRoot>
             </ChakraProvider>
           </ApolloProvider>
         </RainbowKitProvider>

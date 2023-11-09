@@ -1,18 +1,21 @@
+import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
 import { convertToEthValueType } from "@/utils/consts";
 import { convertToEth, formatNumber, formatWalletAddress } from "@/utils/funcs";
-import { Tr, Td, Link, Text, Stack } from "@chakra-ui/react";
+import { Tr, Td, Link, Text, Stack, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-const SafeTableRow = ({ safe, collateralTypeName }) => {
+const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
   const router = useRouter();
+
+  const { getUsdAssetPrice } = useUsdAssetPriceConverter();
 
   return (
     <>
       <Tr>
         <Td>
-          <Text fontSize="sm" color="gray.500">
+          <Button w="5rem" colorScheme="teal" variant="outline" size="xs">
             #{safe?.safe?.safeId}
-          </Text>
+          </Button>
         </Td>
         <Td>
           <Link
@@ -23,21 +26,47 @@ const SafeTableRow = ({ safe, collateralTypeName }) => {
           </Link>
         </Td>
         <Td>
-          <Stack direction="row" alignItems="center" fontSize="sm">
-            <Text>
+          <Stack justifyContent="center">
+            <Stack direction="row" alignItems="center" fontSize="sm">
+              <Text>
+                {formatNumber(
+                  convertToEth(
+                    convertToEthValueType.notReward,
+                    safe?.safe?.amountCollateral
+                  )
+                )}
+              </Text>
+              <Text color="gray.500">{collateralTypeName}</Text>
+            </Stack>
+            <Text color="gray.500" fontSize="xs">
+              ${" "}
               {formatNumber(
-                convertToEth(
-                  convertToEthValueType.notReward,
-                  safe?.safe?.amountCollateral
-                )
+                getUsdAssetPrice(
+                  ethPrice,
+                  convertToEth(
+                    convertToEthValueType.notReward,
+                    safe?.safe?.amountCollateral
+                  )
+                )?.toFixed("0")
               )}
             </Text>
-            <Text color="gray.500">{collateralTypeName}</Text>
           </Stack>
         </Td>
         <Td>
-          <Stack direction="row" alignItems="center" fontSize="sm">
-            <Text>
+          <Stack justifyContent="center">
+            <Stack direction="row" alignItems="center" fontSize="sm">
+              <Text>
+                {formatNumber(
+                  convertToEth(
+                    convertToEthValueType.notReward,
+                    safe?.safe?.amountCoin
+                  )
+                )}
+              </Text>
+              <Text color="gray.500">ZAI</Text>
+            </Stack>
+            <Text color="gray.500" fontSize="xs">
+              ${" "}
               {formatNumber(
                 convertToEth(
                   convertToEthValueType.notReward,
@@ -45,7 +74,6 @@ const SafeTableRow = ({ safe, collateralTypeName }) => {
                 )
               )}
             </Text>
-            <Text color="gray.500">ZAI</Text>
           </Stack>
         </Td>
       </Tr>
