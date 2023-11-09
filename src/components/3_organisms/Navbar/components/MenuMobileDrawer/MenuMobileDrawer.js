@@ -39,12 +39,7 @@ const MenuMobileDrawer = () => {
 
   return (
     <>
-      <Flex
-        onClick={onOpen}
-        ref={btnRef}
-        cursor="pointer"
-        display={["flex", "flex", "none"]}
-      >
+      <Flex onClick={onOpen} ref={btnRef} cursor="pointer">
         <HamburgerIcon fontSize="3xl" />
       </Flex>
       <Drawer

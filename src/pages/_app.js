@@ -53,7 +53,7 @@ export default function App({ Component, pageProps }) {
         <RainbowKitProvider
           chains={chains}
           theme={darkTheme({
-            accentColor: "#EC5E31",
+            accentColor: "#00DAEB",
             accentColorForeground: "black",
           })}
         >
