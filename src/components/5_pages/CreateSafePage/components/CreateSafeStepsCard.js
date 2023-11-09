@@ -1,6 +1,3 @@
-import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
-import { createSafeSteps } from "@/utils/consts";
-import { formatNumber } from "@/utils/funcs";
 import {
   Box,
   Button,
@@ -19,20 +16,41 @@ import {
   useColorMode,
   useSteps,
 } from "@chakra-ui/react";
+import useContractInteraction from "@/hooks/web3Hooks/useContractInteraction";
+import useGetErc20BalanceAllowance from "@/hooks/web3Hooks/useGetErc20BalanceAllowance";
+import { createSafeSteps } from "@/utils/consts";
+import { handleCreateSafe } from "@/web3/contractInteractions/haiProxyContract";
+import { convertToWei } from "@/utils/funcs";
 
 const CreateSafeStepsCard = ({
   assetClass,
-  onCreateSafe,
-  onApproval,
-  submittingApproval,
   disableCreateButton,
   disableApprovalButton,
+  loading,
+  endodedDataFunction,
+  proxy,
+  collateralAsset,
+  amountToExchange,
 }) => {
   const { colorMode } = useColorMode();
   const { activeStep } = useSteps({
     index: 0,
     count: createSafeSteps.length,
   });
+
+  console.log(endodedDataFunction);
+
+  // CREATE SAFE
+  const {
+    onContractCall: onContractCallCreateSafe,
+    isSubmitting: isSubmittingCreateSafe,
+    isConnected,
+    isRightNetwork,
+  } = useContractInteraction(handleCreateSafe(proxy), "Deposit Completed");
+
+  // HANDLE APPROVAL
+  const { handleApproval, submittingApproval } =
+    useGetErc20BalanceAllowance(collateralAsset);
 
   return (
     <Stack
@@ -70,8 +88,10 @@ const CreateSafeStepsCard = ({
                       <Button
                         colorScheme="orange"
                         size="xs"
-                        onClick={onApproval}
-                        isLoading={submittingApproval}
+                        onClick={() => {
+                          handleApproval(proxy, convertToWei(amountToExchange));
+                        }}
+                        isLoading={submittingApproval || loading}
                         isDisabled={disableApprovalButton}
                       >
                         Approve {assetClass.collateralTypeName}
@@ -87,9 +107,9 @@ const CreateSafeStepsCard = ({
       </Stepper>
       <Button
         colorScheme="orange"
-        onClick={onCreateSafe}
         mt="1rem"
         isDisabled={disableCreateButton}
+        isLoading={submittingApproval || loading}
       >
         Create Safe
       </Button>

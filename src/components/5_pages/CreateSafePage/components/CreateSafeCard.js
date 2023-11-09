@@ -13,6 +13,7 @@ const CreateSafeCard = ({
   data,
   ethPrice,
   collateralAsset,
+  deltaWad,
 }) => {
   const { colorMode } = useColorMode();
   const { getUsdAssetPrice } = useUsdAssetPriceConverter();
@@ -88,11 +89,10 @@ const CreateSafeCard = ({
           </Stack>
           <Divider />
           <Stack spacing="1rem">
-            <FormInput
+            <StatInfo
               label="Exchange For ZAI"
-              name="exchangeFor"
-              register={register}
-              type="number"
+              value={deltaWad ? deltaWad + " ZAI" : "0 ZAI"}
+              textAlign="left"
             />
           </Stack>
         </Stack>
