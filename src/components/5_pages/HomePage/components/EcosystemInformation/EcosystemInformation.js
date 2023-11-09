@@ -29,9 +29,13 @@ const EcosystemInformation = ({ data, ethPrice }) => {
   }, [data]);
 
   return (
-    <Stack spacing="2rem" direction="row" w="100%">
-      <Stack w="50%" spacing="1rem">
-        <Text fontWeight="semibold" fontSize="xl">
+    <Stack spacing="2rem" direction={["column", "column", "row"]} w="100%">
+      <Stack w={["100%", "100%", "50%"]} spacing="1rem">
+        <Text
+          textAlign={["center", "center", "row"]}
+          fontWeight="semibold"
+          fontSize="xl"
+        >
           Ecosystem Information
         </Text>
         <Stack
@@ -42,7 +46,7 @@ const EcosystemInformation = ({ data, ethPrice }) => {
           borderColor={colorMode === "light" ? "blue.200" : "gray.500"}
           shadow="lg"
         >
-          <Stack direction="row">
+          <Stack direction={["column", "column", "row"]} spacing="1rem">
             <StatInfo valueSize="md" label="TVL" value={"$ " + totalTvl} />
             <StatInfo
               valueSize="md"
@@ -60,8 +64,12 @@ const EcosystemInformation = ({ data, ethPrice }) => {
           </Stack>
         </Stack>
       </Stack>
-      <Stack w="50%" spacing="1rem">
-        <Text fontWeight="semibold" fontSize="xl">
+      <Stack w={["100%", "100%", "50%"]} spacing="1rem">
+        <Text
+          textAlign={["center", "center", "row"]}
+          fontWeight="semibold"
+          fontSize="xl"
+        >
           Stability Module
         </Text>
         <Stack
@@ -72,7 +80,7 @@ const EcosystemInformation = ({ data, ethPrice }) => {
           borderColor={colorMode === "light" ? "blue.200" : "gray.500"}
           shadow="lg"
         >
-          <Stack direction="row">
+          <Stack direction={["column", "column", "row"]} spacing="1rem">
             <StatInfo
               valueSize="md"
               label="Authorized Collateral "

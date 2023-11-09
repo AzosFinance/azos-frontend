@@ -4,6 +4,7 @@ import { ConnectWallet } from "@/components/2_molecules/ConnectWallet/ConnectWal
 import { Heading, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
+import MenuMobileDrawer from "./components/MenuMobileDrawer/MenuMobileDrawer";
 
 const Navbar = () => {
   const router = useRouter();
@@ -20,11 +21,17 @@ const Navbar = () => {
       <Heading cursor="pointer" onClick={() => router.push("/")}>
         Azos
       </Heading>
-      <Stack direction="row" alignItems="center" spacing="1.5rem">
+      <Stack
+        direction="row"
+        alignItems="center"
+        spacing="1.5rem"
+        display={["none", "none", "flex"]}
+      >
         {isConnected && <UserAvatarMenu />}
         <ConnectWallet />
         <SwitchColorMode />
       </Stack>
+      <MenuMobileDrawer />
     </Stack>
   );
 };

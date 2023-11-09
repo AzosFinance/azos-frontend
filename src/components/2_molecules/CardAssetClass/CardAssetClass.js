@@ -15,7 +15,7 @@ const CardAssetClass = ({ safe, children, ethPrice }) => {
   return (
     <Stack>
       <Stack
-        direction="row"
+        direction={["column", "column", "row"]}
         p="1rem"
         border="1px"
         rounded="md"
@@ -38,7 +38,7 @@ const CardAssetClass = ({ safe, children, ethPrice }) => {
             Explore Safes
           </Button>
         </Stack>
-        <Stack direction="row" w="100%">
+        <Stack direction={["column", "column", "row"]} w="100%" spacing="1rem">
           <StatInfo
             valueSize="lg"
             helperSize="xs"

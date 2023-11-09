@@ -4,7 +4,11 @@ import CardAssetClass from "../../../../2_molecules/CardAssetClass/CardAssetClas
 const PlatformGlobalStatistics = ({ assetClasses, ethPrice }) => {
   return (
     <Stack w="100%" spacing="2rem">
-      <Text fontSize="xl" fontWeight="semibold">
+      <Text
+        textAlign={["center", "center", "row"]}
+        fontSize="xl"
+        fontWeight="semibold"
+      >
         Platform Global Statistics
       </Text>
       {assetClasses?.map((safe, id) => {
