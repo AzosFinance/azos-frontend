@@ -145,7 +145,7 @@ const CreateSafePage = () => {
             )
           }
           onCreateSafe={() => console.log("create")}
-          disableCreateButton={!isConnected || !isRightNetwork}
+          disableCreateButton={true}
           disableApprovalButton={!isConnected || !isRightNetwork}
         />
       </Stack>

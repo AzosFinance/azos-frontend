@@ -1,4 +1,10 @@
-import { Stat, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react";
+import {
+  Stat,
+  StatHelpText,
+  StatLabel,
+  StatNumber,
+  useColorMode,
+} from "@chakra-ui/react";
 
 const StatInfo = ({
   label,
@@ -8,18 +14,19 @@ const StatInfo = ({
   helperSize = "md",
   textAlign = "center",
   labelSize = "sm",
-  labelColor = "gray.400",
-  valueColor = "gray.50",
 }) => {
+  const { colorMode } = useColorMode();
   return (
     <Stat textAlign={textAlign}>
-      <StatLabel color={labelColor} fontSize={labelSize}>
-        {label}
-      </StatLabel>
-      <StatNumber mt="0.3rem" color={valueColor} fontSize={valueSize}>
+      <StatLabel fontSize={labelSize}>{label}</StatLabel>
+      <StatNumber mt="0.3rem" fontSize={valueSize}>
         {value}
       </StatNumber>
-      <StatHelpText mt="0.3rem" color="gray.400" fontSize={helperSize}>
+      <StatHelpText
+        mt="0.3rem"
+        color={colorMode === "light" ? "gray.900" : "gray.400"}
+        fontSize={helperSize}
+      >
         {helper}
       </StatHelpText>
     </Stat>

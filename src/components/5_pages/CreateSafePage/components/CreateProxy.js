@@ -16,7 +16,7 @@ const CreateProxy = ({ onRefecth }) => {
       </Text>
       <Flex justifyContent="center">
         <Button
-          colorScheme="teal"
+          colorScheme="orange"
           variant="outline"
           isDisabled={!isConnected || !isRightNetwork}
           isLoading={isSubmittingCreateProxy}

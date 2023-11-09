@@ -24,8 +24,8 @@ const UserProfile = () => {
   ) : (
     <Stack w="100%" mt="1rem" spacing="2rem">
       <Stack spacing="1rem">
-        <Heading color="teal.200">User Profile</Heading>
-        <Text color="gray.400" fontSize="sm">
+        <Heading>User Profile</Heading>
+        <Text color="gray.500" fontSize="sm">
           {router?.query?.id}
         </Text>
       </Stack>

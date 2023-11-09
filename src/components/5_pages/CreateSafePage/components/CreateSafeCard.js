@@ -3,7 +3,7 @@ import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
 import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
 import { collateralPrices } from "@/utils/consts";
 import { formatNumber } from "@/utils/funcs";
-import { Divider, Flex, Select, Stack } from "@chakra-ui/react";
+import { Divider, Flex, Select, Stack, useColorMode } from "@chakra-ui/react";
 
 const CreateSafeCard = ({
   register,
@@ -14,9 +14,17 @@ const CreateSafeCard = ({
   ethPrice,
   collateralAsset,
 }) => {
+  const { colorMode } = useColorMode();
   const { getUsdAssetPrice } = useUsdAssetPriceConverter();
   return (
-    <Stack px="3rem" py="2rem" rounded="md" border="1px" spacing="1.5rem">
+    <Stack
+      px="3rem"
+      py="2rem"
+      rounded="md"
+      border="1px"
+      borderColor={colorMode === "light" ? "blue.200" : "gray.500"}
+      spacing="1.5rem"
+    >
       <Stack spacing="2rem">
         <Stack>
           <Stack
@@ -29,8 +37,6 @@ const CreateSafeCard = ({
               <StatInfo
                 textAlign="left"
                 labelSize="xl"
-                labelColor="gray.50"
-                valueColor="gray.400"
                 label={assetClass.collateralTypeName + "- ZAI"}
                 value={
                   "Price: $ " +
@@ -46,8 +52,6 @@ const CreateSafeCard = ({
               <StatInfo
                 textAlign="left"
                 label="Wallet Balance"
-                labelColor="gray.50"
-                valueColor="gray.400"
                 value={
                   formatNumber(userBalance?.readableValue) +
                   " " +

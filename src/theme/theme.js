@@ -52,9 +52,11 @@ export const theme = extendTheme({
     pink: {
       200: "#ff16ef",
     },
-    teal: {
-      200: "#03ffe0",
-      800: "#0c3335",
+    orange: {
+      200: "#EC5E31",
+    },
+    blue: {
+      200: "#00DAEB",
     },
   },
   styles: {

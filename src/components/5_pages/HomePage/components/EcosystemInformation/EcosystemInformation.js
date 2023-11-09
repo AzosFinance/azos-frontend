@@ -2,10 +2,11 @@ import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
 import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
 import { collateralPrices, convertToEthValueType } from "@/utils/consts";
 import { convertToEth, formatNumber } from "@/utils/funcs";
-import { Stack, Text } from "@chakra-ui/react";
+import { Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useMemo } from "react";
 
 const EcosystemInformation = ({ data, ethPrice }) => {
+  const { colorMode } = useColorMode();
   const { getUsdAssetPrice } = useUsdAssetPriceConverter();
 
   const totalTvl = useMemo(() => {
@@ -33,7 +34,14 @@ const EcosystemInformation = ({ data, ethPrice }) => {
         <Text fontWeight="semibold" fontSize="xl">
           Ecosystem Information
         </Text>
-        <Stack p="1rem" rounded="md" border="1px" spacing="1rem" shadow="lg">
+        <Stack
+          p="1rem"
+          rounded="md"
+          border="1px"
+          spacing="1rem"
+          borderColor={colorMode === "light" ? "blue.200" : "gray.500"}
+          shadow="lg"
+        >
           <Stack direction="row">
             <StatInfo valueSize="md" label="TVL" value={"$ " + totalTvl} />
             <StatInfo
@@ -56,7 +64,14 @@ const EcosystemInformation = ({ data, ethPrice }) => {
         <Text fontWeight="semibold" fontSize="xl">
           Stability Module
         </Text>
-        <Stack p="1rem" rounded="md" border="1px" spacing="1rem" shadow="lg">
+        <Stack
+          p="1rem"
+          rounded="md"
+          border="1px"
+          spacing="1rem"
+          borderColor={colorMode === "light" ? "blue.200" : "gray.500"}
+          shadow="lg"
+        >
           <Stack direction="row">
             <StatInfo
               valueSize="md"

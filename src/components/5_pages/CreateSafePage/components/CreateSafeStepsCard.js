@@ -16,6 +16,7 @@ import {
   StepTitle,
   Stepper,
   Text,
+  useColorMode,
   useSteps,
 } from "@chakra-ui/react";
 
@@ -27,19 +28,27 @@ const CreateSafeStepsCard = ({
   disableCreateButton,
   disableApprovalButton,
 }) => {
+  const { colorMode } = useColorMode();
   const { activeStep } = useSteps({
     index: 0,
     count: createSafeSteps.length,
   });
 
   return (
-    <Stack px="3rem" py="2rem" rounded="md" border="1px" w="25rem">
+    <Stack
+      px="3rem"
+      py="2rem"
+      rounded="md"
+      border="1px"
+      borderColor={colorMode === "light" ? "orange.200" : "gray.500"}
+      w="25rem"
+    >
       <Stepper
         index={activeStep}
         orientation="vertical"
         height="100%"
         gap="0"
-        colorScheme="teal"
+        colorScheme="orange"
       >
         {createSafeSteps.map((step, index) => (
           <Step key={index}>
@@ -59,7 +68,7 @@ const CreateSafeStepsCard = ({
                   <Stack direction="row" spacing="1rem">
                     <Flex>
                       <Button
-                        colorScheme="teal"
+                        colorScheme="orange"
                         size="xs"
                         onClick={onApproval}
                         isLoading={submittingApproval}
@@ -77,7 +86,7 @@ const CreateSafeStepsCard = ({
         ))}
       </Stepper>
       <Button
-        colorScheme="teal"
+        colorScheme="orange"
         onClick={onCreateSafe}
         mt="1rem"
         isDisabled={disableCreateButton}

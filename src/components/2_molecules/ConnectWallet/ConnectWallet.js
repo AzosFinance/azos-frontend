@@ -37,7 +37,7 @@ export const ConnectWallet = () => {
                   <Button
                     size="sm"
                     onClick={openConnectModal}
-                    colorScheme="teal"
+                    colorScheme="orange"
                     variant="outline"
                   >
                     Connect Wallet
@@ -62,7 +62,7 @@ export const ConnectWallet = () => {
                   <Button
                     size="sm"
                     onClick={openAccountModal}
-                    colorScheme="teal"
+                    colorScheme="orange"
                     variant="outline"
                   >
                     {account.displayName + " - "}

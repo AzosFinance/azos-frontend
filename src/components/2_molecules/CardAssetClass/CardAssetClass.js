@@ -4,6 +4,7 @@ import { collateralPrices, convertToEthValueType } from "@/utils/consts";
 import { convertToEth, formatNumber } from "@/utils/funcs";
 import { Button, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { BiLogoReact } from "react-icons/bi";
 
 const CardAssetClass = ({ safe, children, ethPrice }) => {
   const { colorMode } = useColorMode();
@@ -20,7 +21,7 @@ const CardAssetClass = ({ safe, children, ethPrice }) => {
         rounded="md"
         spacing="2rem"
         alignItems="center"
-        bg={colorMode === "light" ? "gray.300" : "gray.900"}
+        borderColor={colorMode === "light" ? "orange.200" : "gray.500"}
         shadow="lg"
       >
         <Stack>
@@ -30,7 +31,8 @@ const CardAssetClass = ({ safe, children, ethPrice }) => {
           <Button
             size="sm"
             variant="outline"
-            colorScheme="teal"
+            colorScheme="blue"
+            rightIcon={<BiLogoReact />}
             onClick={() => router.push("/asset-class/" + safe?.collateralType)}
           >
             Explore Safes

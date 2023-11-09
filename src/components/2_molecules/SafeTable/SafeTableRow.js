@@ -10,11 +10,13 @@ import {
   Button,
   Icon,
   Flex,
+  useColorMode,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { FaUser } from "react-icons/fa";
 
 const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
+  const { colorMode } = useColorMode();
   const router = useRouter();
 
   const { getUsdAssetPrice } = useUsdAssetPriceConverter();
@@ -24,7 +26,7 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
       <Tr>
         <Td w="1rem">
           <Flex justifyContent="center">
-            <Button w="5rem" colorScheme="teal" variant="outline" size="xs">
+            <Button w="5rem" colorScheme="blue" variant="outline" size="xs">
               #{safe?.safe?.safeId}
             </Button>
           </Flex>
@@ -33,9 +35,9 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
           <Stack
             direction="row"
             alignItems="center"
-            spacing="1rem"
+            spacing="0.5rem"
             cursor="pointer"
-            _hover={{ color: "teal.100" }}
+            fontWeight="semibold"
             onClick={() => router.push("/user/" + safe?.safe?.user)}
             justifyContent="center"
           >
@@ -46,7 +48,7 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
         <Td>
           <Stack alignItems="center" justifyContent="center">
             <Stack alignItems="center" direction="row" fontSize="sm">
-              <Text>
+              <Text fontWeight="semibold">
                 {formatNumber(
                   convertToEth(
                     convertToEthValueType.notReward,
@@ -54,9 +56,14 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
                   )
                 )}
               </Text>
-              <Text color="gray.500">{collateralTypeName}</Text>
+              <Text color={colorMode === "light" ? "gray.900" : "gray.400"}>
+                {collateralTypeName}
+              </Text>
             </Stack>
-            <Text color="gray.500" fontSize="xs">
+            <Text
+              color={colorMode === "light" ? "gray.900" : "gray.400"}
+              fontSize="xs"
+            >
               ${" "}
               {formatNumber(
                 getUsdAssetPrice(
@@ -73,7 +80,7 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
         <Td>
           <Stack alignItems="center" justifyContent="center">
             <Stack direction="row" alignItems="center" fontSize="sm">
-              <Text>
+              <Text fontWeight="semibold">
                 {formatNumber(
                   convertToEth(
                     convertToEthValueType.notReward,
@@ -81,9 +88,14 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
                   )
                 )}
               </Text>
-              <Text color="gray.500">ZAI</Text>
+              <Text color={colorMode === "light" ? "gray.900" : "gray.400"}>
+                ZAI
+              </Text>
             </Stack>
-            <Text color="gray.500" fontSize="xs">
+            <Text
+              color={colorMode === "light" ? "gray.900" : "gray.400"}
+              fontSize="xs"
+            >
               ${" "}
               {formatNumber(
                 convertToEth(
