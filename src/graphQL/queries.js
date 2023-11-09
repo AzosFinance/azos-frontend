@@ -16,7 +16,7 @@ export const GET_ASSET_CLASSES = gql`
       collateral
       collateralLocked
       debtTokensHeld
-      activeVaults
+      activeSafes
     }
   }
 `;
@@ -30,7 +30,7 @@ export const GET_ASSET_CLASS = gql`
       collateral
       collateralLocked
       debtTokensHeld
-      activeVaults
+      activeSafes
       safes {
         safe {
           id
@@ -58,7 +58,7 @@ export const GET_USER_PROXY = gql`
             collateral
             collateralLocked
             debtTokensHeld
-            activeVaults
+            activeSafes
             safes(where: { safe_: { user: $id } }) {
               safe {
                 id

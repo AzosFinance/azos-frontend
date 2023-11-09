@@ -38,8 +38,8 @@ const CardAssetClass = ({ safe, children }) => {
             valueSize="lg"
             helperSize="xs"
             label="Active Vaults"
-            value={safe?.activeVaults}
-            helper={"Total Vault " + safe?.activeVaults}
+            value={safe?.activeSafes}
+            helper={"Total Vault " + safe?.activeSafes}
           />
           <StatInfo
             valueSize="lg"
