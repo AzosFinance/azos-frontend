@@ -95,12 +95,12 @@ const useGetErc20BalanceAllowance = (tokenAddress) => {
     }
   };
 
-  const handleApproval = async (allowanceTo) => {
+  const handleApproval = async (allowanceTo, amount) => {
     if (isConnected && isRightNetwork) {
       setSubmittingApproval(true);
       try {
         const contractPayload = {
-          args: [allowanceTo, userBalance.bigNumber],
+          args: [allowanceTo, amount ? amount : userBalance.bigNumber],
           from: address,
         };
         const res = await writeApprove(contractPayload);

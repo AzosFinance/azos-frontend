@@ -1,10 +1,4 @@
-import {
-  Stat,
-  StatArrow,
-  StatHelpText,
-  StatLabel,
-  StatNumber,
-} from "@chakra-ui/react";
+import { Stat, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react";
 
 const StatInfo = ({
   label,
@@ -12,19 +6,20 @@ const StatInfo = ({
   valueSize = "2xl",
   helper,
   helperSize = "md",
-  priceIncreateType,
-  withArrow,
+  textAlign = "center",
+  labelSize = "sm",
+  labelColor = "gray.400",
+  valueColor = "gray.50",
 }) => {
   return (
-    <Stat textAlign="center">
-      <StatLabel>{label}</StatLabel>
-      <StatNumber fontSize={valueSize}>{value}</StatNumber>
-      <StatHelpText fontSize={helperSize}>
-        {withArrow && (
-          <StatArrow
-            type={priceIncreateType === "+" ? "increase" : "decrease"}
-          />
-        )}
+    <Stat textAlign={textAlign}>
+      <StatLabel color={labelColor} fontSize={labelSize}>
+        {label}
+      </StatLabel>
+      <StatNumber mt="0.3rem" color={valueColor} fontSize={valueSize}>
+        {value}
+      </StatNumber>
+      <StatHelpText mt="0.3rem" color="gray.400" fontSize={helperSize}>
         {helper}
       </StatHelpText>
     </Stat>

@@ -30,3 +30,18 @@ export const collateralJoinAddresses = {
   [FGB_ADDRESS]: FGB_COLLATERAL_JOIN, // FGB
   [REI_ADDRESS]: REI_COLLATERAL_JOIN, // REI
 };
+
+export const createSafeSteps = [
+  {
+    title: "First",
+    description: "Input the amount of asset you wish to deposit.",
+  },
+  {
+    title: "Second",
+    description: "Approve your asset",
+  },
+  {
+    title: "Third",
+    description: "Confirm your deposit",
+  },
+];
