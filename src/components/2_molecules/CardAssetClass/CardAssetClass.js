@@ -33,7 +33,7 @@ const CardAssetClass = ({ safe, children, ethPrice }) => {
             colorScheme="teal"
             onClick={() => router.push("/asset-class/" + safe?.collateralType)}
           >
-            Explore Vaults
+            Explore Safes
           </Button>
         </Stack>
         <Stack direction="row" w="100%">
@@ -79,7 +79,7 @@ const CardAssetClass = ({ safe, children, ethPrice }) => {
                       convertToEthValueType.notReward,
                       safe?.collateralLocked
                     )
-                )
+                )?.toFixed("0")
               )
             }
           />

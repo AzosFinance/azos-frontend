@@ -1,8 +1,18 @@
 import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
 import { convertToEthValueType } from "@/utils/consts";
 import { convertToEth, formatNumber, formatWalletAddress } from "@/utils/funcs";
-import { Tr, Td, Link, Text, Stack, Button } from "@chakra-ui/react";
+import {
+  Tr,
+  Td,
+  Link,
+  Text,
+  Stack,
+  Button,
+  Icon,
+  Flex,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { FaUser } from "react-icons/fa";
 
 const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
   const router = useRouter();
@@ -12,22 +22,30 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
   return (
     <>
       <Tr>
-        <Td>
-          <Button w="5rem" colorScheme="teal" variant="outline" size="xs">
-            #{safe?.safe?.safeId}
-          </Button>
+        <Td w="1rem">
+          <Flex justifyContent="center">
+            <Button w="5rem" colorScheme="teal" variant="outline" size="xs">
+              #{safe?.safe?.safeId}
+            </Button>
+          </Flex>
         </Td>
         <Td>
-          <Link
-            fontSize="sm"
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing="1rem"
+            cursor="pointer"
+            _hover={{ color: "teal.100" }}
             onClick={() => router.push("/user/" + safe?.safe?.user)}
+            justifyContent="center"
           >
-            {formatWalletAddress(safe?.safe?.user)}
-          </Link>
+            <Icon color="gray.500" fontSize="xs" as={FaUser} />
+            <Link fontSize="sm">{formatWalletAddress(safe?.safe?.user)}</Link>
+          </Stack>
         </Td>
         <Td>
-          <Stack justifyContent="center">
-            <Stack direction="row" alignItems="center" fontSize="sm">
+          <Stack alignItems="center" justifyContent="center">
+            <Stack alignItems="center" direction="row" fontSize="sm">
               <Text>
                 {formatNumber(
                   convertToEth(
@@ -53,7 +71,7 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
           </Stack>
         </Td>
         <Td>
-          <Stack justifyContent="center">
+          <Stack alignItems="center" justifyContent="center">
             <Stack direction="row" alignItems="center" fontSize="sm">
               <Text>
                 {formatNumber(

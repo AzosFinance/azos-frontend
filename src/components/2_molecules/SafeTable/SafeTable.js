@@ -6,10 +6,10 @@ const SafeTable = ({ children }) => {
       <Table variant="simple">
         <Thead>
           <Tr>
-            <Th>SAFE ID</Th>
-            <Th>OWNER</Th>
-            <Th>COLLATERAL</Th>
-            <Th>DEBT</Th>
+            <Th textAlign="center">SAFE ID</Th>
+            <Th textAlign="center">OWNER</Th>
+            <Th textAlign="center">COLLATERAL</Th>
+            <Th textAlign="center">DEBT</Th>
           </Tr>
         </Thead>
         <Tbody>{children}</Tbody>
