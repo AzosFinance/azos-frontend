@@ -3,7 +3,12 @@ import { Skeleton, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useAccount, erc20ABI } from "wagmi";
 import { readContracts } from "@wagmi/core";
-import { BCT_ADDRESS, FGB_ADDRESS, REI_ADDRESS } from "@/web3/addresses";
+import {
+  BCT_ADDRESS,
+  FGB_ADDRESS,
+  REI_ADDRESS,
+  ZAI_ADDRESS,
+} from "@/web3/addresses";
 import { zeroAddress } from "viem";
 import { useEffect, useState } from "react";
 import { convertToEth, formatNumber } from "@/utils/funcs";
@@ -13,6 +18,7 @@ const tokens = [
   { address: BCT_ADDRESS, name: "BCT" },
   { address: FGB_ADDRESS, name: "FGB" },
   { address: REI_ADDRESS, name: "REI" },
+  { address: ZAI_ADDRESS, name: "ZAI" },
 ];
 
 const UserBalances = () => {
@@ -20,6 +26,7 @@ const UserBalances = () => {
     { balance: 0, name: "BCT" },
     { balance: 0, name: "FGB" },
     { balance: 0, name: "REI" },
+    { balance: 0, name: "ZAI" },
   ]);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -57,12 +64,12 @@ const UserBalances = () => {
 
   return router.query.id === address?.toLowerCase() && isConnected ? (
     isLoading ? (
-      <Skeleton minW="33%" h="3rem" />
+      <Skeleton minW="40%" h="3rem" />
     ) : (
       <Stack
         direction="row"
         alignItems="center"
-        minW="33%"
+        minW="40%"
         justifyContent="space-between"
       >
         {collateralTokens?.map((e, idx) => {

@@ -90,7 +90,7 @@ const CardAssetClass = ({ safe, children, ethPrice }) => {
           <StatInfo
             valueSize="lg"
             helperSize="xs"
-            label="Vault Debt"
+            label="Total Debt"
             value={
               formatNumber(
                 convertToEth(
