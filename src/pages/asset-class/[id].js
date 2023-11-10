@@ -14,8 +14,9 @@ const AssetClass = () => {
   const { data, loading } = useQuery(GET_ASSET_CLASS, {
     variables: {
       id:
+        router.query.id &&
         ethers.utils.hexlify(ethers.utils.toUtf8Bytes(router.query.id)) +
-        "0000000000000000000000000000000000000000000000000000000000",
+          "0000000000000000000000000000000000000000000000000000000000",
     },
   });
 
@@ -26,16 +27,24 @@ const AssetClass = () => {
   ) : (
     <Stack w="100%" spacing="2rem" mt="1rem">
       <Heading>{data?.assetClass?.collateralTypeName} Vault</Heading>
-      <CardAssetClass safe={data?.assetClass} ethPrice={ethPrice}>
+      <CardAssetClass
+        safe={data?.assetClass}
+        ethPrice={ethPrice}
+        activeSafes={data?.assetClass?.activeSafes}
+        collateralLocked={data?.assetClass?.collateralLocked}
+        debtTokensHeld={data?.assetClass?.debtTokensHeld}
+      >
         <SafeTable>
-          {data?.assetClass?.safes?.map((safe, idx) => (
-            <SafeTableRow
-              key={idx}
-              safe={safe}
-              ethPrice={ethPrice}
-              collateralTypeName={data?.assetClass?.collateralTypeName}
-            />
-          ))}
+          {data?.assetClass?.safes?.map((safe, idx) => {
+            return (
+              <SafeTableRow
+                key={idx}
+                safe={safe}
+                ethPrice={ethPrice}
+                collateralTypeName={data?.assetClass?.collateralTypeName}
+              />
+            );
+          })}
         </SafeTable>
       </CardAssetClass>
     </Stack>

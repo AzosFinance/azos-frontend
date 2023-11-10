@@ -12,7 +12,17 @@ const PlatformGlobalStatistics = ({ assetClasses, ethPrice }) => {
         Platform Global Statistics
       </Text>
       {assetClasses?.map((safe, id) => {
-        return <CardAssetClass key={id} safe={safe} ethPrice={ethPrice} />;
+        console.log(safe);
+        return (
+          <CardAssetClass
+            key={id}
+            safe={safe}
+            ethPrice={ethPrice}
+            activeSafes={safe?.activeSafes}
+            collateralLocked={safe?.collateralLocked}
+            debtTokensHeld={safe?.debtTokensHeld}
+          />
+        );
       })}
     </Stack>
   );

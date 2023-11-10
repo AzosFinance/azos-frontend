@@ -1,5 +1,5 @@
 import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
-import { convertToEthValueType } from "@/utils/consts";
+import { collateralPrices, convertToEthValueType } from "@/utils/consts";
 import { convertToEth, formatNumber, formatWalletAddress } from "@/utils/funcs";
 import {
   Tr,
@@ -68,11 +68,12 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
               {formatNumber(
                 getUsdAssetPrice(
                   ethPrice,
+                  Number(collateralPrices[safe?.safe?.assetClass?.collateral])
+                )?.toFixed("2") *
                   convertToEth(
                     convertToEthValueType.notReward,
                     safe?.safe?.amountCollateral
                   )
-                )?.toFixed("0")
               )}
             </Text>
           </Stack>

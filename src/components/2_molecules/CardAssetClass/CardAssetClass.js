@@ -1,12 +1,20 @@
 import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
 import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
 import { collateralPrices, convertToEthValueType } from "@/utils/consts";
-import { convertToEth, formatNumber } from "@/utils/funcs";
+import { convertToEth, convertToWei, formatNumber } from "@/utils/funcs";
 import { Button, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { BiLogoReact } from "react-icons/bi";
 
-const CardAssetClass = ({ safe, children, ethPrice }) => {
+const CardAssetClass = ({
+  safe,
+  children,
+  ethPrice,
+  activeSafes,
+  collateralLocked,
+  debtTokensHeld,
+  isFromUserProfile = false,
+}) => {
   const { colorMode } = useColorMode();
   const router = useRouter();
 
@@ -44,31 +52,34 @@ const CardAssetClass = ({ safe, children, ethPrice }) => {
           <StatInfo
             valueSize="lg"
             helperSize="xs"
-            label="Active Vaults"
-            value={safe?.activeSafes}
+            label={isFromUserProfile ? "Your Active Vaults" : "Active Vaults"}
+            value={activeSafes}
           />
+          {!isFromUserProfile && (
+            <StatInfo
+              valueSize="lg"
+              helperSize="xs"
+              label={`Current ${safe?.collateralTypeName} Price`}
+              value={
+                "$ " +
+                getUsdAssetPrice(
+                  ethPrice,
+                  Number(collateralPrices[safe?.collateral])
+                )?.toFixed("2")
+              }
+            />
+          )}
           <StatInfo
             valueSize="lg"
             helperSize="xs"
-            label={`Current ${safe?.collateralTypeName} Price`}
-            value={
-              "$ " +
-              getUsdAssetPrice(
-                ethPrice,
-                Number(collateralPrices[safe?.collateral])
-              )?.toFixed("2")
+            label={
+              isFromUserProfile
+                ? "Your " + safe?.collateralTypeName + " Collateral Locked"
+                : safe?.collateralTypeName + " Collateral Locked"
             }
-          />
-          <StatInfo
-            valueSize="lg"
-            helperSize="xs"
-            label={safe?.collateralTypeName + " Collateral Locked"}
             value={
               formatNumber(
-                convertToEth(
-                  convertToEthValueType.notReward,
-                  safe?.collateralLocked
-                )
+                convertToEth(convertToEthValueType.notReward, collateralLocked)
               ) +
               " " +
               safe?.collateralTypeName
@@ -81,7 +92,7 @@ const CardAssetClass = ({ safe, children, ethPrice }) => {
                   Number(collateralPrices[safe?.collateral]) *
                     convertToEth(
                       convertToEthValueType.notReward,
-                      safe?.collateralLocked
+                      collateralLocked
                     )
                 )?.toFixed("0")
               )
@@ -90,31 +101,27 @@ const CardAssetClass = ({ safe, children, ethPrice }) => {
           <StatInfo
             valueSize="lg"
             helperSize="xs"
-            label="Total Debt"
+            label={isFromUserProfile ? "Your Total Debt" : "Total Debt"}
             value={
               formatNumber(
-                convertToEth(
-                  convertToEthValueType.notReward,
-                  safe?.debtTokensHeld
-                )
+                convertToEth(convertToEthValueType.notReward, debtTokensHeld)
               ) + " ZAI"
             }
             helper={
               "$ " +
               formatNumber(
-                convertToEth(
-                  convertToEthValueType.notReward,
-                  safe?.debtTokensHeld
-                )
+                convertToEth(convertToEthValueType.notReward, debtTokensHeld)
               )
             }
           />
-          <StatInfo
-            valueSize="lg"
-            helperSize="xs"
-            label="Stability Fee"
-            value="2%"
-          />
+          {!isFromUserProfile && (
+            <StatInfo
+              valueSize="lg"
+              helperSize="xs"
+              label="Stability Fee"
+              value="2%"
+            />
+          )}
         </Stack>
       </Stack>
       {children}
