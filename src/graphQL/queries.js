@@ -99,3 +99,20 @@ export const GET_USER_CREATE_SAFE = gql`
     }
   }
 `;
+
+export const GET_SAFE = gql`
+  query Safe($id: ID!) {
+    safe(id: $id) {
+      id
+      safeId
+      amountCollateral
+      amountCoin
+      collateralType
+      user
+      assetClass {
+        collateralTypeName
+        collateral
+      }
+    }
+  }
+`;

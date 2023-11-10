@@ -26,7 +26,13 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
       <Tr>
         <Td w="1rem">
           <Flex justifyContent="center">
-            <Button w="5rem" colorScheme="blue" variant="outline" size="xs">
+            <Button
+              w="5rem"
+              colorScheme="blue"
+              variant="outline"
+              size="xs"
+              onClick={() => router.push("/safe/" + safe?.safe?.id)}
+            >
               #{safe?.safe?.safeId}
             </Button>
           </Flex>
