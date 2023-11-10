@@ -23,16 +23,17 @@ const FromInputNumeric = ({
   error = false,
   errorMessage,
   helplerText,
+  size = "md",
 }) => {
   const formControlProps = {
     placeholder,
     disabled,
-    size: "md",
+    size,
   };
   return (
     <FormControl id={name} isRequired={isRequired} isInvalid={error}>
       <Stack direction="row">
-        <FormLabel color="gray.300" mb="1rem" fontSize="sm">
+        <FormLabel mb="1rem" fontSize="sm">
           {label}
         </FormLabel>
         {subLabel && (

@@ -22,6 +22,7 @@ const FormInput = ({
   error = false,
   errorMessage,
   inputAddon,
+  size = "md",
 }) => {
   return (
     <FormControl id={name} isRequired={isRequired} isInvalid={error}>
@@ -30,6 +31,7 @@ const FormInput = ({
       </FormLabel>
       <InputGroup>
         <Input
+          size={size}
           placeholder={placeholder}
           defaultValue={defaultValue}
           type={type}

@@ -63,6 +63,14 @@ const useCreateSafeHooks = (collateralAsset, amountToExchange, data) => {
       };
   }, [collateralAsset, assetClass, amountToExchange]);
 
+  const isUserBalanceZero = useMemo(() => {
+    if (userBalance.bigNumber._isBigNumber) {
+      return userBalance.bigNumber.isZero();
+    } else {
+      return true;
+    }
+  }, [userBalance.bigNumber._isBigNumber]);
+
   return {
     callDataAndDeltaWad,
     assetClass,
@@ -71,6 +79,7 @@ const useCreateSafeHooks = (collateralAsset, amountToExchange, data) => {
     loadingEthPrice,
     isLoadingContractRead,
     isRightNetwork,
+    isUserBalanceZero,
   };
 };
 

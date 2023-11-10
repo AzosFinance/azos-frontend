@@ -11,10 +11,10 @@ const NavBarLink = ({ path }) => {
         onClick={() => router.push(path)}
         _hover={{ textDecor: router?.route === path ? "none" : "underline" }}
       >
-        Dashboard
+        App
       </Link>
       {router?.route === path && (
-        <Divider color="blue.200" border="1px" w="5.4rem" />
+        <Divider color="blue.200" border="1px" w="2rem" />
       )}
     </Stack>
   );

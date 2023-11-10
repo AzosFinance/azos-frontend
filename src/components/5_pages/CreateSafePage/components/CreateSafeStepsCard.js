@@ -38,15 +38,14 @@ const CreateSafeStepsCard = ({
     count: createSafeSteps.length,
   });
 
-  console.log(endodedDataFunction);
-
   // CREATE SAFE
   const {
     onContractCall: onContractCallCreateSafe,
     isSubmitting: isSubmittingCreateSafe,
-    isConnected,
-    isRightNetwork,
-  } = useContractInteraction(handleCreateSafe(proxy), "Deposit Completed");
+  } = useContractInteraction(handleCreateSafe(proxy), "Deposit Completed", [
+    proxy,
+    endodedDataFunction,
+  ]);
 
   // HANDLE APPROVAL
   const { handleApproval, submittingApproval } =
@@ -112,7 +111,8 @@ const CreateSafeStepsCard = ({
         colorScheme="orange"
         mt="1rem"
         isDisabled={disableCreateButton}
-        isLoading={submittingApproval || loading}
+        isLoading={submittingApproval || loading || isSubmittingCreateSafe}
+        onClick={onContractCallCreateSafe}
       >
         Create Safe
       </Button>

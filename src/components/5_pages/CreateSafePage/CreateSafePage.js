@@ -31,6 +31,7 @@ const CreateSafePage = () => {
     userBalance,
     isLoadingContractRead,
     isRightNetwork,
+    isUserBalanceZero,
   } = useCreateSafeHooks(collateralAsset, watch("amountToExchange"), data);
 
   // SET collateralAsset selector
@@ -73,7 +74,9 @@ const CreateSafePage = () => {
         </Flex>
         <CreateSafeStepsCard
           assetClass={assetClass}
-          disableCreateButton={true}
+          disableCreateButton={
+            !isConnected || !isRightNetwork || isUserBalanceZero
+          }
           disableApprovalButton={!isConnected || !isRightNetwork}
           loading={isLoadingContractRead}
           endodedDataFunction={callDataAndDeltaWad?.endodedDataFunction}

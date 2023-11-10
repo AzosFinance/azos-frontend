@@ -1,7 +1,7 @@
 import SwitchColorMode from "@/components/1_atoms/SwitchColorMode/SwitchColorMode";
 import UserAvatarMenu from "@/components/1_atoms/UserAvatarMenu/UserAvatarMenu";
 import { ConnectWallet } from "@/components/2_molecules/ConnectWallet/ConnectWallet";
-import { Divider, Heading, Link, Stack } from "@chakra-ui/react";
+import { Heading, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
 import MenuMobileDrawer from "./components/MenuMobileDrawer/MenuMobileDrawer";
@@ -19,7 +19,11 @@ const Navbar = () => {
       alignItems="center"
       justifyContent="space-between"
     >
-      <Heading cursor="pointer" onClick={() => router.push("/")}>
+      <Heading
+        cursor="pointer"
+        onClick={() => router.push("/")}
+        color="orange.200"
+      >
         Azos
       </Heading>
 
@@ -29,7 +33,7 @@ const Navbar = () => {
         spacing="1.5rem"
         display={["none", "none", "flex"]}
       >
-        <NavBarLink path={"/dashboard"} />
+        <NavBarLink path={"/app"} />
         {isConnected && <UserAvatarMenu />}
         <ConnectWallet />
         <SwitchColorMode />
@@ -40,7 +44,7 @@ const Navbar = () => {
         display={["flex", "flex", "none"]}
         spacing="1rem"
       >
-        <NavBarLink path={"/dashboard"} />
+        <NavBarLink path={"/app"} />
         <MenuMobileDrawer />
       </Stack>
     </Stack>
