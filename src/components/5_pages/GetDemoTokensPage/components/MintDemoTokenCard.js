@@ -6,7 +6,7 @@ import { Button, Divider, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { useAccount } from "wagmi";
 
-const MintDemoTokenCard = ({ tokenSymbol, tokenAddress }) => {
+const MintDemoTokenCard = ({ tokenSymbol, tokenAddress, description }) => {
   const { watch, control, setValue } = useForm();
   const { colorMode } = useColorMode();
   const { address } = useAccount();
@@ -31,6 +31,7 @@ const MintDemoTokenCard = ({ tokenSymbol, tokenAddress }) => {
         <Text fontSize="lg" fontWeight="semibold">
           Get {tokenSymbol}
         </Text>
+        <Text fontSize="sm">{description}</Text>
         <Divider />
       </Stack>
       <FromInputNumeric

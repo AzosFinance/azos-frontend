@@ -15,7 +15,7 @@ const DashboardPage = () => {
   return loadingAssetClasses || loadingEthPrice ? (
     <LoadingPage />
   ) : (
-    <Stack w="100%" spacing="3rem" mt="1rem">
+    <Stack w="100%" spacing="3rem" mt="2rem">
       <EcosystemInformation data={dataAssetClasses} ethPrice={ethPrice} />
       <Divider />
       <PlatformGlobalStatistics

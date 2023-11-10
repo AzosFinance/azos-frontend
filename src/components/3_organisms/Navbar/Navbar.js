@@ -1,5 +1,4 @@
 import SwitchColorMode from "@/components/1_atoms/SwitchColorMode/SwitchColorMode";
-import UserAvatarMenu from "@/components/1_atoms/UserAvatarMenu/UserAvatarMenu";
 import { ConnectWallet } from "@/components/2_molecules/ConnectWallet/ConnectWallet";
 import { Heading, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
@@ -9,7 +8,7 @@ import NavBarLink from "./components/components/NavBarLink";
 
 const Navbar = () => {
   const router = useRouter();
-  const { isConnected } = useAccount();
+  const { isConnected, address } = useAccount();
 
   return (
     <Stack
@@ -26,15 +25,47 @@ const Navbar = () => {
       >
         Azos
       </Heading>
-
       <Stack
         direction="row"
         alignItems="center"
         spacing="1.5rem"
         display={["none", "none", "flex"]}
       >
-        <NavBarLink path={"/app"} />
-        {isConnected && <UserAvatarMenu />}
+        <Stack
+          direction="row"
+          alignItems="center"
+          spacing="2rem"
+          display={["none", "none", "flex"]}
+        >
+          <NavBarLink
+            path="/dashboard"
+            label="Dashboard"
+            dividerWidth="5.3rem"
+            routeActive="/dashboard"
+          />
+          {isConnected && (
+            <>
+              <NavBarLink
+                path={"/user/create-safe/" + address?.toLowerCase()}
+                label="Create Safe"
+                routeActive="/user/create-safe/[id]"
+                dividerWidth="5.5rem"
+              />
+              <NavBarLink
+                path="/demo-tokens"
+                label="Demo Tokens"
+                routeActive="/demo-tokens"
+                dividerWidth="6.3rem"
+              />
+              <NavBarLink
+                path={"/user/" + address?.toLowerCase()}
+                label="My Profile"
+                routeActive="/user/[id]"
+                dividerWidth="4.9rem"
+              />
+            </>
+          )}
+        </Stack>
         <ConnectWallet />
         <SwitchColorMode />
       </Stack>
@@ -44,7 +75,6 @@ const Navbar = () => {
         display={["flex", "flex", "none"]}
         spacing="1rem"
       >
-        <NavBarLink path={"/app"} />
         <MenuMobileDrawer />
       </Stack>
     </Stack>

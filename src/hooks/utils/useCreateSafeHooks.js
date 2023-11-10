@@ -3,7 +3,7 @@ import useGetEthPrice from "@/hooks/web3Hooks/useGetEthPrice";
 import useIsRightNetwork from "@/hooks/web3Hooks/useIsRightNetwork";
 import { convertToEthValueType } from "@/utils/consts";
 import { convertToEth, convertToWei, formatNumber } from "@/utils/funcs";
-import { BCT_ADDRESS } from "@/web3/addresses";
+import { BCT_ADDRESS, REI_ADDRESS } from "@/web3/addresses";
 import { hanldeEncodeExecuteData } from "@/web3/contractInteractions/haiProxyContract";
 import { useMemo } from "react";
 
@@ -40,7 +40,7 @@ const useCreateSafeHooks = (collateralAsset, amountToExchange, data) => {
   const callDataAndDeltaWad = useMemo(() => {
     if (collateralAsset && assetClass && amountToExchange > 0) {
       let _deltaWad;
-      if (collateralAsset === BCT_ADDRESS) {
+      if (collateralAsset === BCT_ADDRESS || collateralAsset === REI_ADDRESS) {
         _deltaWad = convertToWei(amountToExchange?.toString());
       } else {
         _deltaWad = convertToWei(amountToExchange?.toString()).div("2");

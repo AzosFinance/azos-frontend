@@ -59,7 +59,6 @@ const CreateSafeStepsCard = ({
       rounded="md"
       border="1px"
       borderColor={colorMode === "light" ? "orange.200" : "gray.500"}
-      w="25rem"
     >
       <Stepper
         index={activeStep}

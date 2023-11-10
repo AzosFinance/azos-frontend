@@ -7,11 +7,16 @@ import { GET_ASSET_CLASS } from "@/graphQL/queries";
 import { useQuery } from "@apollo/client";
 import LoadingPage from "@/components/1_atoms/LoadingPage/LoadingPage";
 import useGetEthPrice from "@/hooks/web3Hooks/useGetEthPrice";
+import { ethers } from "ethers";
 
 const AssetClass = () => {
   const router = useRouter();
   const { data, loading } = useQuery(GET_ASSET_CLASS, {
-    variables: { id: router.query.id },
+    variables: {
+      id:
+        ethers.utils.hexlify(ethers.utils.toUtf8Bytes(router.query.id)) +
+        "0000000000000000000000000000000000000000000000000000000000",
+    },
   });
 
   const { ethPrice, loadingEthPrice } = useGetEthPrice();

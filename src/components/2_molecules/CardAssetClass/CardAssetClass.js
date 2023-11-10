@@ -33,7 +33,9 @@ const CardAssetClass = ({ safe, children, ethPrice }) => {
             variant="outline"
             colorScheme="blue"
             rightIcon={<BiLogoReact />}
-            onClick={() => router.push("/asset-class/" + safe?.collateralType)}
+            onClick={() =>
+              router.push("/asset-class/" + safe?.collateralTypeName)
+            }
           >
             Explore Safes
           </Button>

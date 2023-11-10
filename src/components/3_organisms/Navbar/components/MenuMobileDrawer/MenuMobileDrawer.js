@@ -75,7 +75,7 @@ const MenuMobileDrawer = () => {
               >
                 <ConnectWallet />
               </Stack>
-              {isConnected && (
+              {isConnected ? (
                 <Stack
                   alignItems="flex-end"
                   spacing="2rem"
@@ -84,6 +84,50 @@ const MenuMobileDrawer = () => {
                 >
                   <Divider />
                   <Stack spacing="2rem" textAlign="right">
+                    <Stack
+                      direction="row"
+                      alignItems="center"
+                      spacing="1rem"
+                      justifyContent="flex-end"
+                      onClick={() => {
+                        router.push("/dashboard");
+                        onClose();
+                      }}
+                    >
+                      <Link pt="0.4rem" fontSize="xl">
+                        Dashboard
+                      </Link>
+                    </Stack>
+                    <Stack
+                      direction="row"
+                      alignItems="center"
+                      spacing="1rem"
+                      justifyContent="flex-end"
+                      onClick={() => {
+                        router.push(
+                          "/user/create-safe/" + address.toLowerCase()
+                        );
+                        onClose();
+                      }}
+                    >
+                      <Link pt="0.4rem" fontSize="xl">
+                        Create Safe
+                      </Link>
+                    </Stack>
+                    <Stack
+                      direction="row"
+                      alignItems="center"
+                      spacing="1rem"
+                      justifyContent="flex-end"
+                      onClick={() => {
+                        router.push("/demo-tokens");
+                        onClose();
+                      }}
+                    >
+                      <Link pt="0.4rem" fontSize="xl">
+                        Demo Tokens
+                      </Link>
+                    </Stack>
                     <Stack
                       direction="row"
                       alignItems="center"
@@ -99,6 +143,21 @@ const MenuMobileDrawer = () => {
                       </Link>
                     </Stack>
                   </Stack>
+                </Stack>
+              ) : (
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  spacing="1rem"
+                  justifyContent="flex-end"
+                  onClick={() => {
+                    router.push("/dashboard");
+                    onClose();
+                  }}
+                >
+                  <Link pt="0.4rem" fontSize="xl">
+                    Dashboard
+                  </Link>
                 </Stack>
               )}
             </Stack>
@@ -122,11 +181,10 @@ const MenuMobileDrawer = () => {
                     ml="2rem"
                     textAlign="right"
                     onClick={openAccountModal}
-                    fontSize="sm"
+                    color="blue.200"
                   >
-                    Sign Out
+                    Disconnect Wallet
                   </Link>
-                  <Icon fontSize="xl" as={FaSignOutAlt} />
                 </Stack>
               </Stack>
             )}

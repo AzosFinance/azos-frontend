@@ -57,7 +57,11 @@ const CreateSafePage = () => {
           }}
         />
       )}
-      <Stack direction="row" spacing="2rem" justifyContent="center">
+      <Stack
+        direction={["column", "column", "row"]}
+        spacing="2rem"
+        justifyContent="center"
+      >
         <Flex>
           <CreateSafeCard
             register={register}
