@@ -21,6 +21,7 @@ import useGetErc20BalanceAllowance from "@/hooks/web3Hooks/useGetErc20BalanceAll
 import { createSafeSteps } from "@/utils/consts";
 import { handleCreateSafe } from "@/web3/contractInteractions/haiProxyContract";
 import { convertToWei } from "@/utils/funcs";
+import { BASIC_ACTIONS_MOCKUP } from "@/web3/addresses";
 
 const CreateSafeStepsCard = ({
   assetClass,
@@ -43,7 +44,7 @@ const CreateSafeStepsCard = ({
     onContractCall: onContractCallCreateSafe,
     isSubmitting: isSubmittingCreateSafe,
   } = useContractInteraction(handleCreateSafe(proxy), "Deposit Completed", [
-    proxy,
+    BASIC_ACTIONS_MOCKUP,
     endodedDataFunction,
   ]);
 
