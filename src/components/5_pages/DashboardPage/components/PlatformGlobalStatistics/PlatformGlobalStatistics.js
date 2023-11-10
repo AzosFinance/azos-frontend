@@ -12,7 +12,6 @@ const PlatformGlobalStatistics = ({ assetClasses, ethPrice }) => {
         Platform Global Statistics
       </Text>
       {assetClasses?.map((safe, id) => {
-        console.log(safe);
         return (
           <CardAssetClass
             key={id}
