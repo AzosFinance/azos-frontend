@@ -78,15 +78,15 @@ const CreateSafePage = () => {
         </Flex>
         <CreateSafeStepsCard
           assetClass={assetClass}
-          disableCreateButton={
-            !isConnected || !isRightNetwork || isUserBalanceZero
-          }
+          disableCreateButton={!isConnected || !isRightNetwork}
           disableApprovalButton={!isConnected || !isRightNetwork}
           loading={isLoadingContractRead}
           endodedDataFunction={callDataAndDeltaWad?.endodedDataFunction}
           proxy={data?.userProxy?.proxy}
           collateralAsset={collateralAsset}
           amountToExchange={watch("amountToExchange")}
+          isUserBalanceZero={isUserBalanceZero}
+          userBalance={userBalance}
         />
       </Stack>
     </Stack>

@@ -69,7 +69,7 @@ const useCreateSafeHooks = (collateralAsset, amountToExchange, data) => {
     } else {
       return true;
     }
-  }, [userBalance.bigNumber._isBigNumber]);
+  }, [userBalance.bigNumber]);
 
   return {
     callDataAndDeltaWad,

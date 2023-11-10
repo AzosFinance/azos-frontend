@@ -34,11 +34,11 @@ export const collateralJoinAddresses = {
 export const createSafeSteps = [
   {
     title: "First",
-    description: "Input the amount of asset you wish to deposit.",
+    description: "Input the amount of collateral you wish to deposit.",
   },
   {
     title: "Second",
-    description: "Approve your asset",
+    description: "Approve collateral",
   },
   {
     title: "Third",

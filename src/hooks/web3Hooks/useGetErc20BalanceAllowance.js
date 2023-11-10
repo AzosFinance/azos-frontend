@@ -96,6 +96,7 @@ const useGetErc20BalanceAllowance = (tokenAddress) => {
   };
 
   const handleApproval = async (allowanceTo, amount) => {
+    let response;
     if (isConnected && isRightNetwork) {
       setSubmittingApproval(true);
       try {
@@ -116,7 +117,7 @@ const useGetErc20BalanceAllowance = (tokenAddress) => {
             isClosable: true,
           });
           setSubmittingApproval(false);
-          return true;
+          response = true;
         }
       } catch (error) {
         toast({
@@ -129,6 +130,7 @@ const useGetErc20BalanceAllowance = (tokenAddress) => {
         setSubmittingApproval(false);
       }
     }
+    return response;
   };
 
   return {

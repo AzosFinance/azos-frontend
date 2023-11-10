@@ -4,7 +4,6 @@ import {
   Flex,
   Stack,
   Step,
-  StepDescription,
   StepIcon,
   StepIndicator,
   StepNumber,
@@ -18,10 +17,13 @@ import {
 } from "@chakra-ui/react";
 import useContractInteraction from "@/hooks/web3Hooks/useContractInteraction";
 import useGetErc20BalanceAllowance from "@/hooks/web3Hooks/useGetErc20BalanceAllowance";
-import { createSafeSteps } from "@/utils/consts";
+import { convertToEthValueType, createSafeSteps } from "@/utils/consts";
 import { handleCreateSafe } from "@/web3/contractInteractions/haiProxyContract";
-import { convertToWei } from "@/utils/funcs";
+import { convertToEth, convertToWei, formatNumber } from "@/utils/funcs";
 import { BASIC_ACTIONS_MOCKUP } from "@/web3/addresses";
+import { useRouter } from "next/router";
+import useCreateSafeAllowanceCheck from "@/hooks/utils/useCreateSafeAllowanceCheck";
+import { useEffect, useMemo } from "react";
 
 const CreateSafeStepsCard = ({
   assetClass,
@@ -32,9 +34,12 @@ const CreateSafeStepsCard = ({
   proxy,
   collateralAsset,
   amountToExchange,
+  isUserBalanceZero,
+  userBalance,
 }) => {
+  const router = useRouter();
   const { colorMode } = useColorMode();
-  const { activeStep } = useSteps({
+  const { activeStep, setActiveStep } = useSteps({
     index: 0,
     count: createSafeSteps.length,
   });
@@ -48,9 +53,37 @@ const CreateSafeStepsCard = ({
     endodedDataFunction,
   ]);
 
+  // USER ALLOWANCE CHECK
+  const {
+    allowanceCheck,
+    dataUserAllowance,
+    isLoadingUserAllowance,
+    address,
+    refetch,
+    balanceToDepositCorrect,
+  } = useCreateSafeAllowanceCheck(
+    collateralAsset,
+    proxy,
+    amountToExchange,
+    userBalance,
+    isUserBalanceZero
+  );
+
   // HANDLE APPROVAL
   const { handleApproval, submittingApproval } =
     useGetErc20BalanceAllowance(collateralAsset);
+
+  useEffect(() => {
+    if (!amountToExchange) {
+      setActiveStep(0);
+    } else {
+      if (allowanceCheck) {
+        setActiveStep(3);
+      } else {
+        setActiveStep(1);
+      }
+    }
+  }, [allowanceCheck, amountToExchange]);
 
   return (
     <Stack
@@ -78,30 +111,64 @@ const CreateSafeStepsCard = ({
             </StepIndicator>
 
             <Box flexShrink="0" ml="0.5rem">
-              <StepTitle>{step.title}</StepTitle>
-              <StepDescription w="15rem" mb="1rem">
-                <Text mb="1rem">{step.description}</Text>
+              <StepTitle color="orange.200">{step.title}</StepTitle>
+              <Stack w="15rem" mb="1rem">
+                <Text mb="1rem" fontSize="sm">
+                  {step.description}
+                </Text>
                 {index === 1 && (
-                  <Stack direction="row" spacing="1rem">
+                  <Stack mb="1rem">
+                    <Text fontSize="sm">
+                      Current Allowance:{" "}
+                      {formatNumber(
+                        convertToEth(
+                          convertToEthValueType.notReward,
+                          dataUserAllowance
+                        )
+                      )}{" "}
+                      {assetClass?.collateralTypeName}
+                    </Text>
+                    {allowanceCheck}
                     <Flex>
                       <Button
                         colorScheme="orange"
                         size="xs"
-                        onClick={() => {
-                          handleApproval(
+                        onClick={async () => {
+                          const res = await handleApproval(
                             proxy,
                             convertToWei(amountToExchange?.toString())
                           );
+                          if (res) {
+                            refetch();
+                          }
                         }}
-                        isLoading={submittingApproval || loading}
-                        isDisabled={disableApprovalButton}
+                        isLoading={
+                          submittingApproval ||
+                          loading ||
+                          isLoadingUserAllowance
+                        }
+                        isDisabled={
+                          disableApprovalButton ||
+                          allowanceCheck ||
+                          !amountToExchange ||
+                          !balanceToDepositCorrect
+                        }
+                        variant={
+                          allowanceCheck || !balanceToDepositCorrect
+                            ? "outline"
+                            : "solid"
+                        }
                       >
-                        Approve {assetClass.collateralTypeName}
+                        {!allowanceCheck
+                          ? !balanceToDepositCorrect
+                            ? "Not Enough Balance"
+                            : `Approve ${assetClass.collateralTypeName}`
+                          : "Approval Is Already Enough"}
                       </Button>
                     </Flex>
                   </Stack>
                 )}
-              </StepDescription>
+              </Stack>
             </Box>
             <StepSeparator />
           </Step>
@@ -110,11 +177,20 @@ const CreateSafeStepsCard = ({
       <Button
         colorScheme="orange"
         mt="1rem"
-        isDisabled={disableCreateButton}
+        isDisabled={
+          disableCreateButton || !balanceToDepositCorrect || !amountToExchange
+        }
         isLoading={submittingApproval || loading || isSubmittingCreateSafe}
-        onClick={onContractCallCreateSafe}
+        onClick={async () => {
+          const res = await onContractCallCreateSafe();
+          if (res) {
+            router.push("/user/" + address?.toLowerCase());
+          }
+        }}
       >
-        Create Safe
+        {!balanceToDepositCorrect
+          ? `Low ${assetClass.collateralTypeName} Balance`
+          : "Create Safe"}
       </Button>
     </Stack>
   );
