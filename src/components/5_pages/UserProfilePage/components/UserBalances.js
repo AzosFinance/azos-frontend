@@ -1,5 +1,5 @@
 import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
-import { Skeleton, Stack } from "@chakra-ui/react";
+import { Skeleton, Wrap, WrapItem } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useAccount, erc20ABI } from "wagmi";
 import { readContracts } from "@wagmi/core";
@@ -66,30 +66,31 @@ const UserBalances = () => {
     isLoading ? (
       <Skeleton minW="40%" h="3rem" />
     ) : (
-      <Stack
+      <Wrap
         direction="row"
         alignItems="center"
-        minW="40%"
         justifyContent="space-between"
+        spacing="2rem"
       >
         {collateralTokens?.map((e, idx) => {
           return (
-            <StatInfo
-              key={idx}
-              label={e?.name + " Balance"}
-              value={
-                formatNumber(
-                  convertToEth(convertToEthValueType.notReward, e?.balance)
-                ) +
-                " " +
-                e?.name
-              }
-              valueSize="sm"
-              textAlign="left"
-            />
+            <WrapItem key={idx}>
+              <StatInfo
+                label={e?.name + " Balance"}
+                value={
+                  formatNumber(
+                    convertToEth(convertToEthValueType.notReward, e?.balance)
+                  ) +
+                  " " +
+                  e?.name
+                }
+                valueSize="sm"
+                textAlign="left"
+              />
+            </WrapItem>
           );
         })}
-      </Stack>
+      </Wrap>
     )
   ) : (
     <></>

@@ -24,7 +24,12 @@ const UserProfilePage = () => {
     <LoadingPage />
   ) : (
     <Stack w="100%" mt="1rem" spacing="2rem">
-      <Stack direction="row" alignItems="center" justifyContent="space-between">
+      <Stack
+        direction={["column", "column", "row"]}
+        alignItems="center"
+        justifyContent="space-between"
+        spacing="2rem"
+      >
         <Stack spacing="1rem">
           <Heading>User Profile</Heading>
           <Text color="gray.500" fontSize="sm">

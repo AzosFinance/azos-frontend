@@ -104,14 +104,12 @@ const MenuMobileDrawer = () => {
                       spacing="1rem"
                       justifyContent="flex-end"
                       onClick={() => {
-                        router.push(
-                          "/user/create-safe/" + address.toLowerCase()
-                        );
+                        router.push("/demo-tokens");
                         onClose();
                       }}
                     >
                       <Link pt="0.4rem" fontSize="xl">
-                        Create Safe
+                        Demo Tokens
                       </Link>
                     </Stack>
                     <Stack
@@ -120,12 +118,14 @@ const MenuMobileDrawer = () => {
                       spacing="1rem"
                       justifyContent="flex-end"
                       onClick={() => {
-                        router.push("/demo-tokens");
+                        router.push(
+                          "/user/create-safe/" + address.toLowerCase()
+                        );
                         onClose();
                       }}
                     >
                       <Link pt="0.4rem" fontSize="xl">
-                        Demo Tokens
+                        Create Safe
                       </Link>
                     </Stack>
                     <Stack
@@ -163,6 +163,7 @@ const MenuMobileDrawer = () => {
             </Stack>
           </DrawerBody>
           <DrawerFooter>
+            <SwitchColorMode />
             {isConnected && (
               <Stack
                 justifyContent="flex-end"
@@ -176,7 +177,6 @@ const MenuMobileDrawer = () => {
                   justifyContent="flex-end"
                   spacing="0.5rem"
                 >
-                  <SwitchColorMode />
                   <Link
                     ml="2rem"
                     textAlign="right"
