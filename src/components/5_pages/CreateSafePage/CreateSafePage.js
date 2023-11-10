@@ -8,7 +8,7 @@ import { useAccount } from "wagmi";
 import CreateProxy from "./components/CreateProxy";
 import CreateSafeCard from "./components/CreateSafeCard";
 import CreateSafeStepsCard from "./components/CreateSafeStepsCard";
-import useCreateSafeHooks from "../../../hooks/utils/useCreateSafeHooks";
+import useCreateSafeHooks from "./hooks/useCreateSafeHooks";
 
 const CreateSafePage = () => {
   const [isRefetching, setIsRefetching] = useState(false);
@@ -44,7 +44,7 @@ const CreateSafePage = () => {
   return loading || isRefetching || loadingEthPrice ? (
     <LoadingPage />
   ) : (
-    <Stack w="100%" spacing="3rem" mt="2rem">
+    <Stack w="100%" spacing="2rem" mt="2rem">
       <Stack spacing="1.5rem">
         <Heading textAlign="center">Create A New Safe</Heading>
       </Stack>
@@ -78,7 +78,9 @@ const CreateSafePage = () => {
         </Flex>
         <CreateSafeStepsCard
           assetClass={assetClass}
-          disableCreateButton={!isConnected || !isRightNetwork}
+          disableCreateButton={
+            !isConnected || !isRightNetwork || !data?.userProxy
+          }
           disableApprovalButton={!isConnected || !isRightNetwork}
           loading={isLoadingContractRead}
           endodedDataFunction={callDataAndDeltaWad?.endodedDataFunction}

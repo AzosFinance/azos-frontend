@@ -10,7 +10,7 @@ const CreateProxy = ({ onRefecth }) => {
     isSubmitting: isSubmittingCreateProxy,
   } = useContractInteraction(handleCreateUserProxy(), "User Proxy Created");
   return (
-    <Stack mt="1rem">
+    <Stack>
       <Text textAlign="center">
         You need to create a user proxy before creating a safe
       </Text>
@@ -20,6 +20,7 @@ const CreateProxy = ({ onRefecth }) => {
           variant="outline"
           isDisabled={!isConnected || !isRightNetwork}
           isLoading={isSubmittingCreateProxy}
+          size="sm"
           onClick={async () => {
             const res = await onContractCallCreateProxy();
             if (res) {
