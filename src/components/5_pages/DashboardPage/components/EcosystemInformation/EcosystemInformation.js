@@ -1,6 +1,10 @@
 import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
 import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
-import { collateralPrices, convertToEthValueType } from "@/utils/consts";
+import {
+  collateralPrices,
+  convertToEthValueType,
+  tokenNames,
+} from "@/utils/consts";
 import { convertToEth, formatNumber } from "@/utils/funcs";
 import { Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useMemo } from "react";
@@ -84,7 +88,7 @@ const EcosystemInformation = ({ data, ethPrice }) => {
             <StatInfo
               valueSize="md"
               label="Authorized Collateral "
-              value="--"
+              value={tokenNames.usdc}
             />
             <StatInfo valueSize="md" label="Balance" value="--" />
             <StatInfo valueSize="md" label="Debt" value="--" />

@@ -1,16 +1,28 @@
 import SafeTable from "@/components/2_molecules/SafeTable/SafeTable";
 import SafeTableRow from "@/components/2_molecules/SafeTable/SafeTableRow";
 import CardAssetClass from "@/components/2_molecules/CardAssetClass/CardAssetClass";
-import { Stack, Heading, Text, Center, Divider } from "@chakra-ui/react";
+import {
+  Stack,
+  Heading,
+  Text,
+  Center,
+  Divider,
+  Link,
+  useColorMode,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import { GET_USER_PROXY } from "@/graphQL/queries";
 import LoadingPage from "@/components/1_atoms/LoadingPage/LoadingPage";
 import useGetEthPrice from "@/hooks/web3Hooks/useGetEthPrice";
-import UserBalances from "./components/UserBalances";
+import UserBalances from "../../2_molecules/UserBalances/UserBalances";
+import useIsOwner from "@/hooks/utils/useIsOwner";
+import { sepoliaScanAddress } from "@/utils/consts";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 const UserProfilePage = () => {
   const router = useRouter();
+  const { colorMode } = useColorMode();
 
   const { data, loading } = useQuery(GET_USER_PROXY, {
     variables: {
@@ -19,6 +31,8 @@ const UserProfilePage = () => {
   });
 
   const { ethPrice, loadingEthPrice } = useGetEthPrice();
+
+  const { isOwner } = useIsOwner(router.query.id);
 
   return loading || loadingEthPrice ? (
     <LoadingPage />
@@ -32,9 +46,21 @@ const UserProfilePage = () => {
       >
         <Stack spacing="1rem">
           <Heading>User Profile</Heading>
-          <Text color="gray.500" fontSize="sm">
-            {router?.query?.id}
-          </Text>
+          <Stack
+            direction="row"
+            alignItems="center"
+            color={colorMode === "light" ? "gray.600" : "gray.400"}
+            cursor="pointer"
+          >
+            <Link
+              fontSize="sm"
+              isExternal
+              href={sepoliaScanAddress + router?.query?.id}
+            >
+              {router?.query?.id}
+            </Link>
+            <ExternalLinkIcon />
+          </Stack>
         </Stack>
         <UserBalances />
       </Stack>
@@ -51,6 +77,7 @@ const UserProfilePage = () => {
                 collateralLocked={assetClass?.collateralLocked}
                 debtTokensHeld={assetClass?.debtTokensHeld}
                 isFromUserProfile
+                isOwner={isOwner}
               >
                 <SafeTable>
                   {assetClass?.assetClass?.safes?.map((safe, idx) => {

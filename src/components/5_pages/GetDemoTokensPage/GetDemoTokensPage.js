@@ -1,6 +1,7 @@
 import { Heading, Stack } from "@chakra-ui/react";
 import MintDemoTokenCard from "./components/MintDemoTokenCard";
 import { BCT_ADDRESS, FGB_ADDRESS, REI_ADDRESS } from "@/web3/addresses";
+import { tokenNames } from "@/utils/consts";
 
 const GetDemoTokensPage = () => {
   return (
@@ -12,17 +13,17 @@ const GetDemoTokensPage = () => {
         justifyContent="center"
       >
         <MintDemoTokenCard
-          tokenSymbol="BCT"
+          tokenSymbol={tokenNames.bct}
           tokenAddress={BCT_ADDRESS}
           description="Base Carbon Tonne"
         />
         <MintDemoTokenCard
-          tokenSymbol="FGB"
+          tokenSymbol={tokenNames.fgb}
           tokenAddress={FGB_ADDRESS}
           description="Fungible Green Bond"
         />
         <MintDemoTokenCard
-          tokenSymbol="REI"
+          tokenSymbol={tokenNames.rei}
           tokenAddress={REI_ADDRESS}
           description="Renewable Energy Index"
         />

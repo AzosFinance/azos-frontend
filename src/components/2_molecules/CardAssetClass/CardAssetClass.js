@@ -1,10 +1,15 @@
 import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
 import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
-import { collateralPrices, convertToEthValueType } from "@/utils/consts";
+import {
+  collateralPrices,
+  convertToEthValueType,
+  tokenNames,
+} from "@/utils/consts";
 import { convertToEth, convertToWei, formatNumber } from "@/utils/funcs";
 import { Button, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { BiLogoReact } from "react-icons/bi";
+import { useAccount } from "wagmi";
 
 const CardAssetClass = ({
   safe,
@@ -14,9 +19,11 @@ const CardAssetClass = ({
   collateralLocked,
   debtTokensHeld,
   isFromUserProfile = false,
+  isOwner = false,
 }) => {
   const { colorMode } = useColorMode();
   const router = useRouter();
+  const { address } = useAccount();
 
   const { getUsdAssetPrice } = useUsdAssetPriceConverter();
 
@@ -45,14 +52,20 @@ const CardAssetClass = ({
               router.push("/asset-class/" + safe?.collateralTypeName)
             }
           >
-            Explore Safes
+            Explore All Safes
           </Button>
         </Stack>
         <Stack direction={["column", "column", "row"]} w="100%" spacing="1rem">
           <StatInfo
             valueSize="lg"
             helperSize="xs"
-            label={isFromUserProfile ? "Your Active Vaults" : "Active Vaults"}
+            label={
+              isFromUserProfile
+                ? isOwner
+                  ? "Your Active Vaults"
+                  : "Active Vaults"
+                : "Active Vaults"
+            }
             value={activeSafes}
           />
           {!isFromUserProfile && (
@@ -74,7 +87,9 @@ const CardAssetClass = ({
             helperSize="xs"
             label={
               isFromUserProfile
-                ? "Your " + safe?.collateralTypeName + " Collateral Locked"
+                ? isOwner
+                  ? "Your " + safe?.collateralTypeName + " Collateral Locked"
+                  : safe?.collateralTypeName + " Collateral Locked"
                 : safe?.collateralTypeName + " Collateral Locked"
             }
             value={
@@ -101,11 +116,19 @@ const CardAssetClass = ({
           <StatInfo
             valueSize="lg"
             helperSize="xs"
-            label={isFromUserProfile ? "Your Total Debt" : "Total Debt"}
+            label={
+              isFromUserProfile
+                ? isOwner
+                  ? "Your Total Debt"
+                  : "Total Debt"
+                : "Total Debt"
+            }
             value={
               formatNumber(
                 convertToEth(convertToEthValueType.notReward, debtTokensHeld)
-              ) + " ZAI"
+              ) +
+              " " +
+              tokenNames.zai
             }
             helper={
               "$ " +

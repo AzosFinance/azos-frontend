@@ -1,12 +1,12 @@
 import FromInputNumeric from "@/components/2_molecules/FromInputNumeric/FromInputNumeric";
 import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
+import UserBalances from "@/components/2_molecules/UserBalances/UserBalances";
 import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
-import { collateralPrices } from "@/utils/consts";
+import { collateralPrices, tokenNames } from "@/utils/consts";
 import { formatNumber } from "@/utils/funcs";
 import { Divider, Flex, Select, Stack, useColorMode } from "@chakra-ui/react";
 
 const CreateSafeCard = ({
-  register,
   assetClass,
   userBalance,
   onSetCollateral,
@@ -41,7 +41,7 @@ const CreateSafeCard = ({
               <StatInfo
                 textAlign="left"
                 labelSize="xl"
-                label={assetClass.collateralTypeName + "- ZAI"}
+                label={assetClass.collateralTypeName + " - " + tokenNames.zai}
                 value={
                   "Price: $ " +
                   getUsdAssetPrice(
@@ -67,7 +67,7 @@ const CreateSafeCard = ({
           </Stack>
         </Stack>
         <Divider />
-        <Stack spacing="2rem">
+        <Stack spacing="1rem">
           <Stack spacing="1rem">
             <Stack direction="row" alignItems="flex-end">
               <FromInputNumeric
@@ -95,11 +95,17 @@ const CreateSafeCard = ({
           <Divider />
           <Stack spacing="1rem">
             <StatInfo
-              label="Exchange For ZAI"
-              value={deltaWad ? deltaWad + " ZAI" : "0 ZAI"}
+              label={"Exchange For " + tokenNames.zai}
+              value={
+                deltaWad
+                  ? deltaWad + " " + tokenNames.zai
+                  : "0 " + tokenNames.zai
+              }
               textAlign="left"
             />
           </Stack>
+          <Divider />
+          <UserBalances />
         </Stack>
       </Stack>
     </Stack>

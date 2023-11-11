@@ -1,5 +1,9 @@
 import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
-import { collateralPrices, convertToEthValueType } from "@/utils/consts";
+import {
+  collateralPrices,
+  convertToEthValueType,
+  tokenNames,
+} from "@/utils/consts";
 import { convertToEth, formatNumber, formatWalletAddress } from "@/utils/funcs";
 import {
   Tr,
@@ -96,7 +100,7 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
                 )}
               </Text>
               <Text color={colorMode === "light" ? "gray.900" : "gray.400"}>
-                ZAI
+                {tokenNames.zai}
               </Text>
             </Stack>
             <Text

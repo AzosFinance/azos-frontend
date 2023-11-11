@@ -14,7 +14,7 @@ const CreateSafePage = () => {
   const [isRefetching, setIsRefetching] = useState(false);
   const [collateralAsset, setCollateralAsset] = useState("");
   const { address, isConnected } = useAccount();
-  const { register, watch, control, setValue } = useForm();
+  const { watch, control, setValue } = useForm();
 
   const { data, loading, refetch } = useQuery(GET_USER_CREATE_SAFE, {
     variables: {
@@ -45,7 +45,7 @@ const CreateSafePage = () => {
     <LoadingPage />
   ) : (
     <Stack w="100%" spacing="2rem" mt="2rem">
-      <Stack spacing="1.5rem">
+      <Stack>
         <Heading textAlign="center">Create A New Safe</Heading>
       </Stack>
       {!data?.userProxy && (
@@ -64,7 +64,6 @@ const CreateSafePage = () => {
       >
         <Flex>
           <CreateSafeCard
-            register={register}
             assetClass={assetClass}
             data={data}
             onSetCollateral={(e) => setCollateralAsset(e.target.value)}

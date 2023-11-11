@@ -7,6 +7,8 @@ import {
   REI_COLLATERAL_JOIN,
 } from "@/web3/addresses";
 
+export const sepoliaScanAddress = "https://sepolia.etherscan.io/address/";
+
 export const convertToEthValueType = {
   reward: "reward",
   notReward: "notReward",
@@ -33,15 +35,23 @@ export const collateralJoinAddresses = {
 
 export const createSafeSteps = [
   {
-    title: "First",
+    title: "Amount",
     description: "Input the amount of collateral you wish to deposit.",
   },
   {
-    title: "Second",
+    title: "Approve",
     description: "Approve collateral",
   },
   {
-    title: "Third",
+    title: "Create",
     description: "Confirm your deposit",
   },
 ];
+
+export const tokenNames = {
+  zai: "ZAI",
+  bct: "BCT",
+  fgb: "FGB",
+  rei: "REI",
+  usdc: "USDC",
+};

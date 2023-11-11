@@ -1,7 +1,7 @@
 import LoadingPage from "@/components/1_atoms/LoadingPage/LoadingPage";
 import StatInfo from "@/components/2_molecules/StatInfo/StatInfo";
 import { GET_SAFE } from "@/graphQL/queries";
-import { convertToEthValueType } from "@/utils/consts";
+import { convertToEthValueType, tokenNames } from "@/utils/consts";
 import { convertToEth, formatNumber, formatWalletAddress } from "@/utils/funcs";
 import { useQuery } from "@apollo/client";
 import {
@@ -93,7 +93,9 @@ const Safe = () => {
                       convertToEthValueType.notReward,
                       data?.safe?.amountCoin
                     )
-                  ) + " ZAI"
+                  ) +
+                  " " +
+                  tokenNames.zai
                 }
               />
             </Stack>
