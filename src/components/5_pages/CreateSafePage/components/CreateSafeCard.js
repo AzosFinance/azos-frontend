@@ -106,7 +106,9 @@ const CreateSafeCard = ({
             />
           </Stack>
           <Divider />
-          <UserBalances />
+          <Flex mt="0.5rem" h="3.5rem">
+            <UserBalances />
+          </Flex>
         </Stack>
       </Stack>
     </Stack>

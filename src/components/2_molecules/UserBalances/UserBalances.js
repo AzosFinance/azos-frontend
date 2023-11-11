@@ -22,7 +22,7 @@ const tokens = [
   { address: ZAI_ADDRESS, name: tokenNames.zai },
 ];
 
-const UserBalances = ({ minW = "26.5rem" }) => {
+const UserBalances = ({ minW = "26.3rem" }) => {
   const [collateralTokens, setCollateralTokens] = useState([
     { balance: 0, name: tokenNames.bct },
     { balance: 0, name: tokenNames.fgb },
@@ -66,10 +66,9 @@ const UserBalances = ({ minW = "26.5rem" }) => {
 
   return isOwner && isConnected ? (
     isLoading ? (
-      <Skeleton minW={minW} h="5.5rem" />
+      <Skeleton minW={minW} h="3.5rem" />
     ) : (
       <Stack spacing="0.5rem">
-        <Text fontWeight="semibold">User Assets</Text>
         <Wrap
           direction="row"
           alignItems="center"
