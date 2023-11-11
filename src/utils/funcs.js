@@ -11,6 +11,8 @@ export const convertToEth = (type, value) => {
       return Number(ethers.utils.formatEther(value)).toFixed("4");
     } else if (type == convertToEthValueType.raw) {
       return Number(ethers.utils.formatEther(value));
+    } else if (type == convertToEthValueType.noDecimals) {
+      return Number(ethers.utils.formatEther(value)).toFixed("0");
     }
   } else {
     return "0";
@@ -27,7 +29,6 @@ export const convertToWei = (value) => {
 
 export const formatNumber = (value) => {
   if (value) {
-    // return String(value).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, "$1,");
     return Number(value)?.toLocaleString("en-US");
   } else {
     return "0";

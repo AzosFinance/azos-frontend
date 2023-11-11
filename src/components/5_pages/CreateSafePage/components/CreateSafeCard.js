@@ -19,6 +19,7 @@ const CreateSafeCard = ({
 }) => {
   const { colorMode } = useColorMode();
   const { getUsdAssetPrice } = useUsdAssetPriceConverter();
+
   return (
     <Stack
       px="3rem"

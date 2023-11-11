@@ -16,7 +16,7 @@ const useCreateSafeHooks = (collateralAsset, amountToExchange, data) => {
   const { isRightNetwork } = useIsRightNetwork();
 
   const assetClass = useMemo(() => {
-    if (data?.userProxy?.proxy && collateralAsset) {
+    if (collateralAsset) {
       refetchEthPrice();
       const _assetClass = data?.assetClasses?.find(
         (e) => e?.collateral === collateralAsset

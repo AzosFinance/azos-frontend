@@ -80,7 +80,9 @@ const CreateSafePage = () => {
           disableCreateButton={
             !isConnected || !isRightNetwork || !data?.userProxy
           }
-          disableApprovalButton={!isConnected || !isRightNetwork}
+          disableApprovalButton={
+            !isConnected || !isRightNetwork || !data?.userProxy
+          }
           loading={isLoadingContractRead}
           endodedDataFunction={callDataAndDeltaWad?.endodedDataFunction}
           proxy={data?.userProxy?.proxy}
@@ -88,6 +90,7 @@ const CreateSafePage = () => {
           amountToExchange={watch("amountToExchange")}
           isUserBalanceZero={isUserBalanceZero}
           userBalance={userBalance}
+          isProzyCreated={data?.userProxy}
         />
       </Stack>
     </Stack>

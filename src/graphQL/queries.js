@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
-export const GET_ASSET_CLASSES = gql`
-  query AssetClasses {
+export const GET_DASHBOARD_DATA = gql`
+  query AssetClasses($stabolityModuleId: ID!) {
     ecosystemInfo(id: "ecosystemInfo") {
       id
       totalCollateralLocked
@@ -17,6 +17,11 @@ export const GET_ASSET_CLASSES = gql`
       collateralLocked
       debtTokensHeld
       activeSafes
+    }
+    stabilityModule(id: $stabolityModuleId) {
+      id
+      balance
+      debt
     }
   }
 `;

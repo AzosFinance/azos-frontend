@@ -5,7 +5,7 @@ import {
   convertToEthValueType,
   tokenNames,
 } from "@/utils/consts";
-import { convertToEth, formatNumber } from "@/utils/funcs";
+import { convertToEth, formatNumber, weiToBigNumber } from "@/utils/funcs";
 import { Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useMemo } from "react";
 
@@ -29,6 +29,19 @@ const EcosystemInformation = ({ data, ethPrice }) => {
       return formatNumber(_totalTvl?.toFixed("0"));
     } else {
       return "--";
+    }
+  }, [data]);
+
+  const equiti = useMemo(() => {
+    if (data?.stabilityModule) {
+      const _balance = weiToBigNumber(data?.stabilityModule?.balance);
+      const _debt = weiToBigNumber(data?.stabilityModule?.debt);
+      const _total = _balance.sub(_debt).toString();
+      return formatNumber(
+        convertToEth(convertToEthValueType.notReward, _total)
+      );
+    } else {
+      return "0";
     }
   }, [data]);
 
@@ -87,11 +100,33 @@ const EcosystemInformation = ({ data, ethPrice }) => {
           <Stack direction={["column", "column", "row"]} spacing="1rem">
             <StatInfo
               valueSize="md"
-              label="Authorized Collateral "
-              value={tokenNames.usdc}
+              label="Balance"
+              value={
+                formatNumber(
+                  convertToEth(
+                    convertToEthValueType.noDecimals,
+                    data?.stabilityModule?.balance
+                  )
+                ) +
+                " " +
+                tokenNames.usdc
+              }
             />
-            <StatInfo valueSize="md" label="Balance" value="--" />
-            <StatInfo valueSize="md" label="Debt" value="--" />
+            <StatInfo
+              valueSize="md"
+              label="Debt"
+              value={
+                formatNumber(
+                  convertToEth(
+                    convertToEthValueType.noDecimals,
+                    data?.stabilityModule?.debt
+                  )
+                ) +
+                " " +
+                tokenNames.zai
+              }
+            />
+            <StatInfo valueSize="md" label="Equity" value={"$ " + equiti} />
           </Stack>
         </Stack>
       </Stack>

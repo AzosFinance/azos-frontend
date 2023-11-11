@@ -14,6 +14,7 @@ export const convertToEthValueType = {
   notReward: "notReward",
   precise: "precise",
   raw: "raw",
+  noDecimals: "noDecimals",
 };
 
 export const covertCreateTimeStampType = {
