@@ -28,7 +28,7 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
   return (
     <>
       <Tr>
-        <Td w="1rem">
+        <Td>
           <Flex justifyContent="center">
             <Button
               w="5rem"
