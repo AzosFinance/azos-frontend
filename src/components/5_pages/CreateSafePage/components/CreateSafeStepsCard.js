@@ -178,7 +178,10 @@ const CreateSafeStepsCard = ({
         colorScheme="orange"
         mt="1rem"
         isDisabled={
-          disableCreateButton || !balanceToDepositCorrect || !amountToExchange
+          disableCreateButton ||
+          !balanceToDepositCorrect ||
+          !amountToExchange ||
+          !allowanceCheck
         }
         isLoading={submittingApproval || loading || isSubmittingCreateSafe}
         onClick={async () => {
