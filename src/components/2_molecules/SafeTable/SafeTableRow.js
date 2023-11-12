@@ -19,7 +19,7 @@ import {
 import { useRouter } from "next/router";
 import { FaUser } from "react-icons/fa";
 
-const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
+const SafeTableRow = ({ safe, collateralTypeName, ethPrice, zaiPrice }) => {
   const { colorMode } = useColorMode();
   const router = useRouter();
 
@@ -109,10 +109,13 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice }) => {
             >
               ${" "}
               {formatNumber(
-                convertToEth(
-                  convertToEthValueType.notReward,
-                  safe?.safe?.amountCoin
-                )
+                zaiPrice *
+                  Number(
+                    convertToEth(
+                      convertToEthValueType.notReward,
+                      safe?.safe?.amountCoin
+                    )
+                  )
               )}
             </Text>
           </Stack>

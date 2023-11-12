@@ -5,16 +5,11 @@ import {
   convertToEthValueType,
   tokenNames,
 } from "@/utils/consts";
-import {
-  convertToEth,
-  convertToWei,
-  formatNumber,
-  weiToBigNumber,
-} from "@/utils/funcs";
+import { convertToEth, formatNumber, weiToBigNumber } from "@/utils/funcs";
 import { Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useMemo } from "react";
 
-const EcosystemInformation = ({ data, ethPrice }) => {
+const EcosystemInformation = ({ data, ethPrice, zaiPrice }) => {
   const { colorMode } = useColorMode();
   const { getUsdAssetPrice } = useUsdAssetPriceConverter();
 
@@ -87,16 +82,22 @@ const EcosystemInformation = ({ data, ethPrice }) => {
             <StatInfo valueSize="md" label="TVL" value={"$ " + totalTvl} />
             <StatInfo
               valueSize="md"
-              label="Debt Outstanding"
+              label="Debt"
               value={
-                "$ " +
                 formatNumber(
                   convertToEth(
                     convertToEthValueType.notReward,
                     data?.ecosystemInfo?.totalDebt
                   )
-                )
+                ) +
+                " " +
+                tokenNames.zai
               }
+            />
+            <StatInfo
+              valueSize="md"
+              label="ZAI Price"
+              value={"$ " + zaiPrice}
             />
           </Stack>
         </Stack>

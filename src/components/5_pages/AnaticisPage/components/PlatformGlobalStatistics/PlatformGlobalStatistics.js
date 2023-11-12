@@ -1,7 +1,7 @@
 import { Heading, Stack, Text } from "@chakra-ui/react";
 import CardAssetClass from "../../../../2_molecules/CardAssetClass/CardAssetClass";
 
-const PlatformGlobalStatistics = ({ assetClasses, ethPrice }) => {
+const PlatformGlobalStatistics = ({ assetClasses, ethPrice, zaiPrice }) => {
   return (
     <Stack w="100%" spacing="2rem">
       <Text
@@ -20,6 +20,7 @@ const PlatformGlobalStatistics = ({ assetClasses, ethPrice }) => {
             activeSafes={safe?.activeSafes}
             collateralLocked={safe?.collateralLocked}
             debtTokensHeld={safe?.debtTokensHeld}
+            zaiPrice={zaiPrice}
           />
         );
       })}

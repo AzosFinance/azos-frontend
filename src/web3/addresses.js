@@ -39,3 +39,6 @@ export const BASIC_ACTIONS_MOCKUP =
 
 export const STABILITY_MODULE =
   "0x21676aadaC3693a2C65f71C7096829EeA80652e5".toLowerCase();
+
+export const UNISWAP_POOL =
+  "0x974240Dd8d4dF5F4b7D5B57491D16bf0456902e1".toLowerCase();

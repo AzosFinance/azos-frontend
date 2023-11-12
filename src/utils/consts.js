@@ -56,3 +56,9 @@ export const tokenNames = {
   rei: "REI",
   usdc: "USDC",
 };
+
+export const footerLinks = {
+  silverDoor: "https://www.silverdoor.ai/",
+  github: "https://github.com/AzosFinance/azos-hub",
+  telegram: "https://t.me/azos_fi",
+};

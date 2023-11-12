@@ -13,16 +13,18 @@ import {
   Link,
   Divider,
   Icon,
-  Avatar,
   Heading,
+  useColorMode,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import { useAccount } from "wagmi";
 import { useAccountModal } from "@rainbow-me/rainbowkit";
-import { FaSignOutAlt } from "react-icons/fa";
 import { ConnectWallet } from "@/components/2_molecules/ConnectWallet/ConnectWallet";
 import SwitchColorMode from "@/components/1_atoms/SwitchColorMode/SwitchColorMode";
+import { footerLinks } from "@/utils/consts";
+import { AiFillGithub } from "react-icons/ai";
+import { BiLogoTelegram } from "react-icons/bi";
 
 const MenuMobileDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -30,6 +32,7 @@ const MenuMobileDrawer = () => {
   const router = useRouter();
   const { isConnected, address } = useAccount();
   const { openAccountModal } = useAccountModal();
+  const { colorMode } = useColorMode();
 
   useEffect(() => {
     if (!isConnected) {
@@ -90,12 +93,12 @@ const MenuMobileDrawer = () => {
                       spacing="1rem"
                       justifyContent="flex-end"
                       onClick={() => {
-                        router.push("/dashboard");
+                        router.push("/analytics");
                         onClose();
                       }}
                     >
                       <Link pt="0.4rem" fontSize="xl">
-                        Dashboard
+                        Analytics
                       </Link>
                     </Stack>
                     <Stack
@@ -163,31 +166,68 @@ const MenuMobileDrawer = () => {
             </Stack>
           </DrawerBody>
           <DrawerFooter>
-            <SwitchColorMode />
-            {isConnected && (
-              <Stack
-                justifyContent="flex-end"
-                fontWeight="semibold"
-                spacing="1.5rem"
-                w="100%"
-              >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="flex-end"
-                  spacing="0.5rem"
-                >
-                  <Link
-                    ml="2rem"
-                    textAlign="right"
-                    onClick={openAccountModal}
-                    color="blue.200"
+            <Stack spacing="2rem">
+              <Stack direction="row" alignItems="center">
+                <SwitchColorMode />
+                {isConnected && (
+                  <Stack
+                    justifyContent="flex-end"
+                    fontWeight="semibold"
+                    spacing="1.5rem"
+                    w="100%"
                   >
-                    Disconnect Wallet
+                    <Stack
+                      direction="row"
+                      alignItems="center"
+                      justifyContent="flex-end"
+                      spacing="0.5rem"
+                    >
+                      <Link
+                        ml="2rem"
+                        textAlign="right"
+                        onClick={openAccountModal}
+                        color="blue.200"
+                      >
+                        Disconnect Wallet
+                      </Link>
+                    </Stack>
+                  </Stack>
+                )}
+              </Stack>
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+                w="100%"
+                color={colorMode === "light" ? "gray.700" : "gray.400"}
+                spacing="1rem"
+              >
+                <Link
+                  isExternal
+                  href={footerLinks.silverDoor}
+                  fontSize="sm"
+                  _hover={{ color: "blue.100" }}
+                >
+                  SilverDoor LCA 2023©
+                </Link>
+                <Stack direction="row" alignItems="center" spacing="1rem">
+                  <Link isExternal href={footerLinks.github}>
+                    <Icon
+                      fontSize="xl"
+                      as={AiFillGithub}
+                      _hover={{ color: "blue.100" }}
+                    />
+                  </Link>
+                  <Link isExternal href={footerLinks.telegram} fontSize="sm">
+                    <Icon
+                      fontSize="xl"
+                      as={BiLogoTelegram}
+                      _hover={{ color: "blue.100" }}
+                    />
                   </Link>
                 </Stack>
               </Stack>
-            )}
+            </Stack>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

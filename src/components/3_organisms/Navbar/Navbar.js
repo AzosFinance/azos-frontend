@@ -1,6 +1,6 @@
 import SwitchColorMode from "@/components/1_atoms/SwitchColorMode/SwitchColorMode";
 import { ConnectWallet } from "@/components/2_molecules/ConnectWallet/ConnectWallet";
-import { Heading, Stack } from "@chakra-ui/react";
+import { Flex, Image, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
 import MenuMobileDrawer from "./components/MenuMobileDrawer/MenuMobileDrawer";
@@ -18,13 +18,9 @@ const Navbar = () => {
       alignItems="center"
       justifyContent="space-between"
     >
-      <Heading
-        cursor="pointer"
-        onClick={() => router.push("/")}
-        color="orange.200"
-      >
-        Azos
-      </Heading>
+      <Flex cursor="pointer" onClick={() => router.push("/")} w="11rem">
+        <Image objectFit="cover" src="/pictures/azos-logo.png" alt="azos-log" />
+      </Flex>
       <Stack
         direction="row"
         alignItems="center"
@@ -38,10 +34,10 @@ const Navbar = () => {
           display={["none", "none", "flex"]}
         >
           <NavBarLink
-            path="/dashboard"
-            label="Dashboard"
-            dividerWidth="5.3rem"
-            routeActive="/dashboard"
+            path="/analytics"
+            label="Analytics"
+            dividerWidth="4.5rem"
+            routeActive="/analytics"
           />
           {isConnected && (
             <>

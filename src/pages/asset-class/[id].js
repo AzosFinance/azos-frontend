@@ -8,6 +8,7 @@ import { useQuery } from "@apollo/client";
 import LoadingPage from "@/components/1_atoms/LoadingPage/LoadingPage";
 import useGetEthPrice from "@/hooks/web3Hooks/useGetEthPrice";
 import { ethers } from "ethers";
+import useZaiPrice from "@/hooks/web3Hooks/useZaiPrice";
 
 const AssetClass = () => {
   const router = useRouter();
@@ -22,7 +23,9 @@ const AssetClass = () => {
 
   const { ethPrice, loadingEthPrice } = useGetEthPrice();
 
-  return loading || loadingEthPrice ? (
+  const { zaiPrice, isLoadingUniswapGetReserves } = useZaiPrice();
+
+  return loading || loadingEthPrice || isLoadingUniswapGetReserves ? (
     <LoadingPage />
   ) : (
     <Stack w="100%" spacing="2rem" mt="1rem">
@@ -33,6 +36,7 @@ const AssetClass = () => {
         activeSafes={data?.assetClass?.activeSafes}
         collateralLocked={data?.assetClass?.collateralLocked}
         debtTokensHeld={data?.assetClass?.debtTokensHeld}
+        zaiPrice={zaiPrice}
       >
         <SafeTable>
           {data?.assetClass?.safes?.map((safe, idx) => {
@@ -41,6 +45,7 @@ const AssetClass = () => {
                 key={idx}
                 safe={safe}
                 ethPrice={ethPrice}
+                zaiPrice={zaiPrice}
                 collateralTypeName={data?.assetClass?.collateralTypeName}
               />
             );

@@ -1,6 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import Navbar from "../3_organisms/Navbar/Navbar";
 import Head from "next/head";
+import Footer from "../1_atoms/Footer/Footer";
 
 const AppLayout = ({ children }) => {
   return (
@@ -8,6 +9,7 @@ const AppLayout = ({ children }) => {
       <Head>
         <title>Azos</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </Head>
       <Flex
         flexDirection="column"
@@ -15,11 +17,13 @@ const AppLayout = ({ children }) => {
         mx={["1rem", "2rem", "4rem", "15rem"]}
         position="relative"
         h="100vh"
+        justifyContent="space-between"
       >
         <Navbar />
-        <Flex pb="4rem" w="100%" mt="1rem">
+        <Flex pb="1rem" w="100%" mt="1rem">
           {children}
         </Flex>
+        <Footer />
       </Flex>
     </>
   );

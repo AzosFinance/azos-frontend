@@ -5,11 +5,10 @@ import {
   convertToEthValueType,
   tokenNames,
 } from "@/utils/consts";
-import { convertToEth, convertToWei, formatNumber } from "@/utils/funcs";
+import { convertToEth, formatNumber } from "@/utils/funcs";
 import { Button, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { BiLogoReact } from "react-icons/bi";
-import { useAccount } from "wagmi";
 
 const CardAssetClass = ({
   safe,
@@ -20,10 +19,10 @@ const CardAssetClass = ({
   debtTokensHeld,
   isFromUserProfile = false,
   isOwner = false,
+  zaiPrice,
 }) => {
   const { colorMode } = useColorMode();
   const router = useRouter();
-  const { address } = useAccount();
 
   const { getUsdAssetPrice } = useUsdAssetPriceConverter();
 
@@ -52,7 +51,7 @@ const CardAssetClass = ({
               router.push("/asset-class/" + safe?.collateralTypeName)
             }
           >
-            Explore All Safes
+            Explore {safe?.collateralTypeName} Safes
           </Button>
         </Stack>
         <Stack direction={["column", "column", "row"]} w="100%" spacing="1rem">
@@ -133,7 +132,13 @@ const CardAssetClass = ({
             helper={
               "$ " +
               formatNumber(
-                convertToEth(convertToEthValueType.notReward, debtTokensHeld)
+                zaiPrice *
+                  Number(
+                    convertToEth(
+                      convertToEthValueType.notReward,
+                      debtTokensHeld
+                    )
+                  )
               )
             }
           />
