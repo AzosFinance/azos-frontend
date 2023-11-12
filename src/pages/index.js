@@ -2,7 +2,7 @@ import { Center, Heading, Image, Stack } from "@chakra-ui/react";
 
 const Home = () => {
   return (
-    <Center h="79vh" w="100%">
+    <Center h="65vh" w="100%">
       <Stack spacing="1rem">
         <Image
           h="20rem"
