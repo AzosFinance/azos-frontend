@@ -1,6 +1,6 @@
 import SwitchColorMode from "@/components/1_atoms/SwitchColorMode/SwitchColorMode";
 import { ConnectWallet } from "@/components/2_molecules/ConnectWallet/ConnectWallet";
-import { Flex, Image, Stack } from "@chakra-ui/react";
+import { Divider, Flex, Image, Link, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
 import MenuMobileDrawer from "./components/MenuMobileDrawer/MenuMobileDrawer";
@@ -53,12 +53,26 @@ const Navbar = () => {
                 routeActive="/user/create-safe/[id]"
                 dividerWidth="5.5rem"
               />
-              <NavBarLink
-                path={"/user/" + address?.toLowerCase()}
-                label="My Profile"
-                routeActive="/user/[id]"
-                dividerWidth="4.9rem"
-              />
+              <Stack h="1.5rem">
+                <Link
+                  mr="1rem"
+                  fontWeight="bold"
+                  onClick={() => router.push("/user/" + address?.toLowerCase())}
+                  _hover={{
+                    textDecor:
+                      router?.route === "/user/[id]" &&
+                      !router.query.id === address?.toLowerCase()
+                        ? "none"
+                        : "underline",
+                  }}
+                >
+                  My Profile
+                </Link>
+                {router?.route === "/user/[id]" &&
+                router.query.id === address?.toLowerCase() ? (
+                  <Divider color="blue.200" border="1px" w="4.9rem" />
+                ) : null}
+              </Stack>
             </>
           )}
         </Stack>
