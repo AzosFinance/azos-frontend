@@ -56,6 +56,7 @@ const UserProfilePage = () => {
           >
             <ExternalLinkIcon
               color={colorMode === "light" ? "gray.600" : "gray.400"}
+              _hover={{ color: "blue.100" }}
             />
           </Link>
         </Stack>

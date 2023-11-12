@@ -61,7 +61,7 @@ const Navbar = () => {
                   _hover={{
                     textDecor:
                       router?.route === "/user/[id]" &&
-                      !router.query.id === address?.toLowerCase()
+                      router.query.id === address?.toLowerCase()
                         ? "none"
                         : "underline",
                   }}
