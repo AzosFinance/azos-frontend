@@ -66,7 +66,7 @@ const UserBalances = ({ minW = "26.3rem" }) => {
 
   return isOwner && isConnected ? (
     isLoading ? (
-      <Skeleton minW={minW} h="3.5rem" />
+      <Skeleton minW={["100%", "100%", minW]} h={["7rem", "7rem", "3.5rem"]} />
     ) : (
       <Stack spacing="0.5rem">
         <Wrap
