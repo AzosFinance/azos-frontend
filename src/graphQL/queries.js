@@ -22,6 +22,7 @@ export const GET_DASHBOARD_DATA = gql`
       id
       balance
       debt
+      deposit
     }
   }
 `;

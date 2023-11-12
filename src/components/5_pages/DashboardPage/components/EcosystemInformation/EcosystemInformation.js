@@ -5,7 +5,12 @@ import {
   convertToEthValueType,
   tokenNames,
 } from "@/utils/consts";
-import { convertToEth, formatNumber, weiToBigNumber } from "@/utils/funcs";
+import {
+  convertToEth,
+  convertToWei,
+  formatNumber,
+  weiToBigNumber,
+} from "@/utils/funcs";
 import { Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useMemo } from "react";
 
@@ -32,16 +37,31 @@ const EcosystemInformation = ({ data, ethPrice }) => {
     }
   }, [data]);
 
-  const equiti = useMemo(() => {
+  const stabilityModuleData = useMemo(() => {
     if (data?.stabilityModule) {
-      const _balance = weiToBigNumber(data?.stabilityModule?.balance);
-      const _debt = weiToBigNumber(data?.stabilityModule?.debt);
-      const _total = _balance.sub(_debt).toString();
-      return formatNumber(
-        convertToEth(convertToEthValueType.notReward, _total)
+      const _deposit = weiToBigNumber(
+        data?.stabilityModule?.deposit?.toString()
       );
+      const _balance = _deposit?.add(
+        weiToBigNumber(data?.stabilityModule?.balance)
+      );
+      const _debt = _deposit?.add?.(
+        weiToBigNumber(data?.stabilityModule?.debt)
+      );
+      const _total = _balance.sub(_debt).toString();
+      return {
+        equity: formatNumber(
+          convertToEth(convertToEthValueType.notReward, _total)
+        ),
+        balance: _balance,
+        debt: _debt,
+      };
     } else {
-      return "0";
+      return {
+        equity: "0",
+        balance: "0",
+        debt: "0",
+      };
     }
   }, [data]);
 
@@ -105,7 +125,7 @@ const EcosystemInformation = ({ data, ethPrice }) => {
                 formatNumber(
                   convertToEth(
                     convertToEthValueType.noDecimals,
-                    data?.stabilityModule?.balance
+                    stabilityModuleData?.balance
                   )
                 ) +
                 " " +
@@ -119,14 +139,18 @@ const EcosystemInformation = ({ data, ethPrice }) => {
                 formatNumber(
                   convertToEth(
                     convertToEthValueType.noDecimals,
-                    data?.stabilityModule?.debt
+                    stabilityModuleData?.debt
                   )
                 ) +
                 " " +
                 tokenNames.zai
               }
             />
-            <StatInfo valueSize="md" label="Equity" value={"$ " + equiti} />
+            <StatInfo
+              valueSize="md"
+              label="Equity"
+              value={"$ " + stabilityModuleData?.equity}
+            />
           </Stack>
         </Stack>
       </Stack>
