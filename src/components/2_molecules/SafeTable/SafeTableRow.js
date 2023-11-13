@@ -32,7 +32,7 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice, zaiPrice }) => {
           <Flex justifyContent="center">
             <Button
               w="5rem"
-              colorScheme="blue"
+              colorScheme={colorMode === "light" ? "orange" : "blue"}
               variant="outline"
               size="xs"
               onClick={() => router.push("/safe/" + safe?.safe?.id)}
