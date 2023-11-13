@@ -39,7 +39,7 @@ const UserProfilePage = () => {
   return loading || loadingEthPrice || isLoadingUniswapGetReserves ? (
     <LoadingPage />
   ) : (
-    <Stack w="100%" mt="2rem" spacing="2rem">
+    <Stack w="100%" mt="2rem" spacing="1.5rem">
       <Stack
         direction={["column", "column", "row"]}
         alignItems="center"

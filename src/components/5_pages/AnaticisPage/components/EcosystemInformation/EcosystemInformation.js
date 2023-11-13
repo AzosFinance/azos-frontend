@@ -75,7 +75,7 @@ const EcosystemInformation = ({ data, ethPrice, zaiPrice }) => {
           rounded="md"
           border="1px"
           spacing="1rem"
-          borderColor={colorMode === "light" ? "blue.200" : "gray.500"}
+          borderColor={colorMode === "light" ? "orange.200" : "gray.500"}
           shadow="lg"
         >
           <Stack direction={["column", "column", "row"]} spacing="1rem">
@@ -115,7 +115,7 @@ const EcosystemInformation = ({ data, ethPrice, zaiPrice }) => {
           rounded="md"
           border="1px"
           spacing="1rem"
-          borderColor={colorMode === "light" ? "blue.200" : "gray.500"}
+          borderColor={colorMode === "light" ? "orange.200" : "gray.500"}
           shadow="lg"
         >
           <Stack direction={["column", "column", "row"]} spacing="1rem">

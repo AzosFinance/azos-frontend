@@ -1,6 +1,13 @@
 import SwitchColorMode from "@/components/1_atoms/SwitchColorMode/SwitchColorMode";
 import { ConnectWallet } from "@/components/2_molecules/ConnectWallet/ConnectWallet";
-import { Divider, Flex, Image, Link, Stack } from "@chakra-ui/react";
+import {
+  Divider,
+  Flex,
+  Image,
+  Link,
+  Stack,
+  useColorMode,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
 import MenuMobileDrawer from "./components/MenuMobileDrawer/MenuMobileDrawer";
@@ -9,6 +16,7 @@ import NavBarLink from "./components/components/NavBarLink";
 const Navbar = () => {
   const router = useRouter();
   const { isConnected, address } = useAccount();
+  const { colorMode } = useColorMode();
 
   return (
     <Stack
@@ -18,7 +26,7 @@ const Navbar = () => {
       alignItems="center"
       justifyContent="space-between"
     >
-      <Flex cursor="pointer" onClick={() => router.push("/")} w="11rem">
+      <Flex cursor="pointer" onClick={() => router.push("/")} w="10rem">
         <Image objectFit="cover" src="/pictures/azos-logo.png" alt="azos-log" />
       </Flex>
       <Stack
@@ -70,7 +78,11 @@ const Navbar = () => {
                 </Link>
                 {router?.route === "/user/[id]" &&
                 router.query.id === address?.toLowerCase() ? (
-                  <Divider color="blue.200" border="1px" w="4.9rem" />
+                  <Divider
+                    color={colorMode === "light" ? "orange.200" : "blue.200"}
+                    border="1px"
+                    w="4.9rem"
+                  />
                 ) : null}
               </Stack>
             </>

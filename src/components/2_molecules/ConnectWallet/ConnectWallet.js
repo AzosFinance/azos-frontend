@@ -1,8 +1,9 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Button } from "@chakra-ui/react";
+import { Button, useColorMode } from "@chakra-ui/react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export const ConnectWallet = () => {
+  const { colorMode } = useColorMode();
   return (
     <ConnectButton.Custom>
       {({
@@ -37,7 +38,7 @@ export const ConnectWallet = () => {
                   <Button
                     size="sm"
                     onClick={openConnectModal}
-                    colorScheme="blue"
+                    colorScheme={colorMode === "light" ? "orange" : "blue"}
                     variant="outline"
                   >
                     Connect Wallet
@@ -62,7 +63,7 @@ export const ConnectWallet = () => {
                   <Button
                     size="sm"
                     onClick={openAccountModal}
-                    colorScheme="blue"
+                    colorScheme={colorMode === "light" ? "orange" : "blue"}
                     variant="outline"
                   >
                     {account.displayName + " - "}

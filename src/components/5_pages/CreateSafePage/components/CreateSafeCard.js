@@ -26,7 +26,7 @@ const CreateSafeCard = ({
       py="2rem"
       rounded="md"
       border="1px"
-      borderColor={colorMode === "light" ? "blue.200" : "gray.500"}
+      borderColor={colorMode === "light" ? "orange.200" : "gray.500"}
       spacing="1.5rem"
       w="100%"
     >

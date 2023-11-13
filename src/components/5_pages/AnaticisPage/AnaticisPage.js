@@ -23,7 +23,7 @@ const AnaticisPage = () => {
     isLoadingUniswapGetReserves ? (
     <LoadingPage />
   ) : (
-    <Stack w="100%" spacing="3rem" mt="2rem">
+    <Stack w="100%" spacing="1.5rem" mt="2rem">
       <EcosystemInformation
         data={dataAssetClasses}
         ethPrice={ethPrice}

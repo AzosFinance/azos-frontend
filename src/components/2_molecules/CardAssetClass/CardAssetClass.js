@@ -35,8 +35,8 @@ const CardAssetClass = ({
         rounded="md"
         spacing="2rem"
         alignItems="center"
+        shadow="md"
         borderColor={colorMode === "light" ? "orange.200" : "gray.500"}
-        shadow="lg"
       >
         <Stack>
           <Text textAlign="center" fontSize="2xl" fontWeight="semibold">
@@ -45,7 +45,7 @@ const CardAssetClass = ({
           <Button
             size="sm"
             variant="outline"
-            colorScheme="blue"
+            colorScheme={colorMode === "light" ? "orange" : "blue"}
             rightIcon={<BiLogoReact />}
             onClick={() =>
               router.push("/asset-class/" + safe?.collateralTypeName)

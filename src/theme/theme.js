@@ -53,10 +53,14 @@ export const theme = extendTheme({
       200: "#ff16ef",
     },
     orange: {
+      100: "#fcf8f4",
       200: "#EC5E31",
+      900: "#3a180d",
     },
     blue: {
+      100: "#f2fdff",
       200: "#00DAEB",
+      900: "#001919",
     },
   },
   styles: {

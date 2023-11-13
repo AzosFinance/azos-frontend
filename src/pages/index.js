@@ -17,7 +17,7 @@ const Home = () => {
         alignItems="center"
       >
         <Stack>
-          <Stack direction={["column", "column", "row"]} spacing="1rem">
+          <Stack direction="row" spacing="1rem">
             <Heading color="orange.200" size="2xl">
               Azos
             </Heading>
@@ -52,8 +52,13 @@ const Home = () => {
           />
         </Flex>
       </Stack>
-      <Stack w="100%" spacing="4rem" h={["100%", "100%", "80vh"]} mb="2rem">
-        <Text fontSize="3xl" alignItems="bold" textAlign="center">
+      <Stack w="100%">
+        <Text
+          alignItems="bold"
+          textAlign="center"
+          fontSize="4xl"
+          color="orange.200"
+        >
           About
         </Text>
         <Stack
@@ -61,13 +66,14 @@ const Home = () => {
           justifyContent="space-between"
           alignItems="center"
           spacing="2rem"
+          px="1.5rem"
         >
           <Stack spacing="4rem" w={[null, null, "25%"]}>
             <Stack>
               <Text fontSize="4xl" color="orange.200">
                 Azos Module
               </Text>
-              <Text fontSize="sm" letterSpacing="wide">
+              <Text fontSize="md" letterSpacing="wide">
                 The Azos module is an internal rule-based contract that allows
                 decentralized Keepers to maintain the protocol’s health
                 autonomously.
@@ -77,7 +83,7 @@ const Home = () => {
               <Text fontSize="4xl" color="orange.200">
                 Stabilization
               </Text>
-              <Text fontSize="sm" letterSpacing="wide">
+              <Text fontSize="md" letterSpacing="wide">
                 The Azos module generates and repays debt to maintain constant
                 equilibrium.
               </Text>
@@ -86,7 +92,7 @@ const Home = () => {
               <Text fontSize="4xl" color="orange.200">
                 Value Accrual
               </Text>
-              <Text fontSize="sm" letterSpacing="wide">
+              <Text fontSize="md" letterSpacing="wide">
                 First and second-generation CDP platforms leak enormous value to
                 unaligned participants. Azos retains that lost value while
                 stabilizing itself.
@@ -107,7 +113,7 @@ const Home = () => {
               <Text fontSize="4xl" color="orange.200">
                 Long Tail Emissions
               </Text>
-              <Text fontSize="sm" letterSpacing="wide">
+              <Text fontSize="md" letterSpacing="wide">
                 Long Tail-EmissionsAzos will distribute protocol ownershipto a
                 large number of participants over along periods of time by
                 subsidizing feeswith token emissions. These long-tailemissions
@@ -119,7 +125,7 @@ const Home = () => {
               <Text fontSize="4xl" color="orange.200">
                 Virtual Debt
               </Text>
-              <Text fontSize="sm" letterSpacing="wide">
+              <Text fontSize="md" letterSpacing="wide">
                 The Azos module can generate virtualdebt, provided that it
                 always has a one-to-one backing of stable collateral. Thisallows
                 better scalability than any otherCDP.

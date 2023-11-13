@@ -186,7 +186,9 @@ const MenuMobileDrawer = () => {
                         ml="2rem"
                         textAlign="right"
                         onClick={openAccountModal}
-                        color="blue.200"
+                        color={
+                          colorMode === "light" ? "orange.200" : "blue.200"
+                        }
                       >
                         Disconnect Wallet
                       </Link>
