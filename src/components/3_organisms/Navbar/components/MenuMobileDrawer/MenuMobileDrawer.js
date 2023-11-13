@@ -78,7 +78,7 @@ const MenuMobileDrawer = () => {
               >
                 <ConnectWallet />
               </Stack>
-              {isConnected ? (
+              {isConnected && (
                 <Stack
                   alignItems="flex-end"
                   spacing="2rem"
@@ -147,28 +147,12 @@ const MenuMobileDrawer = () => {
                     </Stack>
                   </Stack>
                 </Stack>
-              ) : (
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  spacing="1rem"
-                  justifyContent="flex-end"
-                  onClick={() => {
-                    router.push("/dashboard");
-                    onClose();
-                  }}
-                >
-                  <Link pt="0.4rem" fontSize="xl">
-                    Dashboard
-                  </Link>
-                </Stack>
               )}
             </Stack>
           </DrawerBody>
           <DrawerFooter>
             <Stack spacing="2rem">
               <Stack direction="row" alignItems="center">
-                <SwitchColorMode />
                 {isConnected && (
                   <Stack
                     justifyContent="flex-end"
@@ -196,37 +180,40 @@ const MenuMobileDrawer = () => {
                   </Stack>
                 )}
               </Stack>
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="space-between"
-                w="100%"
-                color={colorMode === "light" ? "gray.700" : "gray.400"}
-                spacing="1rem"
-              >
-                <Link
-                  isExternal
-                  href={footerLinks.silverDoor}
-                  fontSize="sm"
-                  _hover={{ color: "blue.100" }}
+              <Stack direction="row" alignItems="center" spacing="2rem">
+                <SwitchColorMode />
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  w="100%"
+                  color={colorMode === "light" ? "gray.700" : "gray.400"}
+                  spacing="1rem"
                 >
-                  SilverDoor LCA 2023©
-                </Link>
-                <Stack direction="row" alignItems="center" spacing="1rem">
-                  <Link isExternal href={footerLinks.github}>
-                    <Icon
-                      fontSize="xl"
-                      as={AiFillGithub}
-                      _hover={{ color: "blue.100" }}
-                    />
+                  <Link
+                    isExternal
+                    href={footerLinks.silverDoor}
+                    fontSize="sm"
+                    _hover={{ color: "blue.100" }}
+                  >
+                    SilverDoor LCA 2023©
                   </Link>
-                  <Link isExternal href={footerLinks.telegram} fontSize="sm">
-                    <Icon
-                      fontSize="xl"
-                      as={BiLogoTelegram}
-                      _hover={{ color: "blue.100" }}
-                    />
-                  </Link>
+                  <Stack direction="row" alignItems="center" spacing="1rem">
+                    <Link isExternal href={footerLinks.github}>
+                      <Icon
+                        fontSize="xl"
+                        as={AiFillGithub}
+                        _hover={{ color: "blue.100" }}
+                      />
+                    </Link>
+                    <Link isExternal href={footerLinks.telegram} fontSize="sm">
+                      <Icon
+                        fontSize="xl"
+                        as={BiLogoTelegram}
+                        _hover={{ color: "blue.100" }}
+                      />
+                    </Link>
+                  </Stack>
                 </Stack>
               </Stack>
             </Stack>
