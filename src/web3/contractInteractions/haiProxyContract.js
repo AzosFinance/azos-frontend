@@ -1,6 +1,6 @@
 import { haiProxyAbi } from "../abis/haiProxyAbi";
 import { encodeFunctionData } from "viem";
-import { basicActionsMockAbi } from "./basicActionsMockAbi";
+import { basicActionsMockAbi } from "../abis/basicActionsMockAbi";
 import { COIN_JOIN, HAI_SAFE_MANAGER, TAX_COLLECTOR } from "../addresses";
 import { collateralJoinAddresses } from "@/utils/consts";
 

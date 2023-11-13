@@ -5,7 +5,6 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  InputLeftAddon,
   InputRightAddon,
 } from "@chakra-ui/react";
 
