@@ -1,27 +1,44 @@
-import { Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  Image,
+  Stack,
+  Text,
+  useColorMode,
+} from "@chakra-ui/react";
 
 const Home = () => {
+  const { colorMode } = useColorMode();
   return (
     <Stack
       w="100%"
-      position="relative"
-      mt="2rem"
-      spacing="4rem"
+      // position="relative"
+      mt="1rem"
+      spacing="2rem"
       alignItems="center"
     >
       <Stack
         direction={["column", "column", "row"]}
         spacing="4rem"
         justifyContent="center"
-        h={["100%", "100%", "80vh"]}
+        h={["100%", "100%", "87vh"]}
         alignItems="center"
+        bgGradient={
+          colorMode === "light"
+            ? "linear(to-r, white, orange.100)"
+            : "linear(to-r, gray.900, blue.800)"
+        }
+        borderColor={colorMode === "light" ? "orange.200" : "gray.500"}
+        rounded="md"
+        border="1px"
+        w="100%"
+        shadow="lg"
+        p="1rem"
       >
         <Stack>
-          <Stack direction="row" spacing="1rem">
-            <Heading color="orange.200" size="2xl">
-              Azos
-            </Heading>
-            <Heading size="2xl">Brings Growth</Heading>
+          <Stack direction="row" spacing="1rem" size="2xl">
+            <Heading color="orange.200">Azos</Heading>
+            <Heading>Brings Growth</Heading>
           </Stack>
           <Stack
             w={[null, null, "20rem"]}
@@ -35,14 +52,14 @@ const Home = () => {
               starts with Azos.
             </Text>
           </Stack>
-          <Flex
+          {/* <Flex
             display={["none", "none", "flex"]}
             position="absolute"
             right="-16"
             top="-30"
           >
             <Image h="30rem" src="/pictures/plant_1.png" alt="plant-1" />
-          </Flex>
+          </Flex> */}
         </Stack>
         <Flex w={["20rem", "30rem", "30rem"]}>
           <Image
@@ -52,25 +69,27 @@ const Home = () => {
           />
         </Flex>
       </Stack>
-      <Stack w="100%">
-        <Text
-          alignItems="bold"
-          textAlign="center"
-          fontSize="4xl"
-          color="orange.200"
-        >
-          About
-        </Text>
+      <Stack w="100%" h={["100%", "100%", "87vh"]} mt="2rem" spacing="2rem">
         <Stack
           direction={["column", "column", "row"]}
           justifyContent="space-between"
           alignItems="center"
           spacing="2rem"
-          px="1.5rem"
+          bgGradient={
+            colorMode === "light"
+              ? "linear(to-r, white, orange.100)"
+              : "linear(to-r, gray.900, blue.800)"
+          }
+          borderColor={colorMode === "light" ? "orange.200" : "gray.500"}
+          rounded="md"
+          border="1px"
+          py="2rem"
+          px={["1rem", "1rem", "4rem"]}
+          h="100%"
         >
-          <Stack spacing="4rem" w={[null, null, "25%"]}>
+          <Stack spacing="3rem" w={[null, null, "25%"]}>
             <Stack>
-              <Text fontSize="4xl" color="orange.200">
+              <Text fontSize="3xl" color="orange.200">
                 Azos Module
               </Text>
               <Text fontSize="md" letterSpacing="wide">
@@ -80,7 +99,7 @@ const Home = () => {
               </Text>
             </Stack>
             <Stack>
-              <Text fontSize="4xl" color="orange.200">
+              <Text fontSize="3xl" color="orange.200">
                 Stabilization
               </Text>
               <Text fontSize="md" letterSpacing="wide">
@@ -89,7 +108,7 @@ const Home = () => {
               </Text>
             </Stack>
             <Stack>
-              <Text fontSize="4xl" color="orange.200">
+              <Text fontSize="3xl" color="orange.200">
                 Value Accrual
               </Text>
               <Text fontSize="md" letterSpacing="wide">
@@ -108,9 +127,9 @@ const Home = () => {
               />
             </Flex>
           </Flex>
-          <Stack spacing="4rem" w={[null, null, "25%"]}>
+          <Stack spacing="3rem" w={[null, null, "25%"]}>
             <Stack>
-              <Text fontSize="4xl" color="orange.200">
+              <Text fontSize="3xl" color="orange.200">
                 Long Tail Emissions
               </Text>
               <Text fontSize="md" letterSpacing="wide">
@@ -122,7 +141,7 @@ const Home = () => {
               </Text>
             </Stack>
             <Stack>
-              <Text fontSize="4xl" color="orange.200">
+              <Text fontSize="3xl" color="orange.200">
                 Virtual Debt
               </Text>
               <Text fontSize="md" letterSpacing="wide">
@@ -133,14 +152,14 @@ const Home = () => {
             </Stack>
           </Stack>
         </Stack>
-        <Flex
+        {/* <Flex
           display={["none", "none", "flex"]}
           position="absolute"
           left="-16"
           bottom="230"
         >
           <Image h="40rem" src="/pictures/plant_2.png" alt="plant-1" />
-        </Flex>
+        </Flex> */}
       </Stack>
     </Stack>
   );

@@ -14,13 +14,12 @@ const AppLayout = ({ children }) => {
       <Flex
         flexDirection="column"
         alignItems="center"
-        mx={["1rem", "2rem", "4rem", "15rem"]}
-        position="relative"
-        h="100vh"
+        px={["1rem", "2rem", "4rem", "30rem"]}
         justifyContent="space-between"
+        h="100vh"
       >
         <Navbar />
-        <Flex pb="1rem" w="100%" mt="1rem">
+        <Flex w="100%" mt="1rem">
           {children}
         </Flex>
         <Footer />

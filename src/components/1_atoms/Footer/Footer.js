@@ -7,7 +7,7 @@ const Footer = () => {
   const { colorMode } = useColorMode();
   return (
     <Stack
-      mt="2rem"
+      mt="1rem"
       py="1rem"
       direction={("column", "column", "row")}
       alignItems="center"
