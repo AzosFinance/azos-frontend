@@ -48,10 +48,14 @@ const MintDemoTokenCard = ({ tokenSymbol, tokenAddress, description }) => {
         colorScheme="blue"
         variant="outline"
         isLoading={isSubmitting}
-        isDisabled={!isConnected || !isRightNetwork}
+        isDisabled={
+          !isConnected || !isRightNetwork || !watch(tokenSymbol?.toLowerCase())
+        }
         onClick={onContractCall}
       >
-        Mint {tokenSymbol}
+        {watch(tokenSymbol?.toLowerCase())
+          ? "Mint " + tokenSymbol
+          : "Input " + tokenSymbol + " Amount"}
       </Button>
     </Stack>
   );
