@@ -29,6 +29,8 @@ const FromInputNumeric = ({
     placeholder,
     disabled,
     size,
+    borderColor: "gray.600",
+    placeholder: "Input Amount",
   };
   return (
     <FormControl id={name} isRequired={isRequired} isInvalid={error}>

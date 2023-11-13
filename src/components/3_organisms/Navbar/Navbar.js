@@ -41,14 +41,14 @@ const Navbar = () => {
           spacing="2rem"
           display={["none", "none", "flex"]}
         >
-          <NavBarLink
-            path="/analytics"
-            label="Analytics"
-            dividerWidth="4.5rem"
-            routeActive="/analytics"
-          />
           {isConnected && (
             <>
+              <NavBarLink
+                path="/analytics"
+                label="Analytics"
+                dividerWidth="4.5rem"
+                routeActive="/analytics"
+              />
               <NavBarLink
                 path="/demo-tokens"
                 label="Demo Tokens"

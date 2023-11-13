@@ -80,6 +80,7 @@ const CreateSafeCard = ({
                 control={control}
               />
               <Select
+                borderColor="gray.600"
                 w="8rem"
                 defaultValue={collateralAsset}
                 name="collateralAsset"

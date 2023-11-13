@@ -1,14 +1,7 @@
 import SafeTable from "@/components/2_molecules/SafeTable/SafeTable";
 import SafeTableRow from "@/components/2_molecules/SafeTable/SafeTableRow";
 import CardAssetClass from "@/components/2_molecules/CardAssetClass/CardAssetClass";
-import {
-  Stack,
-  Text,
-  Center,
-  Heading,
-  Link,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Stack, Text, Center, useColorMode } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import { GET_USER_PROXY } from "@/graphQL/queries";
@@ -17,8 +10,6 @@ import useGetEthPrice from "@/hooks/web3Hooks/useGetEthPrice";
 import UserBalances from "../../2_molecules/UserBalances/UserBalances";
 import useIsOwner from "@/hooks/utils/useIsOwner";
 import useZaiPrice from "@/hooks/web3Hooks/useZaiPrice";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
-import { sepoliaScanAddress } from "@/utils/consts";
 
 const UserProfilePage = () => {
   const router = useRouter();
@@ -43,23 +34,9 @@ const UserProfilePage = () => {
       <Stack
         direction={["column", "column", "row"]}
         alignItems="center"
-        justifyContent="space-between"
+        justifyContent="flex-end"
         spacing="2rem"
       >
-        <Stack position="relative">
-          <Heading>Profile</Heading>
-          <Link
-            position="absolute"
-            right="-5"
-            isExternal
-            href={sepoliaScanAddress + router.query.id}
-          >
-            <ExternalLinkIcon
-              color={colorMode === "light" ? "gray.600" : "gray.400"}
-              _hover={{ color: "blue.100" }}
-            />
-          </Link>
-        </Stack>
         <UserBalances />
       </Stack>
       {data?.userProxy?.userProxyAssetClassStatDeposits?.length > 0 ? (

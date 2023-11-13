@@ -31,6 +31,7 @@ const FormInput = ({
       </FormLabel>
       <InputGroup>
         <Input
+          borderColor="gray.500"
           size={size}
           placeholder={placeholder}
           defaultValue={defaultValue}

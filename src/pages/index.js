@@ -92,7 +92,7 @@ const Home = () => {
               <Text fontSize="3xl" color="orange.200">
                 Azos Module
               </Text>
-              <Text fontSize="md" letterSpacing="wide">
+              <Text fontSize="sm" letterSpacing="wide">
                 The Azos module is an internal rule-based contract that allows
                 decentralized Keepers to maintain the protocol’s health
                 autonomously.
@@ -102,19 +102,22 @@ const Home = () => {
               <Text fontSize="3xl" color="orange.200">
                 Stabilization
               </Text>
-              <Text fontSize="md" letterSpacing="wide">
-                The Azos module generates and repays debt to maintain constant
-                equilibrium.
+              <Text fontSize="sm" letterSpacing="wide">
+                The Azos module expands and contracts the token supply to
+                maintain constant equilibrium. This allows Azos to remain stable
+                even during extreme demand fluctuations or supply shocks.
               </Text>
             </Stack>
             <Stack>
               <Text fontSize="3xl" color="orange.200">
                 Value Accrual
               </Text>
-              <Text fontSize="md" letterSpacing="wide">
-                First and second-generation CDP platforms leak enormous value to
-                unaligned participants. Azos retains that lost value while
-                stabilizing itself.
+              <Text fontSize="sm" letterSpacing="wide">
+                Stablecoin platforms and users actually pay enormous amounts of
+                money to market makers in order to remain price stable. First
+                and second-generation platforms leak enormous value to these
+                unaligned market participants. The Azos stability module
+                captures that previously lost value.
               </Text>
             </Stack>
           </Stack>
@@ -132,22 +135,23 @@ const Home = () => {
               <Text fontSize="3xl" color="orange.200">
                 Long Tail Emissions
               </Text>
-              <Text fontSize="md" letterSpacing="wide">
-                Long Tail-EmissionsAzos will distribute protocol ownershipto a
-                large number of participants over along periods of time by
-                subsidizing feeswith token emissions. These long-tailemissions
-                will ensure yield-aggregationstrategies continue to
-                outperformcompetitors for years.
+              <Text fontSize="sm" letterSpacing="wide">
+                Azos will distribute protocol ownership to a large number of
+                participants over a long period of time. These long-tail
+                emissions will ensure yield-aggregation strategies continue to
+                outperform our competitors for years.
               </Text>
             </Stack>
             <Stack>
               <Text fontSize="3xl" color="orange.200">
-                Virtual Debt
+                Automated Liquidity
               </Text>
-              <Text fontSize="md" letterSpacing="wide">
-                The Azos module can generate virtualdebt, provided that it
-                always has a one-to-one backing of stable collateral. Thisallows
-                better scalability than any otherCDP.
+              <Text fontSize="sm" letterSpacing="wide">
+                The Azos module enables powerful automated protocol owned
+                liquidity. It&apos;s more capital efficient and safe always
+                maintaining at least one-to-one backing of stable collateral.
+                This allows Azos to scale better than any other collateralied
+                debt position platform.
               </Text>
             </Stack>
           </Stack>
