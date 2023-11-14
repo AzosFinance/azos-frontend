@@ -114,11 +114,7 @@ const EcosystemInformation = ({ data, ethPrice, zaiPrice }) => {
           >
             Stability Module
           </Text>
-          <Link
-            href={sepoliaScanAddress + STABILITY_MODULE}
-            isExternal
-            pb="1rem"
-          >
+          <Link href={sepoliaScanAddress + STABILITY_MODULE} isExternal>
             <ExternalLinkIcon
               cursor="pointer"
               _hover={{
