@@ -36,6 +36,8 @@ const CreateSafeStepsCard = ({
   amountToExchange,
   isUserBalanceZero,
   userBalance,
+  isConnected,
+  isRightNetwork,
 }) => {
   const router = useRouter();
   const { colorMode } = useColorMode();
@@ -74,16 +76,20 @@ const CreateSafeStepsCard = ({
     useGetErc20BalanceAllowance(collateralAsset);
 
   useEffect(() => {
-    if (!amountToExchange) {
-      setActiveStep(0);
-    } else {
-      if (allowanceCheck) {
-        setActiveStep(3);
+    if (isConnected && isRightNetwork) {
+      if (!amountToExchange) {
+        setActiveStep(0);
       } else {
-        setActiveStep(1);
+        if (allowanceCheck) {
+          setActiveStep(3);
+        } else {
+          setActiveStep(1);
+        }
       }
+    } else {
+      setActiveStep(0);
     }
-  }, [allowanceCheck, amountToExchange]);
+  }, [allowanceCheck, amountToExchange, isConnected, isRightNetwork]);
 
   return (
     <Stack

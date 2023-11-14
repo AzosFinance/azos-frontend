@@ -42,6 +42,7 @@ const MintDemoTokenCard = ({ tokenSymbol, tokenAddress, description }) => {
           setValue(tokenSymbol?.toLowerCase(), target.floatValue);
         }}
         control={control}
+        placeholder=""
       />
       <Button
         size="sm"
@@ -53,9 +54,7 @@ const MintDemoTokenCard = ({ tokenSymbol, tokenAddress, description }) => {
         }
         onClick={onContractCall}
       >
-        {watch(tokenSymbol?.toLowerCase())
-          ? "Mint " + tokenSymbol
-          : "Input " + tokenSymbol + " Amount"}
+        Mint {tokenSymbol}
       </Button>
     </Stack>
   );

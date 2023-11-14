@@ -14,7 +14,7 @@ const FromInputNumeric = ({
   onValueChange,
   control,
   name,
-  placeholder,
+  placeholder = "Input Amount",
   disabled,
   label,
   subLabel,
@@ -30,7 +30,7 @@ const FromInputNumeric = ({
     disabled,
     size,
     borderColor: "gray.600",
-    placeholder: "Input Amount",
+    placeholder,
   };
   return (
     <FormControl id={name} isRequired={isRequired} isInvalid={error}>

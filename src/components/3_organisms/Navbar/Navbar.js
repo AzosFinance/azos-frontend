@@ -43,24 +43,6 @@ const Navbar = () => {
         >
           {isConnected && (
             <>
-              <NavBarLink
-                path="/analytics"
-                label="Analytics"
-                dividerWidth="4.5rem"
-                routeActive="/analytics"
-              />
-              <NavBarLink
-                path="/demo-tokens"
-                label="Demo Tokens"
-                routeActive="/demo-tokens"
-                dividerWidth="6.3rem"
-              />
-              <NavBarLink
-                path={"/user/create-safe/" + address?.toLowerCase()}
-                label="Create Safe"
-                routeActive="/user/create-safe/[id]"
-                dividerWidth="5.5rem"
-              />
               <Stack h="1.5rem">
                 <Link
                   mr="1rem"
@@ -87,6 +69,24 @@ const Navbar = () => {
               </Stack>
             </>
           )}
+          <NavBarLink
+            path="/demo-tokens"
+            label="Demo Tokens"
+            routeActive="/demo-tokens"
+            dividerWidth="6.3rem"
+          />
+          <NavBarLink
+            path={"/user/create-safe/" + address?.toLowerCase()}
+            label="Create Safe"
+            routeActive="/user/create-safe/[id]"
+            dividerWidth="5.5rem"
+          />
+          <NavBarLink
+            path="/analytics"
+            label="Analytics"
+            dividerWidth="4.5rem"
+            routeActive="/analytics"
+          />
         </Stack>
         <ConnectWallet />
         <SwitchColorMode />

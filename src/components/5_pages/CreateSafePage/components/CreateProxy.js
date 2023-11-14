@@ -10,9 +10,9 @@ const CreateProxy = ({ onRefecth }) => {
     isSubmitting: isSubmittingCreateProxy,
   } = useContractInteraction(handleCreateUserProxy(), "User Proxy Created");
   return (
-    <Stack>
+    <Stack mb="1rem">
       <Text textAlign="center">
-        You need to create a user proxy before creating a safe
+        You need to create a user profile before creating a safe
       </Text>
       <Flex justifyContent="center">
         <Button
@@ -28,7 +28,7 @@ const CreateProxy = ({ onRefecth }) => {
             }
           }}
         >
-          Create User Proxy
+          Create User Profile
         </Button>
       </Flex>
     </Stack>

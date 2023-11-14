@@ -78,59 +78,16 @@ const MenuMobileDrawer = () => {
               >
                 <ConnectWallet />
               </Stack>
-              {isConnected && (
-                <Stack
-                  alignItems="flex-end"
-                  spacing="2rem"
-                  fontWeight="semibold"
-                  fontSize="sm"
-                >
-                  <Divider />
-                  <Stack spacing="2rem" textAlign="right">
-                    <Stack
-                      direction="row"
-                      alignItems="center"
-                      spacing="1rem"
-                      justifyContent="flex-end"
-                      onClick={() => {
-                        router.push("/analytics");
-                        onClose();
-                      }}
-                    >
-                      <Link pt="0.4rem" fontSize="xl">
-                        Analytics
-                      </Link>
-                    </Stack>
-                    <Stack
-                      direction="row"
-                      alignItems="center"
-                      spacing="1rem"
-                      justifyContent="flex-end"
-                      onClick={() => {
-                        router.push("/demo-tokens");
-                        onClose();
-                      }}
-                    >
-                      <Link pt="0.4rem" fontSize="xl">
-                        Demo Tokens
-                      </Link>
-                    </Stack>
-                    <Stack
-                      direction="row"
-                      alignItems="center"
-                      spacing="1rem"
-                      justifyContent="flex-end"
-                      onClick={() => {
-                        router.push(
-                          "/user/create-safe/" + address.toLowerCase()
-                        );
-                        onClose();
-                      }}
-                    >
-                      <Link pt="0.4rem" fontSize="xl">
-                        Create Safe
-                      </Link>
-                    </Stack>
+
+              <Stack
+                alignItems="flex-end"
+                spacing="2rem"
+                fontWeight="semibold"
+                fontSize="sm"
+              >
+                <Divider />
+                <Stack spacing="2rem" textAlign="right">
+                  {isConnected && (
                     <Stack
                       direction="row"
                       alignItems="center"
@@ -145,9 +102,52 @@ const MenuMobileDrawer = () => {
                         Profile
                       </Link>
                     </Stack>
+                  )}
+
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    spacing="1rem"
+                    justifyContent="flex-end"
+                    onClick={() => {
+                      router.push("/demo-tokens");
+                      onClose();
+                    }}
+                  >
+                    <Link pt="0.4rem" fontSize="xl">
+                      Demo Tokens
+                    </Link>
+                  </Stack>
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    spacing="1rem"
+                    justifyContent="flex-end"
+                    onClick={() => {
+                      router.push("/user/create-safe/" + address.toLowerCase());
+                      onClose();
+                    }}
+                  >
+                    <Link pt="0.4rem" fontSize="xl">
+                      Create Safe
+                    </Link>
+                  </Stack>
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    spacing="1rem"
+                    justifyContent="flex-end"
+                    onClick={() => {
+                      router.push("/analytics");
+                      onClose();
+                    }}
+                  >
+                    <Link pt="0.4rem" fontSize="xl">
+                      Analytics
+                    </Link>
                   </Stack>
                 </Stack>
-              )}
+              </Stack>
             </Stack>
           </DrawerBody>
           <DrawerFooter>

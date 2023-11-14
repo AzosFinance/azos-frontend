@@ -9,6 +9,7 @@ import CreateProxy from "./components/CreateProxy";
 import CreateSafeCard from "./components/CreateSafeCard";
 import CreateSafeStepsCard from "./components/CreateSafeStepsCard";
 import useCreateSafeHooks from "./hooks/useCreateSafeHooks";
+import { zeroAddress } from "viem";
 
 const CreateSafePage = () => {
   const [isRefetching, setIsRefetching] = useState(false);
@@ -18,7 +19,7 @@ const CreateSafePage = () => {
 
   const { data, loading, refetch } = useQuery(GET_USER_CREATE_SAFE, {
     variables: {
-      id: address?.toLowerCase(),
+      id: isConnected ? address?.toLowerCase() : zeroAddress,
     },
   });
 
@@ -44,7 +45,7 @@ const CreateSafePage = () => {
   return loading || isRefetching || loadingEthPrice ? (
     <LoadingPage />
   ) : (
-    <Stack w="100%" spacing="2rem" mt="2rem">
+    <Stack w="100%" spacing={data?.userProxy ? "2rem" : "1rem"} mt="2rem">
       <Stack>
         <Heading textAlign="center">Create A New Safe</Heading>
       </Stack>
@@ -91,6 +92,8 @@ const CreateSafePage = () => {
           isUserBalanceZero={isUserBalanceZero}
           userBalance={userBalance}
           isProzyCreated={data?.userProxy}
+          isConnected={isConnected}
+          isRightNetwork={isRightNetwork}
         />
       </Stack>
     </Stack>
