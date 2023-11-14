@@ -3,10 +3,13 @@ import useUsdAssetPriceConverter from "@/hooks/utils/useUsdAssetPriceConverter";
 import {
   collateralPrices,
   convertToEthValueType,
+  sepoliaScanAddress,
   tokenNames,
 } from "@/utils/consts";
 import { convertToEth, formatNumber, weiToBigNumber } from "@/utils/funcs";
-import { Stack, Text, useColorMode } from "@chakra-ui/react";
+import { STABILITY_MODULE } from "@/web3/addresses";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { Link, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useMemo } from "react";
 
 const EcosystemInformation = ({ data, ethPrice, zaiPrice }) => {
@@ -103,13 +106,28 @@ const EcosystemInformation = ({ data, ethPrice, zaiPrice }) => {
         </Stack>
       </Stack>
       <Stack w={["100%", "100%", "50%"]} spacing="1rem">
-        <Text
-          textAlign={["center", "center", "left"]}
-          fontWeight="semibold"
-          fontSize="xl"
-        >
-          Stability Module
-        </Text>
+        <Stack direction="row" alignItems="center">
+          <Text
+            textAlign={["center", "center", "left"]}
+            fontWeight="semibold"
+            fontSize="xl"
+          >
+            Stability Module
+          </Text>
+          <Link
+            href={sepoliaScanAddress + STABILITY_MODULE}
+            isExternal
+            pb="1rem"
+          >
+            <ExternalLinkIcon
+              cursor="pointer"
+              _hover={{
+                color: colorMode === "light" ? "orange.200" : "blue.200",
+              }}
+              color="gray.500"
+            />
+          </Link>
+        </Stack>
         <Stack
           p="1rem"
           rounded="md"
