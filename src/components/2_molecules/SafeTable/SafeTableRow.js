@@ -28,8 +28,8 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice, zaiPrice }) => {
   return (
     <>
       <Tr>
-        <Td>
-          <Flex justifyContent="center">
+        <Td w="10%">
+          <Flex justifyContent="center" w="100%">
             <Button
               w="5rem"
               colorScheme={colorMode === "light" ? "orange" : "blue"}
@@ -41,8 +41,9 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice, zaiPrice }) => {
             </Button>
           </Flex>
         </Td>
-        <Td>
+        <Td w="25%">
           <Stack
+            w="100%"
             direction="row"
             alignItems="center"
             spacing="0.5rem"
@@ -52,12 +53,19 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice, zaiPrice }) => {
             justifyContent="center"
           >
             <Icon color="gray.500" fontSize="xs" as={FaUser} />
-            <Link fontSize="sm">{formatWalletAddress(safe?.safe?.user)}</Link>
+            <Link fontSize="sm" textAlign="center">
+              {formatWalletAddress(safe?.safe?.user)}
+            </Link>
           </Stack>
         </Td>
-        <Td>
-          <Stack alignItems="center" justifyContent="center">
-            <Stack alignItems="center" direction="row" fontSize="sm">
+        <Td w="25%">
+          <Stack alignItems="center" justifyContent="center" w="100%">
+            <Stack
+              alignItems="center"
+              direction="row"
+              fontSize="sm"
+              textAlign="center"
+            >
               <Text fontWeight="semibold">
                 {formatNumber(
                   convertToEth(
@@ -71,6 +79,7 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice, zaiPrice }) => {
               </Text>
             </Stack>
             <Text
+              textAlign="center"
               color={colorMode === "light" ? "gray.900" : "gray.400"}
               fontSize="xs"
             >
@@ -88,9 +97,14 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice, zaiPrice }) => {
             </Text>
           </Stack>
         </Td>
-        <Td>
-          <Stack alignItems="center" justifyContent="center">
-            <Stack direction="row" alignItems="center" fontSize="sm">
+        <Td w="25%">
+          <Stack alignItems="center" justifyContent="center" w="100%">
+            <Stack
+              direction="row"
+              alignItems="center"
+              fontSize="sm"
+              textAlign="center"
+            >
               <Text fontWeight="semibold">
                 {formatNumber(
                   convertToEth(
@@ -104,6 +118,7 @@ const SafeTableRow = ({ safe, collateralTypeName, ethPrice, zaiPrice }) => {
               </Text>
             </Stack>
             <Text
+              textAlign="center"
               color={colorMode === "light" ? "gray.900" : "gray.400"}
               fontSize="xs"
             >

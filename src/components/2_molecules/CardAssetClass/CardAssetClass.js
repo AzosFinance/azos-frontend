@@ -51,7 +51,7 @@ const CardAssetClass = ({
               router.push("/asset-class/" + safe?.collateralTypeName)
             }
           >
-            Explore {safe?.collateralTypeName} Safes
+            Explore Safes
           </Button>
         </Stack>
         <Stack direction={["column", "column", "row"]} w="100%" spacing="1rem">
