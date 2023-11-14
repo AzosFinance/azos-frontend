@@ -97,7 +97,7 @@ const CreateSafeCard = ({
           <Divider />
           <Stack spacing="1rem">
             <StatInfo
-              label={"Exchange For " + tokenNames.zai}
+              label={"Stake For " + tokenNames.zai}
               value={
                 deltaWad
                   ? deltaWad + " " + tokenNames.zai
