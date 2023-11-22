@@ -69,7 +69,7 @@ const Home = () => {
           />
         </Flex>
       </Stack>
-      <Stack w="100%" h={["100%", "100%", "87vh"]} mt="2rem" spacing="2rem">
+      <Stack w="100%" minH={["100%", "100%", "87vh"]} mt="2rem" spacing="2rem">
         <Stack
           direction={["column", "column", "row"]}
           justifyContent="space-between"
