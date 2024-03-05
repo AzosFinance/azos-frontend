@@ -1,5 +1,4 @@
 import LoadingPage from "@/components/1_atoms/LoadingPage/LoadingPage";
-import { GET_USER_CREATE_SAFE } from "@/graphQL/queries";
 import { useQuery } from "@apollo/client";
 import { Flex, Heading, Stack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -10,6 +9,7 @@ import CreateSafeCard from "./components/CreateSafeCard";
 import CreateSafeStepsCard from "./components/CreateSafeStepsCard";
 import useCreateSafeHooks from "./hooks/useCreateSafeHooks";
 import { zeroAddress } from "viem";
+import { GET_USER_CREATE_SAFE } from "@/graphQL/userQueries/userQueries";
 
 const CreateSafePage = () => {
   const [isRefetching, setIsRefetching] = useState(false);
