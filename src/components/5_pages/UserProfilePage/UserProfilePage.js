@@ -4,12 +4,12 @@ import CardAssetClass from "@/components/2_molecules/CardAssetClass/CardAssetCla
 import { Stack, Text, Center, useColorMode } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
-import { GET_USER_PROXY } from "@/graphQL/queries";
 import LoadingPage from "@/components/1_atoms/LoadingPage/LoadingPage";
 import useGetEthPrice from "@/hooks/web3Hooks/useGetEthPrice";
 import UserBalances from "../../2_molecules/UserBalances/UserBalances";
 import useIsOwner from "@/hooks/utils/useIsOwner";
 import useZaiPrice from "@/hooks/web3Hooks/useZaiPrice";
+import { GET_USER_PROXY } from "@/graphQL/userQueries/userQueries";
 
 const UserProfilePage = () => {
   const router = useRouter();

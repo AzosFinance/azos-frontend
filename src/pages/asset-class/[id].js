@@ -3,12 +3,12 @@ import CardAssetClass from "@/components/2_molecules/CardAssetClass/CardAssetCla
 import { Heading, Stack } from "@chakra-ui/react";
 import SafeTable from "@/components/2_molecules/SafeTable/SafeTable";
 import SafeTableRow from "@/components/2_molecules/SafeTable/SafeTableRow";
-import { GET_ASSET_CLASS } from "@/graphQL/queries";
 import { useQuery } from "@apollo/client";
 import LoadingPage from "@/components/1_atoms/LoadingPage/LoadingPage";
 import useGetEthPrice from "@/hooks/web3Hooks/useGetEthPrice";
 import { ethers } from "ethers";
 import useZaiPrice from "@/hooks/web3Hooks/useZaiPrice";
+import { GET_ASSET_CLASS } from "@/graphQL/assetQueries/assetQueries";
 
 const AssetClass = () => {
   const router = useRouter();

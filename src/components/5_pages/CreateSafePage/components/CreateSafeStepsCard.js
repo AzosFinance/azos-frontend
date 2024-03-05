@@ -23,7 +23,7 @@ import { convertToEth, convertToWei, formatNumber } from "@/utils/funcs";
 import { BASIC_ACTIONS_MOCKUP } from "@/web3/addresses";
 import { useRouter } from "next/router";
 import useCreateSafeAllowanceCheck from "@/components/5_pages/CreateSafePage/hooks/useCreateSafeAllowanceCheck";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 
 const CreateSafeStepsCard = ({
   assetClass,
