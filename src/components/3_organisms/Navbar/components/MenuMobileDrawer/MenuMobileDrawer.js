@@ -1,4 +1,8 @@
-import { ChevronRightIcon, HamburgerIcon } from "@chakra-ui/icons";
+import {
+  ChevronRightIcon,
+  ExternalLinkIcon,
+  HamburgerIcon,
+} from "@chakra-ui/icons";
 import {
   Drawer,
   DrawerBody,
@@ -22,7 +26,7 @@ import { useAccount } from "wagmi";
 import { useAccountModal } from "@rainbow-me/rainbowkit";
 import { ConnectWallet } from "@/components/2_molecules/ConnectWallet/ConnectWallet";
 import SwitchColorMode from "@/components/1_atoms/SwitchColorMode/SwitchColorMode";
-import { footerLinks } from "@/utils/consts";
+import { documentationLink, footerLinks } from "@/utils/consts";
 import { AiFillGithub } from "react-icons/ai";
 import { BiLogoTelegram } from "react-icons/bi";
 
@@ -145,6 +149,23 @@ const MenuMobileDrawer = () => {
                     <Link pt="0.4rem" fontSize="xl">
                       Analytics
                     </Link>
+                  </Stack>
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    spacing="1rem"
+                    justifyContent="flex-end"
+                  >
+                    <Stack direction="row" pt="0.4rem" fontSize="xl">
+                      <Link
+                        isExternal
+                        href={documentationLink}
+                        fontWeight="semibold"
+                      >
+                        Docs
+                      </Link>
+                      <ExternalLinkIcon fontSize="1rem" mt="0.3rem" />
+                    </Stack>
                   </Stack>
                 </Stack>
               </Stack>

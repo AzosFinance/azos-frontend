@@ -9,6 +9,9 @@ import {
 
 export const sepoliaScanAddress = "https://sepolia.etherscan.io/address/";
 
+export const documentationLink =
+  "https://azos-docs-production.up.railway.app/docs/intro/";
+
 export const convertToEthValueType = {
   reward: "reward",
   notReward: "notReward",

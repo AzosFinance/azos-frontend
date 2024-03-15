@@ -12,6 +12,8 @@ import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
 import MenuMobileDrawer from "./components/MenuMobileDrawer/MenuMobileDrawer";
 import NavBarLink from "./components/components/NavBarLink";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { documentationLink } from "@/utils/consts";
 
 const Navbar = () => {
   const router = useRouter();
@@ -87,6 +89,12 @@ const Navbar = () => {
             dividerWidth="4.5rem"
             routeActive="/analytics"
           />
+          <Stack direction="row" cursor="pointer">
+            <Link fontWeight="semibold" isExternal href={documentationLink}>
+              Docs
+            </Link>
+            <ExternalLinkIcon fontSize="0.7rem" mt="0.3rem" />
+          </Stack>
         </Stack>
         <ConnectWallet />
         <SwitchColorMode />
