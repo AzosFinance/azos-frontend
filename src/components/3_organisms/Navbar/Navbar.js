@@ -27,6 +27,7 @@ const Navbar = () => {
       direction="row"
       alignItems="center"
       justifyContent="space-between"
+      spacing="1rem"
     >
       <Flex cursor="pointer" onClick={() => router.push("/")} w="10rem">
         <Image objectFit="cover" src="/pictures/azos-logo.png" alt="azos-log" />
@@ -40,7 +41,7 @@ const Navbar = () => {
         <Stack
           direction="row"
           alignItems="center"
-          spacing="2rem"
+          spacing="1rem"
           display={["none", "none", "flex"]}
         >
           {isConnected && (
@@ -89,8 +90,8 @@ const Navbar = () => {
             dividerWidth="4.5rem"
             routeActive="/analytics"
           />
-          <Stack direction="row" cursor="pointer">
-            <Link fontWeight="semibold" isExternal href={documentationLink}>
+          <Stack direction="row" cursor="pointer" spacing="0.3rem">
+            <Link fontWeight="bold" isExternal href={documentationLink}>
               Docs
             </Link>
             <ExternalLinkIcon fontSize="0.7rem" mt="0.3rem" />
