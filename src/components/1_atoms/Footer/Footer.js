@@ -1,6 +1,6 @@
 import { footerLinks } from "@/utils/consts";
 import { Flex, Icon, Link, Stack, useColorMode } from "@chakra-ui/react";
-import { AiFillGithub } from "react-icons/ai";
+import { AiFillGithub, AiOutlineTwitter } from "react-icons/ai";
 import { BiLogoTelegram } from "react-icons/bi";
 
 const Footer = () => {
@@ -32,6 +32,13 @@ const Footer = () => {
         </Link>
       </Flex>
       <Stack direction="row" alignItems="center" spacing="2rem">
+        <Link isExternal href={footerLinks.twitter}>
+          <Icon
+            fontSize="2xl"
+            as={AiOutlineTwitter}
+            _hover={{ color: colorMode === "light" ? "gray.500" : "blue.100" }}
+          />
+        </Link>
         <Link isExternal href={footerLinks.github}>
           <Icon
             fontSize="2xl"

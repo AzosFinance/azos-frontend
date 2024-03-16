@@ -63,4 +63,5 @@ export const footerLinks = {
   silverDoor: "https://www.silverdoor.ai/",
   github: "https://github.com/AzosFinance/azos-hub",
   telegram: "https://t.me/azos_fi",
+  twitter: "https://twitter.com/AzosFinance",
 };
