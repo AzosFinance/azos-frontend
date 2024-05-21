@@ -38,6 +38,7 @@ const CreateSafeStepsCard = ({
   userBalance,
   isConnected,
   isRightNetwork,
+  deltaWad,
 }) => {
   const router = useRouter();
   const { colorMode } = useColorMode();
@@ -50,10 +51,11 @@ const CreateSafeStepsCard = ({
   const {
     onContractCall: onContractCallCreateSafe,
     isSubmitting: isSubmittingCreateSafe,
-  } = useContractInteraction(handleCreateSafe(proxy), "Deposit Completed", [
-    BASIC_ACTIONS_MOCKUP,
-    endodedDataFunction,
-  ]);
+  } = useContractInteraction(
+    handleCreateSafe(proxy),
+    `You have minted ${deltaWad} ZAI stablecoin.  Congratulations you have collateralized and minted stablecoins backed by impact assets!`,
+    [BASIC_ACTIONS_MOCKUP, endodedDataFunction]
+  );
 
   // USER ALLOWANCE CHECK
   const {

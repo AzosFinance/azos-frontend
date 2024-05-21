@@ -94,6 +94,7 @@ const CreateSafePage = () => {
           isProzyCreated={data?.userProxy}
           isConnected={isConnected}
           isRightNetwork={isRightNetwork}
+          deltaWad={callDataAndDeltaWad?.deltaWad}
         />
       </Stack>
     </Stack>
